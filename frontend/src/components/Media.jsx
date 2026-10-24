@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { imgSrc, gifSrc, isVideoSrc, isCustomEx, figureOf } from '../lib/exercises.js'
+import { imgSrc, gifSrc, rawFallbackSrc, isVideoSrc, isCustomEx, figureOf } from '../lib/exercises.js'
 import { MOBILE } from '../lib/mobile.js'
 import { useStore } from '../store/useStore.js'
 import { t, exerciseNameFor } from '../lib/i18n.js'
@@ -43,6 +43,13 @@ function BuiltinMedia({ ex, id, compact, minimizable }) {
   const gif = anim.sources[Math.min(at, Math.max(0, anim.sources.length - 1))] || gifSrc(ex, body)
   const clip = ex.gif && isVideoSrc(gif) ? gif : null
   const clipSrc = useClipInMemory(clip)
+  // The still gets the same raw-GitHub second chance as a list thumbnail (see BuiltinThumb):
+  // it is the same file, and a jsDelivr 403 on it would otherwise leave the neutral tile here.
+  // Declared before the early returns below, like every other hook in this component.
+  const stillPrimary = imgSrc(ex, body)
+  const [stillTried, setStillTried] = useState({ key: null, fallback: false })
+  const stillFallback = stillTried.key === stillPrimary && stillTried.fallback
+  const stillSrc = stillFallback ? (rawFallbackSrc(stillPrimary) || stillPrimary) : stillPrimary
   if (!ex.gif) return null
   if (minimizable && gifSize === 'off') return null
   const mini = minimizable && gifSize === 'mini'
@@ -50,10 +57,11 @@ function BuiltinMedia({ ex, id, compact, minimizable }) {
   const showGif = playing && failed == null && !anim.still
   const onError = () => {
     if (showGif && at < anim.sources.length - 1) { setTried({ key: sourcesKey, i: at + 1 }); return }
+    if (!showGif && !stillFallback && rawFallbackSrc(stillPrimary)) { setStillTried({ key: stillPrimary, fallback: true }); return }
     setFailed(showGif ? 'gif' : 'all')
   }
   const onTap = () => {
-    if (failed) { setFailed(null); setPlaying(true); setTried({ key: sourcesKey, i: 0 }); return }
+    if (failed) { setFailed(null); setPlaying(true); setTried({ key: sourcesKey, i: 0 }); setStillTried({ key: null, fallback: false }); return }
     if (anim.still) return
     setPlaying(p => !p)
   }
@@ -68,8 +76,8 @@ function BuiltinMedia({ ex, id, compact, minimizable }) {
               aria-label={exerciseNameFor(ex)} onError={onError} />
           : showGif && clip
             // the phone app is still reading the clip into memory: the still holds its place
-            ? <img decoding="async" draggable={false} src={imgSrc(ex, body)} alt={exerciseNameFor(ex)} />
-          : <img decoding="async" draggable={false} src={showGif ? gif : imgSrc(ex, body)} alt={exerciseNameFor(ex)} onError={onError} />}
+            ? <img decoding="async" draggable={false} src={stillSrc} alt={exerciseNameFor(ex)} />
+          : <img decoding="async" draggable={false} src={showGif ? gif : stillSrc} alt={exerciseNameFor(ex)} onError={onError} />}
       {minimizable && (
         <button className="giftoggle" onClick={toggleSize}>
           <Icon name={mini ? 'expand' : 'minimize'} />{mini ? t('Expand') : t('Minimize')}
@@ -145,13 +153,25 @@ export function autoplayMuted(el) {
 // CDN hiccup) gets the same neutral tile as an exercise without media, instead of the browser's
 // broken-image glyph in a list of them (#281). The failure is remembered per image, so a list
 // that re-renders does not ask again; a new exercise in the same slot tries its own.
+// One exception: a jsDelivr still first gets a second chance straight from GitHub (see
+// rawFallbackSrc in lib/exercises.js) — a 403 there means the CDN node, not the file, so the
+// tile only stands in once the raw copy has failed too.
 export function Thumb(p) {
   return isCustomEx(p.ex) ? <CustomThumb {...p} /> : <BuiltinThumb {...p} />
 }
 function BuiltinThumb({ ex }) {
   const body = useStore(s => figureOf(s.S))
-  const src = ex.img ? imgSrc(ex, body) : null
-  const [broken, setBroken] = useState(null)
-  if (!src || broken === src) return <div className="thumb thumb-x"><Icon name="dumbbell" /></div>
-  return <img className="thumb" loading="lazy" decoding="async" draggable={false} src={src} alt="" onError={() => setBroken(src)} />
+  const primary = ex.img ? imgSrc(ex, body) : null
+  const [tried, setTried] = useState({ key: null, fallback: false, broken: false })
+  const onPrimary = tried.key === primary
+  const useFallback = onPrimary && tried.fallback
+  const broken = onPrimary && tried.broken
+  const fallback = primary ? rawFallbackSrc(primary) : null
+  const src = useFallback ? fallback : primary
+  const onError = () => {
+    if (!useFallback && fallback) { setTried({ key: primary, fallback: true, broken: false }); return }
+    setTried({ key: primary, fallback: false, broken: true })
+  }
+  if (!src || broken) return <div className="thumb thumb-x"><Icon name="dumbbell" /></div>
+  return <img className="thumb" loading="lazy" decoding="async" draggable={false} src={src} alt="" onError={onError} />
 }

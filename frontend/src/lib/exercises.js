@@ -195,6 +195,16 @@ export const figureOf = S => (S?.exFigure === 'female' || S?.exFigure === 'male'
   : (S?.body === 'female' ? 'female' : 'male')
 const drawing = (ex, figure) => (figure === 'female' ? ex.fv : figure === 'male' ? ex.mv : null) || null
 export const imgSrc = (ex, figure) => IMG_BASE + (drawing(ex, figure) ? drawing(ex, figure) + '.webp' : ex.img)
+// A still served through jsDelivr can fail even though the file exists: jsDelivr refuses to
+// fetch a new file from a repository over its 50 MB package limit, and VietFit's repo is over
+// 300 MB, so an uncached file (or an uncached CDN node) answers 403 "Package size exceeded"
+// while the same file answers 200 elsewhere. The same file straight from GitHub always answers,
+// so a jsDelivr still gets one second chance there before the neutral tile. Non-jsDelivr
+// sources (a local mount, the demo CDN) have no such translation and get none.
+export const rawFallbackSrc = src => {
+  const m = /^https:\/\/cdn\.jsdelivr\.net\/gh\/([^/]+)\/([^@]+)@([^/]+)\/(.+)$/.exec(src || '')
+  return m ? `https://raw.githubusercontent.com/${m[1]}/${m[2]}/${m[3]}/${m[4]}` : null
+}
 const clipFile = f => (CLIP_EXT !== '.mp4' && f.endsWith('.mp4') ? f.slice(0, -4) + CLIP_EXT : f)
 export const gifSrc = (ex, figure) => GIF_BASE + clipFile(drawing(ex, figure) ? drawing(ex, figure) + '.mp4' : ex.gif)
 // The catalogue's animations are short MP4 loops; a fork's or an older build's may still be GIFs.
