@@ -1,7 +1,8 @@
+// @vitest-environment happy-dom
 // #303: an instance-wide default language, and the browser's, apply only to a copy nobody has
 // picked a language for — never to an existing profile, whose `lang: 'en'` may be a choice.
-import { describe, expect, it } from 'vitest'
-import { matchLocale, autoLang } from './default-lang.js'
+import { describe, expect, it, beforeEach } from 'vitest'
+import { matchLocale, autoLang, effectiveLang } from './default-lang.js'
 
 describe('matchLocale', () => {
   it('matches the full tag first, in any case or separator', () => {
@@ -40,5 +41,22 @@ describe('autoLang', () => {
     expect(autoLang(fresh, {}, ['nl-NL', 'de-DE'])).toBe('de')
     expect(autoLang(fresh, {}, ['nl-NL'])).toBe('en')
     expect(autoLang(fresh, { default_lang: 'xx' }, ['fr-FR'])).toBe('fr')
+  })
+})
+
+describe('effectiveLang', () => {
+  const fresh = { lang: 'en', langAuto: true }
+  beforeEach(() => { try { localStorage.clear() } catch { /* ignore */ } })
+  it('uses the browser language when no config has ever been seen (serverless hosting)', () => {
+    expect(effectiveLang(fresh, null, ['vi-VN'])).toBe('vi')
+    expect(effectiveLang(fresh, null, ['nl-NL'])).toBe('en')
+  })
+  it('still prefers a cached instance default over the browser once one was seen', () => {
+    try { localStorage.setItem('gym_default_lang', 'pt-BR') } catch { /* ignore */ }
+    expect(effectiveLang(fresh, null, ['vi-VN'])).toBe('pt-BR')
+  })
+  it('leaves a copy alone that chose a language, even with no config', () => {
+    expect(effectiveLang({ lang: 'vi' }, null, ['de-DE'])).toBe('vi')
+    expect(effectiveLang({ lang: 'en', langAuto: false }, null, ['vi-VN'])).toBe('en')
   })
 })
