@@ -2414,4 +2414,8 @@ export default {
   // --- import with no account: workouts on this device ---
   'This device has 1 workout that is not in this backup. Replacing deletes it.': 'Cet appareil a 1 séance absente de cette sauvegarde. Remplacer la supprime.',
   'This device has {0} workouts that are not in this backup. Replacing deletes them.': 'Cet appareil a {0} séances absentes de cette sauvegarde. Remplacer les supprime.',
+  'Listen to description and instructions': 'Listen to description and instructions',
+  'Downloading voice…': 'Downloading voice…',
+  'Generating voice…': 'Generating voice…',
+  'Reading with device voice': 'Reading with device voice',
 }

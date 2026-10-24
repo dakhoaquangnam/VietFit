@@ -2418,4 +2418,8 @@ export default {
   // --- import with no account: workouts on this device ---
   'This device has 1 workout that is not in this backup. Replacing deletes it.': 'На этом устройстве есть 1 тренировка, которой нет в этой копии. Замена её удалит.',
   'This device has {0} workouts that are not in this backup. Replacing deletes them.': 'На этом устройстве есть тренировки, которых нет в этой копии ({0}). Замена их удалит.',
+  'Listen to description and instructions': 'Listen to description and instructions',
+  'Downloading voice…': 'Downloading voice…',
+  'Generating voice…': 'Generating voice…',
+  'Reading with device voice': 'Reading with device voice',
 }

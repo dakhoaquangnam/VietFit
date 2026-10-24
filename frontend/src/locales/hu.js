@@ -2417,4 +2417,8 @@ export default {
   // --- import with no account: workouts on this device ---
   'This device has 1 workout that is not in this backup. Replacing deletes it.': 'Ezen az eszközön 1 edzés van, amely nincs ebben a mentésben. A csere törli.',
   'This device has {0} workouts that are not in this backup. Replacing deletes them.': 'Ezen az eszközön {0} edzés van, amely nincs ebben a mentésben. A csere törli őket.',
+  'Listen to description and instructions': 'Listen to description and instructions',
+  'Downloading voice…': 'Downloading voice…',
+  'Generating voice…': 'Generating voice…',
+  'Reading with device voice': 'Reading with device voice',
 }

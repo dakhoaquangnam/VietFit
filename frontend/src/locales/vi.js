@@ -2413,4 +2413,8 @@ export default {
   "h": "giờ",
   "This device has 1 workout that is not in this backup. Replacing deletes it.": "Thiết bị này có 1 buổi tập không nằm trong bản sao lưu này. Thay thế sẽ xóa nó.",
   "This device has {0} workouts that are not in this backup. Replacing deletes them.": "Thiết bị này có {0} buổi tập không nằm trong bản sao lưu này. Thay thế sẽ xóa chúng.",
+  "Listen to description and instructions": "Nghe đọc mô tả và hướng dẫn",
+  "Downloading voice…": "Đang tải giọng đọc…",
+  "Generating voice…": "Đang tạo giọng đọc…",
+  "Reading with device voice": "Đang đọc bằng giọng của máy",
 }
