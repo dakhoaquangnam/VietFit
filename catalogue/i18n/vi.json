@@ -1,0 +1,895 @@
+{
+  "3593": {
+    "name": "Squat tạ đòn",
+    "description": "Bài squat kinh điển với tạ đòn, giúp tăng sức mạnh cho đùi và hông.",
+    "instructions": [
+      "Đặt thanh tạ lên phần lưng trên và đứng hai chân rộng bằng vai.",
+      "Siết chặt cơ core và giữ ngực ưỡn lên.",
+      "Đẩy hông ra sau và hạ xuống cho đến khi đùi gần song song với sàn.",
+      "Giữ đầu gối đi theo hướng mũi chân.",
+      "Đạp mạnh qua hai bàn chân để đứng thẳng lên."
+    ]
+  },
+  "0032": {
+    "name": "Deadlift tạ đòn",
+    "description": "Nâng thanh tạ từ sàn bằng cách đạp hông và chân cho đến khi đứng thẳng. Tập cho cơ mông, đùi sau và lưng.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, thanh tạ đặt trên sàn phía trước.",
+      "Gập gối và gập hông để hạ thân người xuống, nắm thanh tạ kiểu sấp tay, hai tay rộng hơn vai một chút.",
+      "Giữ lưng thẳng và ngực ưỡn lên, đạp mạnh qua gót chân để nhấc tạ khỏi sàn, đồng thời duỗi hông và gối.",
+      "Khi đứng thẳng lên, siết chặt cơ mông và giữ cơ core hoạt động.",
+      "Hạ tạ trở lại sàn bằng cách gập hông và gối, giữ lưng thẳng.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0025": {
+    "name": "Đẩy ngực tạ đòn",
+    "description": "Bài đẩy ngực ngang kinh điển. Hạ tạ xuống ngực rồi đẩy lên, giúp phát triển cơ ngực, vai và tay sau.",
+    "instructions": [
+      "Nằm ngửa trên ghế, hai bàn chân đặt phẳng trên sàn, lưng ép sát ghế.",
+      "Nắm thanh tạ kiểu sấp tay, rộng hơn vai một chút.",
+      "Nhấc tạ khỏi giá và giữ ngay trên ngực với hai tay duỗi thẳng hoàn toàn.",
+      "Hạ tạ từ từ về phía ngực, giữ khuỷu tay khép vào người.",
+      "Dừng một nhịp khi tạ chạm ngực.",
+      "Đẩy tạ trở lại vị trí ban đầu bằng cách duỗi thẳng hai tay.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0091": {
+    "name": "Ngồi đẩy vai tạ đòn",
+    "description": "Bài đẩy vai qua đầu khi ngồi với tạ đòn. Phát triển cơ vai và tay sau.",
+    "instructions": [
+      "Ngồi trên ghế, lưng thẳng, hai bàn chân đặt phẳng trên sàn.",
+      "Nắm thanh tạ kiểu sấp tay, rộng hơn vai một chút.",
+      "Nhấc tạ khỏi giá và đưa lên ngang vai, khuỷu tay gập, lòng bàn tay hướng về trước.",
+      "Đẩy tạ qua đầu bằng cách duỗi thẳng hai tay hoàn toàn.",
+      "Dừng một nhịp ở điểm cao nhất, sau đó hạ tạ từ từ trở lại ngang vai.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0027": {
+    "name": "Chèo tạ đòn gập người",
+    "description": "Bài chèo khi gập hông, kéo tạ về phía ngực dưới. Bài chủ lực cho lưng trên và cơ xô.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, gối hơi gập.",
+      "Gập người về trước từ hông, giữ lưng thẳng và ngực ưỡn lên.",
+      "Nắm thanh tạ kiểu sấp tay, hai tay rộng hơn vai một chút.",
+      "Kéo tạ về phía ngực dưới bằng cách ép hai bả vai lại và siết cơ lưng.",
+      "Dừng một nhịp ở điểm cao nhất, sau đó hạ tạ từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0085": {
+    "name": "Deadlift Romania tạ đòn",
+    "description": "Gập hông với thanh tạ sát chân để cảm nhận cơ đùi sau căng ra, rồi đứng thẳng lên. Tập cho đùi sau và cơ mông.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, mũi chân hướng về trước.",
+      "Nắm thanh tạ kiểu sấp tay, hai tay rộng hơn vai một chút.",
+      "Gập người từ hông, giữ lưng thẳng và gối hơi gập.",
+      "Hạ tạ xuống gần sàn, giữ tạ sát cơ thể.",
+      "Cảm nhận cơ đùi sau căng ra khi hạ tạ.",
+      "Khi đã cảm thấy đùi sau căng, đẩy hông về trước và đứng thẳng lên.",
+      "Siết chặt cơ mông ở điểm cao nhất của động tác.",
+      "Hạ tạ trở lại vị trí ban đầu và lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0044": {
+    "name": "Gập người chào buổi sáng với tạ đòn",
+    "description": "Gập người về trước từ hông với thanh tạ đặt trên lưng trên, rồi trở lại bằng cách đẩy hông về trước. Tập cho đùi sau và cơ mông.",
+    "instructions": [
+      "Bắt đầu đứng hai chân rộng bằng vai, thanh tạ đặt trên lưng trên.",
+      "Giữ lưng thẳng và cơ core siết chặt, gập người về trước từ hông, đẩy mông ra sau như thể muốn chạm tường phía sau bằng mông.",
+      "Hạ thân người xuống cho đến khi song song với sàn, cảm nhận đùi sau căng ra.",
+      "Dừng một nhịp, rồi trở lại vị trí ban đầu bằng cách siết cơ mông và đẩy hông về trước.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0120": {
+    "name": "Kéo tạ đòn lên cằm",
+    "description": "Bài kéo tạ đòn thẳng đứng lên phía cằm. Tác động vào cơ vai và cơ cầu vai.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, nắm thanh tạ kiểu sấp tay, hai tay rộng hơn vai một chút.",
+      "Để tạ treo trước đùi, hai tay duỗi thẳng hoàn toàn.",
+      "Giữ lưng thẳng và cơ core siết chặt, thở ra và kéo tạ thẳng lên về phía cằm, dẫn động bằng khuỷu tay.",
+      "Dừng một nhịp ở điểm cao nhất, sau đó hít vào và hạ tạ từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0095": {
+    "name": "Nhún vai tạ đòn",
+    "description": "Nhún vai lên phía tai trong khi giữ thanh tạ. Phát triển phần trên cơ cầu vai.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, nắm thanh tạ phía trước người kiểu sấp tay.",
+      "Giữ hai tay thẳng và lưng thẳng trong suốt động tác.",
+      "Nâng vai lên phía tai cao nhất có thể, siết chặt cơ cầu vai ở điểm cao nhất.",
+      "Giữ một nhịp, sau đó hạ vai từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0126": {
+    "name": "Cuốn cổ tay tạ đòn",
+    "description": "Bài cuốn cổ tay khi ngồi, lòng bàn tay hướng lên. Phát triển cơ gấp cẳng tay.",
+    "instructions": [
+      "Ngồi trên ghế, hai bàn chân đặt phẳng trên sàn, cẳng tay đặt trên đùi, nắm thanh tạ kiểu ngửa tay.",
+      "Để tạ lăn xuống các ngón tay, giữ cổ tay thẳng.",
+      "Từ từ cuốn tạ lên phía cẳng tay bằng cách gập cổ tay.",
+      "Dừng một nhịp ở điểm cao nhất, sau đó hạ tạ từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0060": {
+    "name": "Duỗi tay sau nằm với tạ đòn",
+    "description": "Bài skull crusher kinh điển: hạ tạ xuống trán rồi duỗi tay ra. Cô lập cơ tay sau.",
+    "instructions": [
+      "Nằm ngửa trên ghế, hai bàn chân đặt phẳng trên sàn, đầu ở cuối ghế.",
+      "Nắm thanh tạ kiểu sấp tay, hai tay rộng bằng vai, duỗi thẳng hai tay lên trên ngực.",
+      "Giữ bắp tay cố định, từ từ hạ tạ về phía trán bằng cách gập khuỷu tay.",
+      "Dừng một nhịp khi tạ vừa ở trên trán, rồi duỗi tay trở lại vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0028": {
+    "name": "Lên tạ và đẩy vai với tạ đòn",
+    "description": "Nâng tạ từ sàn lên vai trong một động tác, rồi đẩy qua đầu. Bài tập sức mạnh toàn thân.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, thanh tạ đặt trên sàn phía trước.",
+      "Gập gối và gập hông để hạ người xuống, nắm thanh tạ kiểu sấp tay, hai tay rộng hơn vai một chút.",
+      "Đạp mạnh qua gót chân, duỗi hông và gối để nhấc tạ khỏi sàn, giữ tạ sát cơ thể.",
+      "Khi tạ lên tới đùi, bùng nổ duỗi hông, nhún vai và kéo tạ lên phía ngực.",
+      "Khi tạ lên tới ngang ngực, nhanh chóng chui xuống dưới tạ và đỡ tạ ở ngang vai, khuỷu tay hướng về trước, lòng bàn tay hướng lên.",
+      "Từ tư thế đỡ tạ, đẩy tạ qua đầu bằng cách duỗi tay và đẩy tạ thẳng lên.",
+      "Hạ tạ trở lại vị trí ban đầu và lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "1533": {
+    "name": "Giật tạ đòn",
+    "description": "Bài giật toàn phần: nâng tạ từ sàn lên qua đầu trong một động tác và đỡ tạ ở tư thế squat sâu.",
+    "instructions": [
+      "Nắm tạ rộng tay, tạ ở trên giữa bàn chân, lưng phẳng và ngực ưỡn lên.",
+      "Siết chặt cơ core và giữ tạ sát cơ thể.",
+      "Duỗi hông và gối thật mạnh, đồng thời nhún vai.",
+      "Chui xuống dưới tạ và đỡ tạ qua đầu ở tư thế squat sâu, rồi đứng lên.",
+      "Đứng thẳng để kết thúc, sau đó hạ tạ có kiểm soát."
+    ]
+  },
+  "3305": {
+    "name": "Đẩy tạ toàn thân với tạ đòn",
+    "description": "Bài squat trước rồi đẩy qua đầu trong một động tác liền mạch với tạ đòn. Tập cho chân, vai và nhịp tim.",
+    "instructions": [
+      "Bắt đầu đứng hai chân rộng bằng vai, giữ thanh tạ ở ngang vai kiểu sấp tay.",
+      "Hạ người vào tư thế squat bằng cách gập gối và đẩy hông ra sau.",
+      "Khi tới đáy squat, đạp mạnh qua gót chân để đứng lên, đồng thời đẩy tạ qua đầu.",
+      "Hạ tạ trở lại ngang vai trong khi hạ người về tư thế squat.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0289": {
+    "name": "Đẩy ngực tạ đơn",
+    "description": "Bài đẩy tạ đơn kinh điển trên ghế ngang. Phát triển cơ ngực, vai và tay sau với biên độ chuyển động tốt.",
+    "instructions": [
+      "Nằm ngửa trên ghế, hai bàn chân đặt phẳng trên sàn, lưng ép sát ghế.",
+      "Cầm một quả tạ đơn mỗi tay, lòng bàn tay hướng về trước, hai tay duỗi thẳng trên ngực.",
+      "Hạ tạ từ từ xuống hai bên ngực, giữ khuỷu tay tạo góc 90 độ.",
+      "Dừng một nhịp, rồi đẩy tạ trở lại vị trí ban đầu, duỗi thẳng hai tay hoàn toàn.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0308": {
+    "name": "Ép ngực tạ đơn",
+    "description": "Bài ép ngực tạ đơn kinh điển trên ghế ngang. Hai tay mở theo hình vòng cung để kéo giãn và siết cơ ngực.",
+    "instructions": [
+      "Nằm ngửa trên ghế, mỗi tay cầm một quả tạ đơn, hai lòng bàn tay hướng vào nhau.",
+      "Duỗi thẳng hai tay lên trên ngực, khuỷu tay hơi gập.",
+      "Giữ khuỷu tay hơi gập, hạ hai tay sang hai bên theo hình vòng cung rộng cho đến khi cảm thấy ngực căng ra.",
+      "Dừng một nhịp, rồi đảo ngược động tác, đưa tạ trở lại vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0405": {
+    "name": "Ngồi đẩy vai tạ đơn",
+    "description": "Ngồi có tựa lưng, đẩy tạ đơn từ ngang vai lên qua đầu. Phát triển cơ vai và tay sau.",
+    "instructions": [
+      "Ngồi trên ghế, mỗi tay cầm một quả tạ đơn đặt trên đùi.",
+      "Nâng tạ lên ngang vai, lòng bàn tay hướng về trước.",
+      "Đẩy tạ lên cao cho đến khi hai tay duỗi thẳng hoàn toàn qua đầu.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ tạ từ từ về ngang vai.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "2137": {
+    "name": "Đẩy vai Arnold với tạ đơn",
+    "description": "Bài đẩy tạ đơn khi ngồi, xoay lòng bàn tay từ hướng vào người sang hướng về trước khi nâng lên. Tác động cả ba đầu cơ vai.",
+    "instructions": [
+      "Ngồi trên ghế có tựa lưng, mỗi tay cầm một quả tạ đơn ở ngang vai, lòng bàn tay hướng vào người, khuỷu tay gập.",
+      "Đẩy tạ lên cao cho đến khi hai tay duỗi thẳng hoàn toàn và lòng bàn tay hướng về trước.",
+      "Xoay cổ tay trong khi nâng, sao cho lòng bàn tay hướng về trước ở điểm cao nhất của động tác.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ tạ từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0313": {
+    "name": "Cuốn tạ búa với tạ đơn",
+    "description": "Bài cuốn tạ búa chuẩn với lòng bàn tay hướng vào trong. Tập cho cơ cánh tay trước, cơ tay trước và cẳng tay.",
+    "instructions": [
+      "Đứng thẳng, mỗi tay cầm một quả tạ đơn, lòng bàn tay hướng vào thân người.",
+      "Giữ khuỷu tay sát thân người và xoay lòng bàn tay cho đến khi hướng về trước.",
+      "Đây sẽ là vị trí bắt đầu.",
+      "Bây giờ, giữ bắp tay cố định, thở ra và cuốn tạ lên trong khi siết cơ tay trước.",
+      "Tiếp tục nâng tạ cho đến khi cơ tay trước co hoàn toàn và tạ ở ngang vai.",
+      "Giữ tư thế co trong một nhịp ngắn trong khi siết cơ tay trước.",
+      "Sau đó, hít vào và từ từ hạ tạ về vị trí ban đầu.",
+      "Lặp lại đủ số lần khuyến nghị."
+    ]
+  },
+  "0310": {
+    "name": "Nâng tạ trước với tạ đơn",
+    "description": "Bài nâng tạ trước khi đứng với tạ đơn. Nâng tạ lên ngang vai để tập cho cơ vai trước.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, mỗi tay cầm một quả tạ đơn, lòng bàn tay hướng vào đùi.",
+      "Giữ hai tay thẳng, thở ra và nâng tạ về phía trước cho đến khi ngang vai.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hít vào và hạ tạ từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0334": {
+    "name": "Nâng tạ ngang với tạ đơn",
+    "description": "Bài nâng tạ ngang chuẩn khi đứng với tạ đơn. Nâng tay sang hai bên giúp phát triển cơ vai giữa.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, mỗi tay cầm một quả tạ đơn, lòng bàn tay hướng vào người.",
+      "Giữ lưng thẳng và siết cơ core.",
+      "Nâng hai tay sang hai bên cho đến khi song song với sàn, giữ khuỷu tay hơi gập.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ tay từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "1760": {
+    "name": "Squat ôm tạ đơn",
+    "description": "Bài squat ôm một quả tạ đơn trước ngực. Tập cho đùi trước và cơ mông trong khi giữ thân người thẳng đứng.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, ôm một quả tạ đơn theo chiều dọc trước ngực bằng cả hai tay.",
+      "Giữ ngực ưỡn lên và cơ core siết chặt, hạ người xuống tư thế squat bằng cách đẩy hông ra sau và gập gối.",
+      "Tiếp tục hạ xuống cho đến khi đùi song song với sàn, hoặc thấp nhất có thể mà vẫn thoải mái.",
+      "Dừng một nhịp ở điểm thấp nhất, rồi đạp qua gót chân để trở lại vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "2290": {
+    "name": "Squat tách chân kiểu Bulgaria với tạ đơn",
+    "description": "Bài squat một chân với chân sau gác cao, giúp tăng sức mạnh chân và khả năng giữ thăng bằng.",
+    "instructions": [
+      "Đứng cách ghế một bước chân, mỗi tay cầm một quả tạ đơn.",
+      "Đặt mu bàn chân sau lên ghế.",
+      "Hạ thẳng xuống cho đến khi đùi trước gần song song với sàn.",
+      "Giữ thân người thẳng đứng và đầu gối trước đi theo hướng mũi chân.",
+      "Đạp qua gót chân trước để đứng trở lại.",
+      "Hoàn thành hết số lần, rồi đổi chân."
+    ]
+  },
+  "0431": {
+    "name": "Bước lên bục với tạ đơn",
+    "description": "Cầm tạ đơn, bước lên ghế hoặc bục rồi bước xuống. Phát triển cơ mông và đùi, từng chân một.",
+    "instructions": [
+      "Đứng trước ghế hoặc bục, mỗi tay cầm một quả tạ đơn, lòng bàn tay hướng vào người.",
+      "Đặt chân phải lên ghế hoặc bục, đảm bảo toàn bộ bàn chân tiếp xúc với mặt ghế.",
+      "Đạp qua gót chân phải và nâng người lên ghế hoặc bục, duỗi thẳng chân phải.",
+      "Đưa chân trái lên ghế hoặc bục, đứng thẳng hoàn toàn.",
+      "Bước xuống bằng chân trái, rồi đến chân phải, trở lại vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn, rồi đổi chân."
+    ]
+  },
+  "0297": {
+    "name": "Cuốn tạ tập trung với tạ đơn",
+    "description": "Bài cuốn một tay khi ngồi, khuỷu tay chống vào mặt trong đùi. Điểm tựa giúp chống gian lận và tập trung vào cơ tay trước.",
+    "instructions": [
+      "Ngồi trên ghế, hai chân dang rộng, một tay cầm tạ đơn, khuỷu tay chống vào mặt trong đùi.",
+      "Duỗi thẳng tay hoàn toàn và cầm tạ kiểu ngửa tay.",
+      "Giữ bắp tay cố định, thở ra và cuốn tạ lên về phía vai trong khi siết cơ tay trước.",
+      "Tiếp tục nâng tạ cho đến khi cơ tay trước co hoàn toàn và tạ ở ngang vai.",
+      "Giữ tư thế co trong một nhịp ngắn trong khi siết cơ tay trước.",
+      "Hít vào và từ từ hạ tạ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn, rồi đổi tay."
+    ]
+  },
+  "0383": {
+    "name": "Ép ngực ngược với tạ đơn",
+    "description": "Gập người về trước, mở rộng hai tay với tạ đơn. Tác động vào cơ vai sau và lưng trên.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, mỗi tay cầm một quả tạ đơn.",
+      "Gập gối hơi nhẹ và gập người về trước từ hông, giữ lưng thẳng.",
+      "Duỗi thẳng hai tay xuống phía trước, hai lòng bàn tay hướng vào nhau.",
+      "Giữ khuỷu tay hơi gập, nâng hai tay sang hai bên cho đến khi song song với sàn.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ tay từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0372": {
+    "name": "Cuốn tạ ghế dốc với tạ đơn",
+    "description": "Cuốn tạ đơn với bắp tay tựa trên đệm ghế dốc. Đệm ghế giúp chống đung đưa để cơ tay trước làm việc.",
+    "instructions": [
+      "Ngồi trên ghế cuốn tạ, bắp tay đặt trên đệm, ngực tựa vào đệm.",
+      "Mỗi tay cầm một quả tạ đơn, lòng bàn tay hướng lên, hai tay duỗi thẳng hoàn toàn.",
+      "Giữ bắp tay cố định, thở ra và cuốn tạ lên trong khi siết cơ tay trước.",
+      "Tiếp tục nâng tạ cho đến khi cơ tay trước co hoàn toàn và tạ ở ngang vai.",
+      "Giữ tư thế co trong một nhịp ngắn trong khi siết cơ tay trước.",
+      "Hít vào và từ từ hạ tạ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "2133": {
+    "name": "Đi bộ gánh tạ đơn",
+    "description": "Bài đi bộ mang tạ, mỗi tay cầm một quả tạ đơn trong khi đi thẳng người. Phát triển sức nắm, cơ core và sức mạnh toàn thân.",
+    "instructions": [
+      "Đứng thẳng, mỗi tay cầm một quả tạ đơn, lòng bàn tay hướng sang hai bên.",
+      "Giữ lưng thẳng và vai mở ra sau.",
+      "Bước những bước nhỏ, có kiểm soát về phía trước, duy trì tư thế thẳng đứng.",
+      "Tiếp tục đi trong quãng đường hoặc thời gian mong muốn.",
+      "Để kết thúc, dừng đi và cẩn thận hạ tạ xuống hai bên."
+    ]
+  },
+  "1459": {
+    "name": "Deadlift Romania với tạ đơn",
+    "description": "Bài gập hông với tạ đơn, hạ tạ dọc theo chân trong khi lưng giữ phẳng. Tập cho đùi sau và cơ mông.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, mỗi tay cầm một quả tạ đơn kiểu sấp tay.",
+      "Giữ lưng thẳng và cơ core siết chặt, gập người từ hông và hạ tạ về phía sàn, để gối gập hơi nhẹ.",
+      "Hạ tạ cho đến khi cảm thấy đùi sau căng ra, rồi đạp qua gót chân và siết cơ mông để trở lại vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0652": {
+    "name": "Hít xà",
+    "description": "Treo người trên xà với kiểu nắm sấp tay và kéo cằm vượt qua xà. Bài kinh điển phát triển cơ xô và lưng trên.",
+    "instructions": [
+      "Treo người trên xà đơn, lòng bàn tay hướng ra ngoài, hai tay duỗi thẳng hoàn toàn.",
+      "Siết cơ core và ép hai bả vai lại với nhau.",
+      "Kéo người lên phía xà bằng cách gập khuỷu tay và đưa ngực về phía xà.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ người từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0662": {
+    "name": "Chống đẩy",
+    "description": "Bài chống đẩy kinh điển từ tư thế plank cao. Tác động vào ngực, vai, tay sau và cơ core trong một động tác.",
+    "instructions": [
+      "Bắt đầu ở tư thế plank cao, hai tay rộng hơn vai một chút, hai chân chụm lại.",
+      "Siết cơ core và hạ người xuống sàn bằng cách gập khuỷu tay, giữ cơ thể thành một đường thẳng.",
+      "Dừng một nhịp khi ngực vừa ở trên sàn, rồi đẩy người trở lại vị trí ban đầu bằng cách duỗi thẳng hai tay.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0251": {
+    "name": "Nhúng xà kép nghiêng người",
+    "description": "Bài nhúng người với thân hơi nghiêng về trước trên xà kép. Tác động vào ngực dưới, tay sau và vai.",
+    "instructions": [
+      "Vào tư thế trên xà kép với hai tay duỗi thẳng hoàn toàn và cơ thể thẳng.",
+      "Hạ người xuống bằng cách gập khuỷu tay cho đến khi vai thấp hơn khuỷu tay.",
+      "Đẩy người trở lại vị trí ban đầu bằng cách duỗi thẳng hai tay.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0814": {
+    "name": "Nhúng tay sau với ghế",
+    "description": "Bài nhúng tay sau dùng mép ghế hoặc ghế dài, hạ người xuống rồi đẩy lên. Phát triển cơ tay sau.",
+    "instructions": [
+      "Ngồi ở mép ghế dài hoặc ghế tựa, hai tay nắm lấy mép ghế, ngón tay hướng về trước.",
+      "Trượt mông khỏi ghế, chống đỡ trọng lượng bằng hai tay.",
+      "Gập khuỷu tay và hạ người về phía sàn, giữ lưng sát ghế.",
+      "Dừng một nhịp ở điểm thấp nhất, rồi đẩy người trở lại vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0612": {
+    "name": "Chùng chân",
+    "description": "Bài bước dài về trước và hạ người kinh điển cho chân. Phát triển đùi trước, cơ mông và cải thiện khả năng giữ thăng bằng.",
+    "instructions": [
+      "Đứng thẳng, hai chân rộng bằng hông.",
+      "Bước dài về trước bằng một chân.",
+      "Hạ hông xuống cho đến khi cả hai gối đều gập khoảng 90 độ.",
+      "Giữ thân người thẳng đứng và đầu gối trước nằm trên mắt cá chân.",
+      "Đạp qua gót chân trước để trở lại tư thế đứng.",
+      "Lặp lại và đổi chân."
+    ]
+  },
+  "0463": {
+    "name": "Plank trước",
+    "description": "Bài plank cẳng tay kinh điển. Giữ cơ thể thành một đường thẳng từ đầu đến gót chân giúp tăng sức bền và sự ổn định của cơ core.",
+    "instructions": [
+      "Nằm sấp và chống người lên cẳng tay, khuỷu tay nằm dưới vai.",
+      "Nâng hông và gối khỏi sàn, chống bằng mũi chân.",
+      "Giữ cơ thể thành một đường thẳng từ đầu đến gót chân.",
+      "Siết cơ bụng và cơ mông.",
+      "Giữ trong 20-60 giây trong khi thở đều.",
+      "Đừng để hông võng xuống hoặc nhô lên."
+    ]
+  },
+  "0715": {
+    "name": "Plank nghiêng",
+    "description": "Bài plank nghiêng giữ thăng bằng trên một cẳng tay. Phát triển sức mạnh cơ liên sườn và các cơ ổn định thân mình.",
+    "instructions": [
+      "Nằm nghiêng, khuỷu tay nằm dưới vai, hai chân xếp chồng lên nhau.",
+      "Nâng hông lên sao cho cơ thể tạo thành một đường thẳng từ đầu đến chân.",
+      "Giữ hông cao và cổ ở vị trí tự nhiên.",
+      "Giữ trong 20-45 giây.",
+      "Hạ người có kiểm soát và đổi bên.",
+      "Đừng để hông tụt xuống hoặc xoay về trước."
+    ]
+  },
+  "0274": {
+    "name": "Gập bụng sàn",
+    "description": "Bài gập bụng sàn cơ bản. Cuộn vai khỏi sàn để tập cho cơ bụng trên.",
+    "instructions": [
+      "Nằm ngửa, gối gập, hai bàn chân đặt phẳng trên sàn.",
+      "Đặt hai tay sau đầu, khuỷu tay hướng ra ngoài.",
+      "Siết cơ bụng và nâng vai khỏi sàn, cuộn người về trước phía đầu gối.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ vai từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0872": {
+    "name": "Gập bụng ngược",
+    "description": "Bài gập bụng cuộn hông khỏi sàn với gối gập. Tác động vào cơ bụng dưới.",
+    "instructions": [
+      "Nằm ngửa, hai tay duỗi dọc theo thân người.",
+      "Gập gối và nhấc chân khỏi sàn, đưa đùi vuông góc với sàn.",
+      "Siết cơ bụng và cuộn hông khỏi sàn, đưa gối về phía ngực.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ hông từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "6211": {
+    "name": "Gập bụng đạp xe",
+    "description": "Bài gập bụng đạp xe, đưa từng khuỷu tay về phía gối đối diện. Tác động vào cơ bụng và cơ liên sườn.",
+    "instructions": [
+      "Nằm ngửa, hai tay đặt cạnh đầu.",
+      "Nâng vai lên và đưa gối lên cao.",
+      "Xoay người để đưa một khuỷu tay về phía gối đối diện.",
+      "Duỗi thẳng chân còn lại.",
+      "Đổi bên theo nhịp đạp xe.",
+      "Giữ lưng dưới ép sát sàn."
+    ]
+  },
+  "0687": {
+    "name": "Xoay bụng kiểu Nga",
+    "description": "Ngồi và ngả người ra sau, xoay thân mình từ bên này sang bên kia. Tác động vào cơ liên sườn và cơ bụng.",
+    "instructions": [
+      "Ngồi trên sàn, gối gập, hai bàn chân đặt phẳng trên sàn.",
+      "Ngả người ra sau hơi nhẹ trong khi giữ lưng thẳng và cơ core siết chặt.",
+      "Chắp hai tay trước ngực hoặc cầm thêm tạ nếu muốn.",
+      "Nhấc chân khỏi sàn, giữ thăng bằng trên xương ngồi.",
+      "Xoay thân mình sang phải, đưa tay hoặc tạ về phía bên phải cơ thể.",
+      "Dừng một nhịp, rồi xoay thân mình sang trái, đưa tay hoặc tạ về phía bên trái cơ thể.",
+      "Tiếp tục đổi bên đủ số lần mong muốn."
+    ]
+  },
+  "0472": {
+    "name": "Nâng chân treo xà",
+    "description": "Treo người trên xà, nâng chân lên phía trước. Tác động vào cơ bụng dưới và cơ gập hông.",
+    "instructions": [
+      "Treo người trên xà đơn, hai tay duỗi thẳng hoàn toàn, lòng bàn tay hướng ra ngoài.",
+      "Siết cơ core và nâng chân lên phía trước, giữ chân thẳng.",
+      "Tiếp tục nâng cho đến khi chân song song với sàn hoặc cao nhất có thể mà vẫn thoải mái.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ chân từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "1163": {
+    "name": "Nâng chân nằm",
+    "description": "Bài tập sàn nâng chân thẳng để tác động vào cơ bụng dưới.",
+    "instructions": [
+      "Nằm ngửa, chân duỗi thẳng, hai tay đặt dưới hông.",
+      "Ép lưng dưới nhẹ nhàng xuống sàn.",
+      "Nâng hai chân cùng lúc cho đến khi chỉ lên trần nhà.",
+      "Hạ chân từ từ, dừng ngay trên sàn.",
+      "Giữ lưng không bị võng trong suốt động tác."
+    ]
+  },
+  "3436": {
+    "name": "Siêu nhân",
+    "description": "Bài duỗi người trên sàn, nâng tay và chân lên để tăng cường sức mạnh lưng dưới.",
+    "instructions": [
+      "Nằm sấp, hai tay duỗi về phía trước.",
+      "Nâng tay, ngực và chân khỏi sàn cùng lúc.",
+      "Siết cơ mông và lưng dưới.",
+      "Giữ trong 1-2 giây.",
+      "Hạ xuống từ từ.",
+      "Giữ cổ ở vị trí tự nhiên."
+    ]
+  },
+  "1241": {
+    "name": "Chim chó",
+    "description": "Từ tư thế bò bốn điểm, duỗi tay và chân đối diện. Giúp kiểm soát cơ core và ổn định lưng.",
+    "instructions": [
+      "Bắt đầu ở tư thế bò, hai tay nằm dưới vai, hai gối nằm dưới hông.",
+      "Duỗi tay phải về trước và chân trái ra sau.",
+      "Giữ hông ngang bằng và lưng phẳng.",
+      "Giữ một nhịp, rồi trở lại.",
+      "Lặp lại với bên còn lại và đổi bên liên tục."
+    ]
+  },
+  "0276": {
+    "name": "Bọ chết",
+    "description": "Bài tập core duỗi tay và chân đối diện trong khi giữ lưng dưới ép sát sàn. Giúp ổn định cơ bụng.",
+    "instructions": [
+      "Nằm ngửa, hai tay duỗi về phía trần nhà.",
+      "Gập gối và nhấc chân khỏi sàn, tạo góc 90 độ ở hông và gối.",
+      "Siết cơ core và lưng dưới để ép lưng dưới xuống sàn.",
+      "Từ từ hạ tay phải và chân trái về phía sàn, giữ thẳng và lơ lửng ngay trên sàn.",
+      "Dừng một nhịp, rồi trở lại vị trí ban đầu.",
+      "Lặp lại động tác với tay trái và chân phải.",
+      "Tiếp tục đổi bên đủ số lần mong muốn."
+    ]
+  },
+  "1246": {
+    "name": "Giữ thân rỗng",
+    "description": "Bài giữ tư thế kiểu thể dục dụng cụ với vai và chân nâng lên. Phát triển sức mạnh cơ core sâu.",
+    "instructions": [
+      "Nằm ngửa, hai tay đưa qua đầu, chân duỗi thẳng.",
+      "Ép lưng dưới xuống sàn.",
+      "Nâng vai và chân lên khỏi sàn vài phân.",
+      "Giữ nguyên tư thế và thở đều.",
+      "Giữ trong 20-30 giây, rồi nghỉ."
+    ]
+  },
+  "1160": {
+    "name": "Burpee",
+    "description": "Động tác toàn thân: squat, đá chân ra sau thành plank, chống đẩy, bật nhảy lên. Phát triển sức bền và sức mạnh.",
+    "instructions": [
+      "Bắt đầu ở tư thế đứng, hai chân rộng bằng vai.",
+      "Hạ người vào tư thế squat bằng cách gập gối và đặt hai tay lên sàn phía trước.",
+      "Đá hai chân ra sau thành tư thế chống đẩy.",
+      "Thực hiện một lần chống đẩy, giữ cơ thể thành một đường thẳng.",
+      "Bật hai chân trở lại tư thế squat.",
+      "Bật nhảy lên thật mạnh, vươn hai tay qua đầu.",
+      "Tiếp đất nhẹ nhàng và ngay lập tức hạ người vào tư thế squat để bắt đầu lần tiếp theo."
+    ]
+  },
+  "0630": {
+    "name": "Leo núi",
+    "description": "Từ tư thế plank cao, lần lượt đưa gối về phía ngực. Tác động vào cơ core, vai và làm tăng nhịp tim.",
+    "instructions": [
+      "Bắt đầu ở tư thế plank cao, hai tay nằm ngay dưới vai, cơ thể thành một đường thẳng.",
+      "Siết cơ core và đưa gối phải về phía ngực, rồi nhanh chóng đổi sang đưa gối trái về phía ngực.",
+      "Tiếp tục đổi chân theo nhịp chạy, giữ hông thấp và cơ core siết chặt.",
+      "Duy trì nhịp đều và thở đều trong suốt động tác.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "3094": {
+    "name": "Nhảy dang tay chân",
+    "description": "Bài nhảy kinh điển với tay và chân dang ra rồi khép lại. Bài khởi động toàn thân đơn giản giúp tăng nhịp tim nhanh.",
+    "instructions": [
+      "Đứng hai chân chụm lại, hai tay dọc theo thân người.",
+      "Nhảy dang hai chân ra trong khi vung hai tay qua đầu.",
+      "Nhảy trở lại vị trí ban đầu.",
+      "Tiếp đất nhẹ nhàng bằng mũi bàn chân.",
+      "Giữ nhịp đều.",
+      "Tiếp tục trong 30-60 giây."
+    ]
+  },
+  "0514": {
+    "name": "Squat bật nhảy",
+    "description": "Bài squat không tạ kết thúc bằng cú bật nhảy bùng nổ. Phát triển sức mạnh chân và thể lực.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai.",
+      "Hạ người vào tư thế squat bằng cách gập gối và đẩy hông ra sau.",
+      "Bật nhảy bùng nổ khỏi sàn, duỗi hông, gối và mắt cá chân.",
+      "Khi đang ở trên không, nhanh chóng đưa hai tay về trước để giữ thăng bằng.",
+      "Tiếp đất nhẹ nhàng bằng mũi bàn chân và ngay lập tức vào lần tiếp theo.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0781": {
+    "name": "Squat tách chân",
+    "description": "Bài squat với tư thế chân so le, chân sau giữ nguyên. Tác động vào đùi trước và cơ mông, từng bên một.",
+    "instructions": [
+      "Đứng với tư thế bước dài, một chân trước, một chân sau.",
+      "Giữ thân người thẳng đứng và cơ core siết chặt.",
+      "Gập cả hai gối và hạ xuống cho đến khi gối sau lơ lửng ngay trên sàn.",
+      "Đạp qua gót chân trước để đứng trở lại.",
+      "Hoàn thành hết số lần, rồi đổi chân."
+    ]
+  },
+  "1460": {
+    "name": "Chùng chân bước đi",
+    "description": "Bước về trước vào từng tư thế chùng chân liên tiếp, di chuyển ngang phòng. Tác động vào đùi trước, cơ mông và thử thách khả năng giữ thăng bằng.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai.",
+      "Bước về trước bằng chân phải, hạ người vào tư thế chùng chân.",
+      "Giữ thân người thẳng đứng và đầu gối trước thẳng hàng với mắt cá chân.",
+      "Đạp bằng chân phải và đưa chân trái về trước, bước vào tư thế chùng chân bằng chân trái.",
+      "Tiếp tục đổi chân và bước về trước, duy trì nhịp có kiểm soát và đều đặn.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "2972": {
+    "name": "Chùng chân ngang",
+    "description": "Bước sang ngang vào tư thế chùng chân sâu. Tác động vào đùi trước và cơ mông trong khi mở rộng đùi trong.",
+    "instructions": [
+      "Đứng thẳng, hai chân chụm lại, hai tay đặt trước ngực.",
+      "Bước rộng sang một bên.",
+      "Gập gối bên đó và ngồi hông ra sau, giữ chân còn lại thẳng.",
+      "Đạp bằng chân đang gập để trở lại.",
+      "Đổi bên."
+    ]
+  },
+  "1064": {
+    "name": "Squat sumo",
+    "description": "Bài squat không tạ với tư thế chân rộng, mũi chân hướng ra ngoài. Tác động vào cơ mông và đùi trong.",
+    "instructions": [
+      "Đứng chân rộng, mũi chân hướng ra ngoài.",
+      "Chắp hai tay trước ngực.",
+      "Ngồi hông xuống và ra sau giữa hai chân.",
+      "Giữ đầu gối trên mũi chân và ngực ưỡn lên.",
+      "Hạ xuống ngang đùi.",
+      "Đạp qua gót chân để đứng lên và siết cơ mông."
+    ]
+  },
+  "0631": {
+    "name": "Lên xà",
+    "description": "Kéo người lên trên xà rồi đẩy lên thành tư thế nhúng. Tập cho cơ xô, ngực và tay trong một cú chuyển động mạnh mẽ.",
+    "instructions": [
+      "Bắt đầu treo người trên xà đơn, lòng bàn tay hướng ra ngoài, hai tay duỗi thẳng hoàn toàn.",
+      "Siết cơ core và kéo người lên phía xà, dẫn động bằng ngực.",
+      "Khi tới điểm cao nhất, chuyển kiểu nắm tay sao cho lòng bàn tay hướng vào người.",
+      "Tiếp tục kéo người lên cho đến khi ngực vượt qua xà và hai tay gập hoàn toàn.",
+      "Đảo ngược động tác bằng cách hạ người từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0471": {
+    "name": "Chống đẩy trồng chuối",
+    "description": "Đẩy người lên trong khi lộn ngược dựa vào tường. Phát triển cơ vai và tay sau.",
+    "instructions": [
+      "Tìm một bức tường và đứng quay lưng lại, cách tường vài bước chân.",
+      "Đặt hai tay lên sàn rộng bằng vai và đá chân lên tựa vào tường, vào tư thế trồng chuối.",
+      "Gập khuỷu tay và hạ đầu về phía sàn, giữ cơ thể thành một đường thẳng.",
+      "Đạp qua hai tay và duỗi tay để trở lại vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "3013": {
+    "name": "Cầu mông sàn",
+    "description": "Bài cầu mông thấp trên sàn, nâng hông lên. Tác động vào cơ mông và đùi sau.",
+    "instructions": [
+      "Nằm ngửa, gối gập, hai bàn chân đặt phẳng trên sàn.",
+      "Đặt hai tay dọc theo thân người, lòng bàn tay hướng xuống.",
+      "Siết cơ mông và cơ core, rồi nâng hông khỏi sàn cho đến khi cơ thể tạo thành một đường thẳng từ gối đến vai.",
+      "Dừng một nhịp ở điểm cao nhất, siết chặt cơ mông.",
+      "Từ từ hạ hông về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "2072": {
+    "name": "Đẩy hông",
+    "description": "Bài cầu mông tập trung vào mông với lưng trên tựa vào ghế, nâng hông lên để phát triển cơ mông khỏe.",
+    "instructions": [
+      "Ngồi trên sàn, lưng trên tựa vào ghế, gối gập.",
+      "Đặt hai bàn chân phẳng trên sàn, rộng bằng hông.",
+      "Đạp qua gót chân để nâng hông lên cho đến khi thân người ngang bằng.",
+      "Siết cơ mông ở điểm cao nhất.",
+      "Hạ xuống từ từ và lặp lại."
+    ]
+  },
+  "3018": {
+    "name": "Nhón gót đứng",
+    "description": "Bài nhón gót không tạ giúp tăng sức mạnh cẳng chân dưới và sự ổn định của mắt cá chân.",
+    "instructions": [
+      "Đứng thẳng, hai chân rộng bằng hông.",
+      "Nhón lên mũi bàn chân cao nhất có thể.",
+      "Dừng một giây ở điểm cao nhất.",
+      "Hạ gót chân từ từ về sàn.",
+      "Vịn vào tường để giữ thăng bằng nếu cần."
+    ]
+  },
+  "0284": {
+    "name": "Nhón gót kiểu lừa",
+    "description": "Bài nhón gót kiểu lừa với mũi chân đặt trên mặt cao. Nâng và hạ gót chân qua biên độ đầy đủ để tập cho bắp chân.",
+    "instructions": [
+      "Đứng với mũi chân trên mặt cao, ví dụ như bậc thang hoặc bục.",
+      "Đặt hai tay lên điểm tựa vững chắc, ví dụ như tường hoặc lan can, để giữ thăng bằng.",
+      "Nâng gót chân lên cao nhất có thể, dồn trọng lượng lên mũi bàn chân.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ gót chân từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0459": {
+    "name": "Đá chân liên tục",
+    "description": "Nằm ngửa và đá chân lên xuống theo nhịp nhỏ xen kẽ. Tác động vào cơ bụng dưới và cơ gập hông.",
+    "instructions": [
+      "Nằm ngửa, chân duỗi thẳng, hai tay dọc theo thân người.",
+      "Siết cơ core và nâng chân khỏi sàn khoảng 15 cm.",
+      "Giữ chân thẳng, luân phiên nâng một chân cao hơn chân còn lại một chút.",
+      "Tiếp tục động tác đá liên tục đủ số lần mong muốn."
+    ]
+  },
+  "2862": {
+    "name": "Đá cắt kéo",
+    "description": "Động tác đổi chân khi nằm ngửa, giúp tăng sức mạnh cơ bụng dưới.",
+    "instructions": [
+      "Nằm ngửa, nâng hông lên và dùng tay đỡ hông.",
+      "Nâng hai chân lên cao.",
+      "Hạ một chân xuống trong khi chân còn lại giữ nguyên trên cao.",
+      "Đổi chân.",
+      "Giữ động tác đều đặn."
+    ]
+  },
+  "5107": {
+    "name": "Nâng chân ghế tựa",
+    "description": "Nâng chân trong khi được đỡ bằng đệm tay của ghế tựa. Bài tập bụng dưới kinh điển.",
+    "instructions": [
+      "Đặt cẳng tay lên đệm và ép lưng vào phần tựa.",
+      "Để hai chân buông thẳng xuống.",
+      "Nâng gối hoặc chân thẳng lên ngang hông hoặc cao hơn.",
+      "Dừng một nhịp ở điểm cao nhất.",
+      "Hạ chân từ từ, không đung đưa."
+    ]
+  },
+  "0861": {
+    "name": "Kéo cáp ngồi",
+    "description": "Bài kéo cáp khi ngồi, kéo tay cầm về phía thân người. Tập cho lưng và tay trước.",
+    "instructions": [
+      "Ngồi vào máy kéo cáp, hai bàn chân đặt phẳng trên bàn đạp, gối hơi gập.",
+      "Nắm tay cầm kiểu sấp tay, giữ lưng thẳng và vai thả lỏng.",
+      "Kéo tay cầm về phía cơ thể, ép hai bả vai lại với nhau.",
+      "Dừng một nhịp ở điểm cao nhất của động tác, rồi từ từ thả tay cầm về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "2291": {
+    "name": "Kéo xô tay rộng với cáp",
+    "description": "Bài kéo xuống với tay nắm rộng, giúp phát triển các cơ rộng của lưng trên.",
+    "instructions": [
+      "Ngồi vào trạm kéo xuống và cố định đùi dưới đệm.",
+      "Nắm thanh đòn với tay nắm rộng kiểu sấp tay.",
+      "Ngả người ra sau hơi nhẹ và kéo thanh đòn xuống ngực trên.",
+      "Đưa khuỷu tay xuống và ra sau, ép hai bả vai lại.",
+      "Điều khiển thanh đòn trở lên cho đến khi hai tay duỗi thẳng hoàn toàn.",
+      "Tránh đung đưa thân người."
+    ]
+  },
+  "5609": {
+    "name": "Kéo dây về mặt đứng với cáp",
+    "description": "Bài kéo dây về mặt với cáp giúp phát triển cơ vai sau và tăng cường sức mạnh lưng trên.",
+    "instructions": [
+      "Đặt cáp ở độ cao ngang ngực trên với một tay cầm.",
+      "Đứng thẳng và kéo về phía mặt.",
+      "Dang hai tay ra ở cuối động tác.",
+      "Ép hai bả vai lại.",
+      "Trở lại từ từ."
+    ]
+  },
+  "0201": {
+    "name": "Đẩy xuống cáp tay sau",
+    "description": "Bài đẩy xuống tay sau kinh điển trên ròng rọc cao với thanh thẳng. Khuỷu tay giữ sát thân người trong khi cẳng tay đẩy xuống.",
+    "instructions": [
+      "Gắn thanh thẳng vào máy cáp ròng rọc cao.",
+      "Đứng đối diện máy, hai chân rộng bằng vai, gối hơi gập.",
+      "Nắm thanh đòn kiểu sấp tay, hai tay rộng bằng vai.",
+      "Giữ khuỷu tay sát thân người và bắp tay cố định.",
+      "Thở ra và đẩy thanh đòn xuống cho đến khi khuỷu tay duỗi thẳng hoàn toàn.",
+      "Dừng một nhịp, rồi hít vào và từ từ đưa thanh đòn về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0227": {
+    "name": "Ép ngực cáp đứng",
+    "description": "Bài ép ngực cáp khi đứng, đưa hai tay cầm lại với nhau trước ngực. Tập cho cơ ngực với lực căng liên tục.",
+    "instructions": [
+      "Gắn tay cầm vào cáp ở độ cao ngang ngực.",
+      "Đứng hai chân rộng bằng vai, quay lưng lại với máy cáp.",
+      "Nắm tay cầm kiểu sấp tay, lòng bàn tay hướng về trước.",
+      "Bước về trước hơi nhẹ để tạo lực căng trong cáp.",
+      "Giữ cơ core siết chặt và lưng thẳng trong suốt động tác.",
+      "Với khuỷu tay hơi gập, từ từ đưa hai tay về trước và lại với nhau trước ngực.",
+      "Siết cơ ngực ở điểm cao nhất của động tác.",
+      "Từ từ đảo ngược động tác, đưa hai tay về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0178": {
+    "name": "Nâng tạ ngang với cáp",
+    "description": "Bài nâng tạ ngang cáp khi đứng: tay nâng sang hai bên chống lại lực căng liên tục của cáp. Tác động vào cơ vai giữa cho bờ vai rộng hơn.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai và nắm tay cầm cáp kiểu sấp tay.",
+      "Giữ hai tay thẳng và cơ core siết chặt.",
+      "Nâng hai tay sang hai bên cho đến khi song song với sàn.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ tay từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0739": {
+    "name": "Đạp chân máy nghiêng 45°",
+    "description": "Trên máy đạp nghiêng 45 độ, dùng chân đẩy bàn đạp ra xa. Tác động vào đùi trước và cơ mông.",
+    "instructions": [
+      "Điều chỉnh ghế ngồi và bàn đạp của máy về vị trí thoải mái.",
+      "Ngồi vào máy với lưng tựa vào lưng ghế, hai chân rộng bằng vai đặt trên bàn đạp.",
+      "Nắm tay cầm hai bên ghế để giữ ổn định.",
+      "Đẩy bàn đạp ra xa cơ thể bằng cách duỗi chân, giữ gót chân trên bàn đạp.",
+      "Tiếp tục đẩy cho đến khi chân gần duỗi thẳng hoàn toàn, nhưng không khóa gối.",
+      "Dừng một nhịp ở điểm cao nhất của động tác, rồi từ từ hạ bàn đạp về phía cơ thể bằng cách gập gối.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0585": {
+    "name": "Duỗi chân máy",
+    "description": "Ngồi trên máy, duỗi thẳng chân chống lại đệm. Bài tập đùi trước đơn giản.",
+    "instructions": [
+      "Điều chỉnh chiều cao ghế ngồi và lưng ghế của máy cho phù hợp với cơ thể.",
+      "Ngồi vào máy, lưng tựa vào lưng ghế, hai chân đặt trên đệm.",
+      "Nắm tay cầm hoặc thanh bên để giữ ổn định.",
+      "Duỗi chân về trước bằng cách duỗi thẳng gối, nâng tạ lên.",
+      "Dừng một nhịp ở điểm cao nhất, rồi từ từ hạ tạ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0586": {
+    "name": "Gập chân nằm máy",
+    "description": "Nằm sấp trên máy, cuốn gót chân về phía mông. Cô lập cơ đùi sau.",
+    "instructions": [
+      "Điều chỉnh máy cho phù hợp với cơ thể và chọn mức tạ mong muốn.",
+      "Nằm sấp trên máy, chân duỗi thẳng, gót chân tựa vào đòn đệm.",
+      "Nắm tay cầm hoặc hai bên máy để giữ ổn định.",
+      "Giữ thân trên cố định, thở ra và cuốn chân lên cao nhất có thể mà không nhấc hông khỏi đệm.",
+      "Giữ tư thế co trong một nhịp ngắn trong khi siết cơ đùi sau.",
+      "Hít vào và từ từ hạ đòn về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "1030": {
+    "name": "Ép ngực máy",
+    "description": "Bài ép ngực máy, hai tay quét lại với nhau phía trước, cô lập cơ ngực.",
+    "instructions": [
+      "Ngồi vào máy ép ngực, lưng phẳng, hai tay ở độ cao ngang ngực.",
+      "Đặt cẳng tay hoặc bàn tay lên đệm, khuỷu tay hơi gập.",
+      "Đưa hai tay lại với nhau trước ngực.",
+      "Siết một nhịp, rồi mở ra từ từ cho đến khi cảm thấy ngực căng ra.",
+      "Giữ vai hạ xuống và mở ra sau."
+    ]
+  },
+  "0576": {
+    "name": "Đẩy ngực máy",
+    "description": "Bài đẩy máy, đẩy tay cầm về trước từ ngực. Tác động vào ngực, vai trước và tay sau.",
+    "instructions": [
+      "Điều chỉnh chiều cao ghế và ngồi vào máy với lưng phẳng tựa vào đệm.",
+      "Nắm tay cầm kiểu sấp tay và đặt khuỷu tay tạo góc 90 độ.",
+      "Đẩy tay cầm về trước cho đến khi hai tay duỗi thẳng hoàn toàn, thở ra trong khi đẩy.",
+      "Dừng một nhịp ở cuối động tác, rồi từ từ trở lại vị trí ban đầu, hít vào trong khi hạ.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0594": {
+    "name": "Nhón gót ngồi máy",
+    "description": "Ngồi trên máy, đạp qua mũi bàn chân để nâng gót chân lên. Cô lập bắp chân, đặc biệt là cơ dép.",
+    "instructions": [
+      "Điều chỉnh chiều cao ghế sao cho gối hơi gập và hai bàn chân đặt phẳng trên bàn đạp.",
+      "Đặt mũi chân lên bàn đạp, gót chân thõng khỏi mép.",
+      "Nắm tay cầm hoặc hai bên ghế để giữ ổn định.",
+      "Đạp qua mũi bàn chân để nâng gót chân lên cao nhất có thể.",
+      "Dừng một nhịp ở điểm cao nhất, rồi hạ gót chân từ từ về vị trí ban đầu.",
+      "Lặp lại đủ số lần mong muốn."
+    ]
+  },
+  "0549": {
+    "name": "Vung tạ ấm",
+    "description": "Động tác gập hông, vung tạ ấm lên ngang ngực bằng lực hông. Rất tốt cho cơ mông, đùi sau và sức mạnh chuỗi sau.",
+    "instructions": [
+      "Đứng hai chân rộng bằng vai, mũi chân hơi hướng ra ngoài.",
+      "Cầm tạ ấm bằng cả hai tay phía trước cơ thể, hai tay duỗi thẳng.",
+      "Gập gối hơi nhẹ và gập người từ hông, đẩy mông ra sau.",
+      "Vung tạ ấm ra sau giữa hai chân, giữ hai tay thẳng và lưng phẳng.",
+      "Đẩy hông về trước và vung tạ ấm lên ngang vai, dùng đà tạo ra từ hông.",
+      "Để tạ ấm vung trở xuống giữa hai chân và lặp lại động tác đủ số lần mong muốn."
+    ]
+  },
+  "5965": {
+    "name": "Bước nhanh 1-2",
+    "description": "Bài tập nhanh chân giúp tăng sự nhanh nhẹn và phối hợp với những bước chân nhanh, nhẹ.",
+    "instructions": [
+      "Đứng ở tư thế thể thao với gối hơi gập.",
+      "Bước nhanh theo mẫu đã định, một rồi hai.",
+      "Luôn giữ trên mũi bàn chân.",
+      "Giữ hai tay gập và vung tự nhiên.",
+      "Lặp lại trong 20-30 giây với những bước nhanh, nhẹ và dứt khoát."
+    ]
+  }
+}
