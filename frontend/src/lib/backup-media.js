@@ -4,7 +4,7 @@
  * reference to its file and never the file. "Export with photos & videos" writes a store-only zip
  * (lib/zip.js) instead:
  *
- *   opengym-backup.json      the very same JSON
+ *   vietfit-backup.json      the very same JSON
  *   media/<sha256>.<ext>     every photo, GIF, video and poster the state refers to
  *   README.txt               what this is and how to bring it back
  *
@@ -25,18 +25,20 @@ import { mediaStore } from './media-store.js'
 import { DEFAULT_LIMITS, MB } from './media-limits.js'
 import { t } from './i18n-core.js'
 
-export const BACKUP_JSON = 'opengym-backup.json'
+export const BACKUP_JSON = 'vietfit-backup.json'
+// A zip written before the rename still carries the old name: it must keep importing.
+const LEGACY_BACKUP_JSON = 'opengym-backup.json'
 const MEDIA_ENTRY = /^media\/([0-9a-f]{64})\.(jpg|png|webp|gif|mp4|mov|webm)$/
 
-const README = `openGym backup with photos and videos
+const README = `VietFit backup with photos and videos
 =====================================
 
-opengym-backup.json  your data - the same file "Export backup (JSON)" writes.
+vietfit-backup.json  your data - the same file "Export backup (JSON)" writes.
 media/               the photos, GIFs and videos of your own exercises and of your
                      workouts, each named by its SHA-256, plus the small previews
                      shown in lists.
 
-To bring it back: openGym -> Settings -> Data & backup -> Import backup, and pick this .zip as it is.
+To bring it back: VietFit -> Settings -> Data & backup -> Import backup, and pick this .zip as it is.
 Do not unpack and re-zip it: the app reads zips that are stored, not compressed.
 `
 
@@ -106,7 +108,7 @@ export async function readBackupFile(file) {
   const zip = await looksLikeZip(file)
   if (zip) {
     const entries = await readZip(file)
-    const json = entries.find(e => e.name === BACKUP_JSON)
+    const json = entries.find(e => e.name === BACKUP_JSON || e.name === LEGACY_BACKUP_JSON)
     if (!json) throw notBackup()
     state = JSON.parse(await json.blob.text())
     if (!isBackup(state)) throw notBackup()
