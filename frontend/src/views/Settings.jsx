@@ -423,7 +423,7 @@ export default function Settings({ page = null, find = null, via = null, entryKe
   const layout = ['list', 'compact', 'focus'].includes(S.workoutView) ? S.workoutView : 'cards'
   const layoutLabel = { cards: t('Cards'), list: t('List'), compact: t('Compact') }[layout]
   const activeProfile = (S.equipProfiles || []).find(p => p.id === S.activeEquipId)
-  const themeLabel = { dark: t('Dark'), light: t('Light'), system: t('System') }[S.theme || 'dark'] || t('Dark')
+  const themeLabel = { dark: t('Dark'), light: t('Light'), system: t('System') }[S.theme || 'light'] || t('Light')
   // The value a root row shows, so most questions are answered without opening the page.
   const preview = {
     workout: () => (S.restSec > 0 ? t('{0} rest', fmtRest(S.restSec)) : t('No rest timer')) + ' · ' + layoutLabel,
@@ -773,7 +773,7 @@ export default function Settings({ page = null, find = null, via = null, entryKe
               { value: 'light', icon: 'sun', label: t('Light') },
               { value: 'system', icon: 'gear', label: t('System') },
             ]}
-            value={S.theme || 'dark'}
+            value={S.theme || 'light'}
             onChange={v => update(s => { s.theme = v })}
           />
         </Row>
