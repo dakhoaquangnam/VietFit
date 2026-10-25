@@ -582,6 +582,7 @@ export const PT_BR_OVERRIDES = {
   'The Coach isn’t set up on this phone.': 'O Treinador não está configurado neste celular.',
   'The Coach needs your go-ahead first.': 'O Treinador precisa primeiro da sua autorização.',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'A chave fica no armazenamento seguro deste celular e só sai dele para chamar o provedor.',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'Na Web, a chave fica no armazenamento deste navegador, não no armazenamento seguro do celular, e só sai deste navegador para chamar o provedor.',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'Este celular chama o provedor diretamente com a sua chave. Cada pedido é cobrado na sua conta.',
   'Turn the Coach off on this phone': 'Desligar o Treinador neste celular',
   'Use my self-hosted openGym': 'Usar meu openGym self-hosted',

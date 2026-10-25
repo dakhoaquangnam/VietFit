@@ -882,6 +882,7 @@ export default {
   'The Coach isn’t set up on this phone.': 'Тренер на цьому телефоні не налаштований.',
   'The Coach needs your go-ahead first.': 'Спочатку тренеру потрібна твоя згода.',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'Ключ зберігається в захищеному сховищі цього телефона і покидає його лише для звернення до постачальника.',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'У вебі ключ зберігається у сховищі цього браузера, а не в захищеному сховищі телефону, і не залишає цей браузер, крім як для виклику постачальника.',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'Цей телефон звертається до постачальника напряму з твоїм ключем. Кожен запит списується з твого рахунку.',
   'Turn the Coach off on this phone': 'Вимкнути тренера на цьому телефоні',
   'Use my self-hosted openGym': 'Використати мій власний openGym',

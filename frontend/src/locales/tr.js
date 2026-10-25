@@ -1078,6 +1078,7 @@ export default {
   'The Coach isn’t set up on this phone.': 'Koç bu telefonda kurulu değil.',
   'The Coach needs your go-ahead first.': 'Koçun önce senin onayına ihtiyacı var.',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'Anahtar bu telefonun güvenli deposunda saklanır ve yalnızca sağlayıcıyı çağırmak için dışarı çıkar.',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'Web sürümünde anahtar, telefonun güvenli deposunda değil, bu tarayıcının deposunda saklanır ve sağlayıcıyı çağırmak dışında bu tarayıcıdan ayrılmaz.',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'Bu telefon sağlayıcıyı doğrudan senin anahtarınla çağırır. Her istek senin hesabına yansır.',
   'Turn the Coach off on this phone': 'Koçu bu telefonda kapat',
   'Use my self-hosted openGym': 'Kendi openGym sunucumu kullan',

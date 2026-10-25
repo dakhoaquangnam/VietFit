@@ -1168,6 +1168,7 @@ export default {
   'The Coach isn’t set up on this phone.': 'ยังไม่ได้ตั้งค่าโค้ชบนโทรศัพท์นี้',
   'The Coach needs your go-ahead first.': 'โค้ชต้องได้รับความยินยอมจากคุณก่อน',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'คีย์ถูกเก็บในที่จัดเก็บที่ปลอดภัยของโทรศัพท์นี้ และไม่ออกไปไหนนอกจากเพื่อเรียกผู้ให้บริการ',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'ในเวอร์ชันเว็บ กุญแจจะอยู่ในพื้นที่จัดเก็บของเบราว์เซอร์นี้ ไม่ใช่พื้นที่จัดเก็บที่ปลอดภัยของโทรศัพท์ และจะไม่ออกจากเบราว์เซอร์นี้ยกเว้นเพื่อเรียกผู้ให้บริการ',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'โทรศัพท์นี้เรียกผู้ให้บริการโดยตรงด้วยคีย์ของคุณ ทุกคำขอจะถูกเรียกเก็บจากบัญชีของคุณ',
   'Turn the Coach off on this phone': 'ปิดโค้ชบนโทรศัพท์นี้',
   'Use my self-hosted openGym': 'ใช้ openGym ที่ฉันโฮสต์เอง',

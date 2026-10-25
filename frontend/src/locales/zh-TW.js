@@ -1067,6 +1067,7 @@ export default {
   'The Coach isn’t set up on this phone.': '此手機尚未設定 AI 教練。',
   'The Coach needs your go-ahead first.': '教練需要先徵得你的同意。',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': '金鑰將加密儲存在手機的安全儲存區，除發送 API 請求給該提供商外絕不外洩。',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': '在網頁版中，金鑰儲存在此瀏覽器的儲存空間中，而不是手機的安全儲存空間中，除呼叫服務提供者外不會離開此瀏覽器。',
   'This phone calls the provider directly with your key. Every request is charged to your account.': '此手機會直接呼叫提供商 API，每筆請求費用皆由你的帳號自行負擔。',
   'Turn the Coach off on this phone': '在此手機上關閉教練功能',
   'Use my self-hosted openGym': '使用我自建託管的 openGym 服務',

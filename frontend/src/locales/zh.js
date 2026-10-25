@@ -1078,6 +1078,7 @@ export default {
   'The Coach isn’t set up on this phone.': '此手机上尚未设置教练。',
   'The Coach needs your go-ahead first.': '教练需要先获得你的同意。',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': '密钥保存在此手机的安全存储中，除调用提供商外不会离开手机。',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': '在网页版中，密钥保存在此浏览器的存储中，而不是手机的安全存储中，除调用服务提供商外不会离开此浏览器。',
   'This phone calls the provider directly with your key. Every request is charged to your account.': '此手机使用你的密钥直接调用提供商。每个请求都会计入你的账户。',
   'Turn the Coach off on this phone': '在此手机上关闭教练',
   'Use my self-hosted openGym': '使用我自托管的 openGym',
