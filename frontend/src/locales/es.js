@@ -1078,6 +1078,7 @@ export default {
   'The Coach isn’t set up on this phone.': 'El entrenador no está configurado en este teléfono.',
   'The Coach needs your go-ahead first.': 'El entrenador necesita primero tu permiso.',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'La clave se guarda en el almacenamiento seguro de este teléfono y solo sale de él para llamar al proveedor.',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'En la web, la clave vive en el almacenamiento de este navegador, no en el almacenamiento seguro del teléfono, y solo sale de este navegador para llamar al proveedor.',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'Este teléfono llama al proveedor directamente con tu clave. Cada solicitud se cobra a tu cuenta.',
   'Turn the Coach off on this phone': 'Apagar el entrenador en este teléfono',
   'Use my self-hosted openGym': 'Usar mi openGym autoalojado',

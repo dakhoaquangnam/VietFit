@@ -1078,6 +1078,7 @@ export default {
   'The Coach isn’t set up on this phone.': 'इस फ़ोन पर कोच सेट नहीं है।',
   'The Coach needs your go-ahead first.': 'कोच को पहले आपकी अनुमति चाहिए।',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'कुंजी इस फ़ोन के सुरक्षित भंडारण में रहती है और प्रदाता को कॉल करने के अलावा कभी बाहर नहीं जाती।',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'वेब संस्करण में, कुंजी फ़ोन के सुरक्षित भंडारण में नहीं, बल्कि इस ब्राउज़र के भंडारण में रहती है, और प्रदाता को कॉल करने के अलावा इस ब्राउज़र को नहीं छोड़ती।',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'यह फ़ोन आपकी कुंजी से सीधे प्रदाता को कॉल करता है। हर अनुरोध का शुल्क आपके खाते से लिया जाता है।',
   'Turn the Coach off on this phone': 'इस फ़ोन पर कोच बंद करें',
   'Use my self-hosted openGym': 'मेरा सेल्फ़-होस्टेड openGym इस्तेमाल करें',

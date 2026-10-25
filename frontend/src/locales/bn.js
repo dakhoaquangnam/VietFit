@@ -1153,6 +1153,7 @@ export default {
   'The Coach isn’t set up on this phone.': 'এই ফোনে কোচ সেট আপ করা নেই।',
   'The Coach needs your go-ahead first.': 'কোচের আগে আপনার অনুমতি দরকার।',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'কী-টি এই ফোনের নিরাপদ স্টোরেজে রাখা হয় এবং প্রদানকারীকে কল করা ছাড়া কখনো ফোনের বাইরে যায় না।',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'ওয়েব সংস্করণে, কীটি ফোনের নিরাপদ স্টোরেজে নয়, এই ব্রাউজারের স্টোরেজে থাকে এবং প্রদানকারীকে কল করা ছাড়া এই ব্রাউজার ছেড়ে যায় না।',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'এই ফোন আপনার কী দিয়ে সরাসরি প্রদানকারীকে কল করে। প্রতিটি অনুরোধের খরচ আপনার অ্যাকাউন্টে যায়।',
   'Turn the Coach off on this phone': 'এই ফোনে কোচ বন্ধ করুন',
   'Use my self-hosted openGym': 'আমার সেলফ-হোস্টেড openGym ব্যবহার করুন',

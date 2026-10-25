@@ -950,6 +950,7 @@ export default {
   'The Coach isn’t set up on this phone.': 'المدرب غير معد على هذا الهاتف.',
   'The Coach needs your go-ahead first.': 'المدرب يحتاج موافقتك أولًا.',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'يُخزن المفتاح في التخزين الآمن لهذا الهاتف ولا يغادره إلا لاستدعاء المزود.',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'في إصدار الويب، يُحفظ المفتاح في تخزين هذا المتصفح، وليس في التخزين الآمن للهاتف، ولا يغادر هذا المتصفح إلا لاستدعاء مقدّم الخدمة.',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'يتصل هذا الهاتف بالمزود مباشرة بمفتاحك. يُحاسب حسابك على كل طلب.',
   'Turn the Coach off on this phone': 'إيقاف المدرب على هذا الهاتف',
   'Use my self-hosted openGym': 'استخدام openGym المستضاف ذاتيًا',

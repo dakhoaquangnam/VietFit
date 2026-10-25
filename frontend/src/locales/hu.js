@@ -1160,6 +1160,7 @@ export default {
   'The Coach isn’t set up on this phone.': 'Az Edző nincs beállítva ezen a telefonon.',
   'The Coach needs your go-ahead first.': 'Az Edzőnek előbb a beleegyezésed kell.',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': 'A kulcs a telefon biztonságos tárolójában van, és csak a szolgáltató hívásához hagyja el azt.',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': 'Weben a kulcs ennek a böngészőnek a tárhelyén van, nem a telefon biztonságos tárhelyén, és csak a szolgáltató meghívásához hagyja el ezt a böngészőt.',
   'This phone calls the provider directly with your key. Every request is charged to your account.': 'Ez a telefon közvetlenül, a kulcsoddal hívja a szolgáltatót. Minden kérést a te fiókodra terhel.',
   'Turn the Coach off on this phone': 'Az Edző kikapcsolása ezen a telefonon',
   'Use my self-hosted openGym': 'A saját openGym-szerveremet használom',

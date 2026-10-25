@@ -1078,6 +1078,7 @@ export default {
   'The Coach isn’t set up on this phone.': '이 휴대폰에는 코치가 설정되어 있지 않습니다.',
   'The Coach needs your go-ahead first.': '먼저 코치에게 동의가 필요합니다.',
   'The key is stored in this phone’s secure storage and never leaves it except to call the provider.': '키는 이 휴대폰의 보안 저장소에 보관되며 제공자를 호출할 때 외에는 절대 밖으로 나가지 않습니다.',
+  'On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.': '웹에서는 키가 휴대폰의 보안 저장소가 아니라 이 브라우저의 저장소에 보관되며, 공급자를 호출할 때를 제외하고는 이 브라우저를 떠나지 않습니다.',
   'This phone calls the provider directly with your key. Every request is charged to your account.': '이 휴대폰이 당신의 키로 제공자를 직접 호출합니다. 모든 요청은 당신의 계정에 청구됩니다.',
   'Turn the Coach off on this phone': '이 휴대폰에서 코치 끄기',
   'Use my self-hosted openGym': '내 자체 호스팅 openGym 사용',
