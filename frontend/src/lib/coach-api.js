@@ -8,7 +8,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { api } from './api.js'
 import { DEMO } from './demo.js'
-import { MOBILE } from './mobile.js'
 import { t, getLang } from './i18n.js'
 import { useStore } from '../store/useStore.js'
 import { useUI } from '../store/useUI.js'
@@ -27,12 +26,13 @@ const S = () => useStore.getState().S
 // `lang` worth trusting — it is worked out per device (#303, lib/default-lang.js) — and the
 // Coach should answer in what the person is reading.
 
-// The mobile build's third answer: a phone that brought its own API key runs the Coach itself
-// (lib/coach-local.js — the same core the server runs, imported lazily so the catalogue and the
-// validator only ever load on a phone that chose this). A paired phone takes the api() branch
-// like the web app does; nothing on the web or demo builds reaches this.
+// The third answer: a device that brought its own API key runs the Coach itself
+// (lib/coach-local.js — the same core the server runs, imported lazily so the catalogue and
+// the validator only ever load on a device that chose this). A paired device takes the api()
+// branch like the web app does; the demo build never reaches this. The key mode used to be
+// phone-only (MOBILE); the web build offers it too now, so this is just the stored mode.
 let localMod = null
-const LOCAL = () => MOBILE && useStore.getState().coachLocal?.mode === 'byok'
+const LOCAL = () => useStore.getState().coachLocal?.mode === 'byok'
 const local = async () => {
   if (!localMod) {
     localMod = await import('./coach-local.js')

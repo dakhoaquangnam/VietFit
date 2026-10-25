@@ -60,6 +60,12 @@ describe('gating', () => {
     expect(coachAvailable(null, null, { demo: true })).toBe(true)
   })
 
+  it('is on in the web build once its own key is chosen, with no server and no sign-in', () => {
+    expect(coachAvailable(null, null, { coachMode: 'byok' })).toBe(true)
+    expect(coachAvailable(null, null, { coachMode: 'off' })).toBe(false)
+    expect(coachAvailable(null, null)).toBe(false)
+  })
+
   it('treats an older consent version as no consent', () => {
     expect(hasConsent(state())).toBe(true)
     expect(hasConsent(state({ coach: { consent: { agreedAt: 'x', version: 0 } } }))).toBe(false)

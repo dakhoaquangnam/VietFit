@@ -30,12 +30,13 @@ export const ROOT_GROUPS = [['workout', 'alerts', 'reminders'], ['plan', 'units'
 
 /**
  * Whether a page exists for this device and profile. Reminders need a push server (signed in) or
- * the phone's own notifications; the Coach page is the phone's Coach setup (the web app's Coach
- * runs on the server, set up by its admin).
+ * the phone's own notifications; the Coach page is the Coach setup on every build now, not
+ * just the phone's: the web build offers the same "bring my own API key" setup the phone has
+ * (the server-run Coach, set up by its admin, is still the other choice when signed in).
  */
 export function pageVisible(page, ctx) {
   if (page === 'reminders') return !!(ctx.user || ctx.mobile)
-  if (page === 'coach') return !!ctx.mobile
+  if (page === 'coach') return true
   // The iPhone app only: the watch app ships inside it.
   if (page === 'watch') return !!ctx.ios
   return page in PAGES

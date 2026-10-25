@@ -1,9 +1,10 @@
-// Mobile build only: how the Coach should run on this phone.
+// How the Coach should run on this device.
 //
 // Two answers. "Use my self-hosted openGym" hands the whole thing to the paired server — the
-// same Coach the web app has, with whatever provider its admin configured; the phone only has
-// to be paired. "Bring my own API key" runs the pipeline on the phone against Anthropic,
-// OpenAI, Gemini or an OpenAI-compatible endpoint, with a key that stays in secure storage.
+// same Coach the web app has, with whatever provider its admin configured; the device only has
+// to be paired. "Bring my own API key" runs the pipeline on the device against Anthropic,
+// OpenAI, Gemini or an OpenAI-compatible endpoint, with a key that stays in secure storage
+// on a phone, and in the browser's own storage on the web build (see the key section below).
 //
 // The promise this screen keeps: nothing AI-shaped is loaded until a mode is chosen. Its only
 // imports from the Coach core are the provider table and the five category names — the
@@ -56,7 +57,6 @@ export default function CoachSetup() {
   const [step, setStep] = useState(-1)                     // -1 idle, 0..2 running, 3 done
   const [busy, setBusy] = useState(false)
 
-  useEffect(() => { if (!MOBILE) nav('/settings', { replace: true }) }, [])
   useEffect(() => { getApiKey().then(k => setHasKey(!!k)) }, [])
   // Ask the paired server afresh: the admin may have switched the Coach on since this phone booted.
   useEffect(() => { if (user) refreshConfig() }, [user])
@@ -142,9 +142,9 @@ export default function CoachSetup() {
     </div>
 
     <Section title={t('How should the Coach run?')} footer={current}>
-      <Row icon="rocket" iconTint="var(--indigo)" title={t('Use my self-hosted openGym')}
+      {(MOBILE || user) && <Row icon="rocket" iconTint="var(--indigo)" title={t('Use my self-hosted openGym')}
         subtitle={user ? (serverHasCoach ? t('Your server runs the Coach with whatever provider its admin set up. Nothing new leaves this phone beyond what already syncs.') : config == null ? t('Loading…') : t('Your server has no Coach enabled. Ask its admin, or bring your own key below.')) : t('Connect to my server')}
-        accessory="chevron" onClick={() => { if (!user || serverHasCoach) useServer(); else setChoice('server') }} />
+        accessory="chevron" onClick={() => { if (!user || serverHasCoach) useServer(); else setChoice('server') }} />}
       <Row icon="key" iconTint="var(--acc)" title={t('Bring my own API key')}
         subtitle={t('This phone calls the provider directly with your key. Every request is charged to your account.')}
         accessory="chevron" onClick={() => setChoice('byok')} />
@@ -170,7 +170,7 @@ export default function CoachSetup() {
         </div>
       </Section>}
 
-      <Section title={t('API key')} footer={t('The key is stored in this phone’s secure storage and never leaves it except to call the provider.')}>
+      <Section title={t('API key')} footer={MOBILE ? t('The key is stored in this phone’s secure storage and never leaves it except to call the provider.') : t('On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.')}>
         <div style={{ padding: '8px 12px' }}>
           <TextField value={key} type="password" placeholder={hasKey ? '••••••••  ' + t('(saved)') : (meta.keyPlaceholder || 'sk-…')} autoCapitalize="none" autoCorrect="off"
             onChange={e => setKey(e.target.value)} />

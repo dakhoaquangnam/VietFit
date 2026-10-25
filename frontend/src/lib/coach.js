@@ -54,13 +54,14 @@ const coachOf = s => (s.coach = s.coach || emptyCoach())
 // account, but it does have a canned provider, and hiding the app's most interesting feature
 // from the page people are sent to look at it on would be a strange choice.
 //
-// The mobile build has two ways in, both chosen in Settings (views/CoachSetup.jsx): a phone
-// paired to a self-hosted server is an ordinary signed-in profile and takes the web rule; a
-// phone that brought its own API key runs the Coach itself (lib/coach-local.js). Nothing
-// chosen means nothing shown — the same "invisible unless configured" promise the web keeps.
+// Every build has two ways in, both chosen in Settings (views/CoachSetup.jsx): a profile
+// paired to a self-hosted server takes the server rule; a device that brought its own API
+// key runs the Coach itself (lib/coach-local.js). The key mode used to be phone-only; the
+// web build offers it too now, so a guest on the Pages build can bring a key the same way.
+// Nothing chosen means nothing shown — the same "invisible unless configured" promise the
+// web keeps, except that the Settings row itself is always offered (settings-pages.js).
 export const coachAvailable = (config, user, { demo, mobile, coachMode } = {}) =>
-  mobile ? (coachMode === 'byok' || !!(config?.coach?.enabled && user))
-    : demo ? true : !!(config?.coach?.enabled && user)
+  demo ? true : (coachMode === 'byok' || !!(config?.coach?.enabled && user))
 
 // What each data category means, in the user's words. Rendered from the same list the payload
 // builder uses (api/coach/core/categories.js), so the screen cannot promise less than leaves.

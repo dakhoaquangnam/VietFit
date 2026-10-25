@@ -951,6 +951,7 @@ export default {
   "The Coach isn’t set up on this phone.": "Coach chưa được thiết lập trên điện thoại này.",
   "The Coach needs your go-ahead first.": "Coach cần bạn đồng ý trước.",
   "The key is stored in this phone’s secure storage and never leaves it except to call the provider.": "Khóa được lưu trong bộ nhớ an toàn của điện thoại này và không rời khỏi đó trừ khi gọi nhà cung cấp.",
+  "On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.": "Trên bản web, khóa nằm trong bộ nhớ của trình duyệt này, không phải bộ nhớ an toàn của điện thoại, và không rời khỏi trình duyệt này trừ khi gọi nhà cung cấp.",
   "This phone calls the provider directly with your key. Every request is charged to your account.": "Điện thoại này gọi trực tiếp nhà cung cấp bằng khóa của bạn. Mỗi yêu cầu tính phí vào tài khoản của bạn.",
   "Turn the Coach off on this phone": "Tắt Coach trên điện thoại này",
   "Use my self-hosted openGym": "Dùng openGym tự host của tôi",

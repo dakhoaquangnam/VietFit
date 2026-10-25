@@ -22,7 +22,6 @@ import { fmtDate, fmtNum, DAYS, weekOrder, weekStartOf, isoOf } from '../lib/for
 import { exLine } from '../lib/history.js'
 import { speedUnitOf } from '../lib/speed.js'
 import { DEMO } from '../lib/demo.js'
-import { MOBILE } from '../lib/mobile.js'
 import ChatInput from '../components/ChatInput.jsx'
 import {
   coachAvailable, hasConsent, emptyCoach, appendChat, recordTiming, estimateMs, profileLines,
@@ -105,7 +104,7 @@ export default function CoachChat() {
 
   if (!ready) return null
   const coach = S.coach || emptyCoach()
-  const community = !!config?.coach?.community && !DEMO && !(MOBILE && coachMode === 'byok')
+  const community = !!config?.coach?.community && !DEMO && coachMode !== 'byok'
 
   const send = async () => {
     const msg = text.trim()

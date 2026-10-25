@@ -1901,6 +1901,13 @@ export const useStore = create((set, get) => {
 
     // Boot: ask the server who we are, then pull.
     async boot() {
+      // How this device runs the Coach, if it chose a mode: the mobile branch below loads
+      // this again for itself, but the web build needs it too now that it offers the same
+      // bring-your-own-key setup — without it the gates read coachLocal as null and the
+      // Coach stays hidden after a reload even though a mode was saved. loadCoachDevice
+      // caches, so the second load below is free; on the web the file lives in the
+      // browser's IndexedDB (Capacitor Filesystem's web implementation).
+      set({ coachLocal: coachDeviceSettings(await loadCoachDevice()) })
       // Mobile build: no backend by default — restore from the file mirror (the durable copy;
       // localStorage may have been evicted since the last run) and go straight in. Unless this
       // device was paired to a server ("connect to my server" mode, lib/remote.js), in which

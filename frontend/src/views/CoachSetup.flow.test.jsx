@@ -98,10 +98,14 @@ const pickModel = value => act(() => {
 const openByok = async () => { await click(rowTitled('Bring my own API key')) }
 
 describe('CoachSetup — where it runs at all', () => {
-  it('is a phone screen: the web build is sent straight back to Settings', async () => {
+  it('is no longer a phone-only screen: the web build stays and offers its own key', async () => {
     mocks.mobile = false
+    mocks.user = null
     await mount()
-    expect(mocks.nav).toHaveBeenCalledWith('/settings', { replace: true })
+    expect(mocks.nav).not.toHaveBeenCalledWith('/settings', { replace: true })
+    expect(rowTitled('Bring my own API key')).toBeTruthy()
+    // A web guest has no server to hand the Coach to, so only the key row is offered.
+    expect(rowTitled('Use my self-hosted openGym')).toBeFalsy()
   })
 
   it('re-asks the paired server what it can do, because the admin may have switched it on', async () => {

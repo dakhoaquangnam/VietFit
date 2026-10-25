@@ -64,8 +64,8 @@ import WatchSettingsPage from './WatchSettings.jsx'
 // results back, while Settings opened afresh from anywhere (the gear, a tab) starts at the root.
 let lastQuery = { q: '', key: null }
 
-// The route: /settings and /settings/<page>. An unknown page, or one this device does not have
-// (the Coach page off the phone app), goes back to the root.
+// The route: /settings and /settings/<page>. An unknown page, or one this device does not have,
+// goes back to the root.
 export function SettingsRoute() {
   const { page } = useParams()
   const loc = useLocation()
