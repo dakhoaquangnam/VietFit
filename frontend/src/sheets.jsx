@@ -1043,8 +1043,8 @@ function ExerciseDetail({ ex, close }) {
     update(s => { on = toggleFav(s, ex.id) })
     toast(on ? t('Added to favourites') : t('Removed from favourites'))
   }
-  // Safety note shown in both languages: the English line, then the translation when it
-  // differs (Vietnamese in the Vietnamese app, English only everywhere else).
+  // Safety note in the app's language only: Vietnamese in the Vietnamese app, English
+  // in the English app (and everywhere else, where the pack carries the English line).
   const safetyNote = t('Move with control and stop if you feel sharp pain.')
   return <>
     <div className="row between" style={{ gap: 8, alignItems: 'flex-start' }}>
@@ -1084,11 +1084,11 @@ function ExerciseDetail({ ex, close }) {
         stronger (issue #232). Cardio has none for the same kind of reason. */}
     {!isCardio(ex) && !isAssisted(ex) && <OneRM ex={ex} />}
     {instrFor(ex).length > 0 &&<><h4 className="sec">{t('How to')}{getLang() !== 'en' && !instrTranslated(ex) && <span className="dim" style={{ textTransform: 'none', letterSpacing: 0 }}> · {t('instructions in English')}</span>}</h4><ol className="steps-list">{instrFor(ex).map((s, i) => <li key={i}>{s}</li>)}</ol></>}
-    {/* Safety note at the bottom of every exercise, in English and in the app's language. */}
-    <div className="exnote" style={{ marginTop: 14 }}>
-      <Icon name="info" style={{ fontSize: 13, marginInlineEnd: 5, verticalAlign: '-2px' }} />
-      Move with control and stop if you feel sharp pain.
-      {safetyNote !== 'Move with control and stop if you feel sharp pain.' && <><br />{safetyNote}</>}
+    {/* Safety note at the bottom of every exercise, in the app's language only, with the
+        icon on the same row as the text. */}
+    <div className="exnote" style={{ marginTop: 14, display: 'flex', gap: 6, alignItems: 'flex-start' }}>
+      <Icon name="info" style={{ fontSize: 13, flex: 'none', marginTop: 2 }} />
+      <span>{safetyNote}</span>
     </div>
   </>
 }
