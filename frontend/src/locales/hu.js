@@ -1393,6 +1393,8 @@ export default {
   'Download the APK from opengym.ch': 'Töltsd le az APK-t az opengym.ch oldalról',
   'Releases are checked on GitHub. The download is verified against its checksum before the installer opens.': 'A kiadásokat a GitHub-on ellenőrizzük. A letöltést a telepítő megnyitása előtt az ellenőrzőösszeggel vetjük össze.',
   'The web app updates together with your server. The Android app installs its own updates from here.': 'A webalkalmazás a szerverrel együtt frissül. Az Android-alkalmazás innen telepíti a frissítéseit.',
+  'The web app updates together with your server.': 'The web app updates together with your server.',
+  'Move with control and stop if you feel sharp pain.': 'Move with control and stop if you feel sharp pain.',
   'Starting download…': 'Letöltés indítása…',
   'Downloading update…': 'Frissítés letöltése…',
   '{0} %': '{0} %',

@@ -1393,6 +1393,8 @@ export default {
   'Download the APK from opengym.ch': 'Descarga el APK desde opengym.ch',
   'Releases are checked on GitHub. The download is verified against its checksum before the installer opens.': 'Las versiones se comprueban en GitHub. La descarga se verifica con su suma de comprobación antes de abrir el instalador.',
   'The web app updates together with your server. The Android app installs its own updates from here.': 'La app web se actualiza junto con tu servidor. La app de Android instala sus actualizaciones desde aquí.',
+  'The web app updates together with your server.': 'The web app updates together with your server.',
+  'Move with control and stop if you feel sharp pain.': 'Move with control and stop if you feel sharp pain.',
   'Starting download…': 'Iniciando descarga…',
   'Downloading update…': 'Descargando actualización…',
   '{0} %': '{0} %',
