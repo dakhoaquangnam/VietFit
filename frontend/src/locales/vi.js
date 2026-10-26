@@ -1290,6 +1290,8 @@ export default {
   "Download the APK from opengym.ch": "Tải APK từ opengym.ch",
   "Releases are checked on GitHub. The download is verified against its checksum before the installer opens.": "Các bản phát hành được kiểm tra trên GitHub. File tải xuống được xác minh theo checksum trước khi trình cài đặt mở.",
   "The web app updates together with your server. The Android app installs its own updates from here.": "Ứng dụng web cập nhật cùng máy chủ của bạn. Ứng dụng Android tự cài cập nhật từ đây.",
+  "The web app updates together with your server.": "Ứng dụng web cập nhật cùng máy chủ của bạn.",
+  "Move with control and stop if you feel sharp pain.": "Tập chậm rãi, kiểm soát động tác và dừng lại ngay nếu thấy đau nhói.",
   "Starting download…": "Đang bắt đầu tải xuống…",
   "Downloading update…": "Đang tải cập nhật…",
   "{0} %": "{0} %",
