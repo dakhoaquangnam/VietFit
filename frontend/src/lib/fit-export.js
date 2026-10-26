@@ -398,8 +398,14 @@ export const workoutFit = (w, options) => encodeFit(workoutFitMessages(w, option
 
 /** "opengym-2026-10-09-1830.fit": the day and the start time, so two sessions a day stay apart. */
 export function fitFileName(w) {
-  const d = new Date(workoutAt(w))
-  if (!Number.isFinite(d.getTime())) return 'opengym-workout.fit'
+  const at = new Date(workoutAt(w))
+  if (!Number.isFinite(at.getTime())) return 'opengym-workout.fit'
   const p = n => String(n).padStart(2, '0')
-  return `opengym-${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}.fit`
+  // The day is the workout's own calendar day, not the start's local date: a start
+  // stored in UTC renders on the next local day east of UTC, which would name the
+  // file after a day the sheet never shows. The time stays the local start time.
+  const day = typeof w?.d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(w.d)
+    ? w.d
+    : `${at.getFullYear()}-${p(at.getMonth() + 1)}-${p(at.getDate())}`
+  return `opengym-${day}-${p(at.getHours())}${p(at.getMinutes())}.fit`
 }

@@ -91,6 +91,12 @@ describe('a date-only workout against a window edge', () => {
     // A window that opened at 06:00 local on the workout's own day.
     const opened = new Date('2026-09-22T06:00:00').getTime()
     expect(workoutAt({ d: iso })).toBeGreaterThan(opened)
-    expect(new Date(iso).getTime()).toBeLessThan(opened)   // what the hand-rolled copies computed
+    // Only where UTC midnight falls before 06:00 local does the old parse actually
+    // land outside the window; east of UTC+6 it lands after it opens instead, so
+    // assert the bug itself only where it bites. The noon rule above holds in
+    // every zone either way.
+    if (new Date(iso + 'T12:00:00').getTimezoneOffset() > -360) {
+      expect(new Date(iso).getTime()).toBeLessThan(opened)   // what the hand-rolled copies computed
+    }
   })
 })
