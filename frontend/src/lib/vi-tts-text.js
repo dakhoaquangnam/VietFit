@@ -3,6 +3,8 @@
 // Turns digits, dates, times and units into speakable Vietnamese words
 // BEFORE the text reaches the Piper voice, so "12kg" is read as
 // "mười hai ki-lô-gam" instead of however the phonemizer guesses digits.
+// English gym terms left untranslated in the packs ("squat", "core",
+// "Smith", ...) are replaced with Vietnamese readings the same way.
 // The voice, the engine and the phonemizer are untouched: this output is
 // still plain Vietnamese text, which piper-tts-web phonemizes as usual.
 //
@@ -80,6 +82,36 @@ export function numberToWords(numStr) {
   return out + ' ' + numberToWords(String(rest))
 }
 
+// English gym terms left untranslated in the exercise packs, read as
+// Vietnamese approximations so Piper does not guess their pronunciation.
+// Whole words only: "bar" in "barbell" is left alone.
+const TRANSLITERATIONS = {
+  achilles: 'a-sin', bar: 'ba', bosu: 'bô-xu', bowling: 'bâu-linh',
+  boxing: 'bốc-xinh', burpee: 'bơ-pi', cardio: 'các-đi-ô',
+  chaturanga: 'cha-tu-răng-ga', clean: 'cờ-lin', core: 'co',
+  crusher: 'cờ-rớt-sơ', curtsey: 'cớt-xì', deadlift: 'đét-líp',
+  elliptical: 'e-líp-ti-cồ', ez: 'ê-dét', front: 'frơn',
+  ghd: 'gê-hát-đê', goblet: 'gốp-lét', hack: 'hắc', landmine: 'len-mai',
+  olympic: 'ô-lim-pích', pike: 'pai', planche: 'plăng', plank: 'plăng',
+  preacher: 'prít-chơ', pvc: 'pê-vê-xê', rack: 'rắc',
+  reformer: 'rê-pho-mơ', setup: 'sét-ấp', skull: 's-cồ',
+  smith: 'sờ-mít', snatch: 'sờ-nách', squat: 'sờ-quát',
+  sz: 'ét-dét', tail: 'têu', tennis: 'ten-nít', tiger: 'tai-gơ',
+  trap: 'tráp', yoke: 'dôk'
+}
+
+const TRANSLITERATION_PATTERN = new RegExp(
+  `(^|[^\\p{L}])(${Object.keys(TRANSLITERATIONS).sort((a, b) => b.length - a.length).join('|')})(?=[^\\p{L}]|$)`, 'giu')
+
+const ROMAN_NUMERALS = { I: 'một', II: 'hai', III: 'ba' }
+
+/** Replace English gym terms (and yoga numerals I/II/III) with readings. */
+function transliterate(text) {
+  return text
+    .replace(TRANSLITERATION_PATTERN, (_, before, word) => before + TRANSLITERATIONS[word.toLowerCase()])
+    .replace(/(^|[^\p{L}])(III|II|I)(?=[^\p{L}]|$)/gu, (_, before, numeral) => before + ROMAN_NUMERALS[numeral])
+}
+
 /** Read a decimal fraction: as a number, or digit by digit after a zero. */
 function decimalWords(frac) {
   if (/^0/.test(frac)) return frac.split('').map(d => DIGITS[d] || d).join(' ')
@@ -119,6 +151,10 @@ export function processVietnameseText(text) {
   if (!text || typeof text !== 'string') return ''
   text = text.normalize('NFC').replace(/\s+/g, ' ').trim()
   if (!text) return ''
+
+  // English gym terms first: their readings contain no digits or units,
+  // so later steps leave them alone.
+  text = transliterate(text)
 
   // Thousand separators: "1.000" -> "1000" (dots, Vietnamese style).
   text = text.replace(/(\d{1,3}(?:\.\d{3})+)(?=\s|$|[^\d.,])/g, (_, num) => num.replace(/\./g, ''))

@@ -71,3 +71,25 @@ describe('processVietnameseText', () => {
       .toBe('Đứng cách tường mười hai mét.')
   })
 })
+
+describe('transliteration', () => {
+  it('reads the common gym terms as Vietnamese', () => {
+    expect(processVietnameseText('Giữ cơ core siết chặt, hạ xuống tư thế squat.'))
+      .toBe('Giữ cơ co siết chặt, hạ xuống tư thế sờ-quát.')
+    expect(processVietnameseText('Bắt đầu ở tư thế plank, hai tay nằm dưới vai.'))
+      .toBe('Bắt đầu ở tư thế plăng, hai tay nằm dưới vai.')
+  })
+
+  it('reads equipment and pose names', () => {
+    expect(processVietnameseText('Đứng bên trong thanh tạ trap bar.'))
+      .toBe('Đứng bên trong thanh tạ tráp ba.')
+    expect(processVietnameseText('Ngồi ở ghế preacher, cầm ống PVC, giữ tạ ở tư thế rack.'))
+      .toBe('Ngồi ở ghế prít-chơ, cầm ống pê-vê-xê, giữ tạ ở tư thế rắc.')
+    expect(processVietnameseText('Bước vào tư thế chiến binh II rộng.'))
+      .toBe('Bước vào tư thế chiến binh hai rộng.')
+  })
+
+  it('does not replace inside longer words', () => {
+    expect(processVietnameseText('Cầm thanh barbell.')).toBe('Cầm thanh barbell.')
+  })
+})
