@@ -315,6 +315,7 @@ export default {
   'In Chrome: ⋮ menu → Add to Home screen': 'У Chrome: меню ⋮ → Додати на головний екран',
   'In Safari: Share → Add to Home Screen': 'У Safari: Поділитися → На екран «Додому»',
   'to install openGym as a full-screen app.': 'щоб встановити openGym як повноекранний застосунок.',
+  'to install VietFit as a full-screen app.': 'to install VietFit as a full-screen app.',
   'Your data syncs with your profile. Sign in anywhere and it’s there.': 'Дані синхронізуються з профілем. Увійди будь-де, і вони там.',
   'Guest data stays on this device, so export a backup now and then!': 'Гостьові дані лишаються на цьому пристрої, тож час від часу роби резервну копію!',
   'free & open source (AGPL v3)': 'безкоштовно та з відкритим кодом (AGPL v3)',

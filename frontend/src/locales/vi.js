@@ -327,6 +327,7 @@ export default {
   "In Chrome: ⋮ menu → Add to Home screen": "Trên Chrome: menu ⋮ → Thêm vào màn hình chính",
   "In Safari: Share → Add to Home Screen": "Trên Safari: Chia sẻ → Thêm vào màn hình chính",
   "to install openGym as a full-screen app.": "để cài openGym thành ứng dụng toàn màn hình.",
+  "to install VietFit as a full-screen app.": "để cài VietFit thành ứng dụng toàn màn hình.",
   "Your data syncs with your profile. Sign in anywhere and it’s there.": "Dữ liệu của bạn đồng bộ với hồ sơ. Đăng nhập ở đâu cũng có.",
   "Guest data stays on this device, so export a backup now and then!": "Dữ liệu khách chỉ ở trên thiết bị này, nên thỉnh thoảng hãy xuất bản sao lưu!",
   "free & open source (AGPL v3)": "miễn phí & mã nguồn mở (AGPL v3)",

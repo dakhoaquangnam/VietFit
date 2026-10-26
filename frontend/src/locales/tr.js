@@ -481,6 +481,7 @@ export default {
   'In Chrome: ⋮ menu → Add to Home screen': 'Chrome’da: ⋮ menü → Ana ekrana ekle',
   'In Safari: Share → Add to Home Screen': 'Safari’de: Paylaş → Ana Ekrana Ekle',
   'to install openGym as a full-screen app.': 'ile openGym’i tam ekran uygulama olarak kurabilirsin.',
+  'to install VietFit as a full-screen app.': 'to install VietFit as a full-screen app.',
   'Your data syncs with your profile. Sign in anywhere and it’s there.': 'Verilerin profilinle eşitlenir. Nereden giriş yaparsan yap, oradadır.',
   'Guest data stays on this device, so export a backup now and then!': 'Misafir verileri bu cihazda kalır, arada bir yedek almayı unutma!',
   'free & open source (AGPL v3)': 'ücretsiz ve açık kaynak (AGPL v3)',

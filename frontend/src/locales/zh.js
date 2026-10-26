@@ -481,6 +481,7 @@ export default {
   'In Chrome: ⋮ menu → Add to Home screen': '在 Chrome 中：⋮ 菜单 → 添加到主屏幕',
   'In Safari: Share → Add to Home Screen': '在 Safari 中：分享 → 添加到主屏幕',
   'to install openGym as a full-screen app.': '即可将 openGym 安装为全屏应用。',
+  'to install VietFit as a full-screen app.': 'to install VietFit as a full-screen app.',
   'Your data syncs with your profile. Sign in anywhere and it’s there.': '你的数据随档案同步。在任何地方登录，数据都在。',
   'Guest data stays on this device, so export a backup now and then!': '访客数据只保存在本设备上，记得时不时导出备份！',
   'free & open source (AGPL v3)': '免费且开源（AGPL v3）',
