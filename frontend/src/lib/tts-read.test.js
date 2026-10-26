@@ -43,6 +43,11 @@ describe('readChunks', () => {
     expect(chunks).toEqual(['Mô tả ngắn.', 'Bước một.', 'Bước hai.'])
   })
 
+  it('speaks numbers and units as Vietnamese words', () => {
+    expect(readChunks('Nâng tạ 12kg.', ['Giữ 30 giây.']))
+      .toEqual(['Nâng tạ mười hai ki-lô-gam.', 'Giữ ba mươi giây.'])
+  })
+
   it('works with only steps, or with neither', () => {
     expect(readChunks('', ['Bước một.'])).toEqual(['Bước một.'])
     expect(readChunks('', [])).toEqual([])

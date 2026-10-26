@@ -7,9 +7,16 @@
 // when the phone locks — speechSynthesis would stop there, so it is only the
 // fallback when Piper cannot run (its device voice reads the same chunks).
 //
+// Before chunking, each text goes through lib/vi-tts-text.js, which turns
+// digits, dates, times and units into speakable Vietnamese words ("12kg" ->
+// "mười hai ki-lô-gam"). The voice and engine are untouched; the processed
+// text is still plain Vietnamese, phonemized as usual.
+//
 // Text is split into chunks (one per description / step, cut at sentence
 // boundaries when too long) so a long instruction reads step by step and a
 // failure loses one chunk, not the whole text.
+
+import { processVietnameseText } from './vi-tts-text.js'
 
 export const PIPER_VOICE_ID = 'vi_VN-vais1000-medium'
 export const MAX_CHUNK_CHARS = 500
@@ -47,11 +54,13 @@ export function splitText(text, max = MAX_CHUNK_CHARS) {
   return chunks
 }
 
-/** The chunks one exercise reads as: its description, then one per step. */
+/** The chunks one exercise reads as: its description, then one per step.
+ *  Numbers and units are spoken as Vietnamese words (see vi-tts-text.js),
+ *  and processing happens before chunking so the cap counts spoken length. */
 export function readChunks(desc, steps) {
   const out = []
-  if (desc) out.push(...splitText(desc))
-  for (const s of steps || []) out.push(...splitText(s))
+  if (desc) out.push(...splitText(processVietnameseText(desc)))
+  for (const s of steps || []) out.push(...splitText(processVietnameseText(s)))
   return out
 }
 
