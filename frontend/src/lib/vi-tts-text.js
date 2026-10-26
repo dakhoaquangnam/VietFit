@@ -86,18 +86,29 @@ export function numberToWords(numStr) {
 // Vietnamese approximations so Piper does not guess their pronunciation.
 // Whole words only: "bar" in "barbell" is left alone.
 const TRANSLITERATIONS = {
-  achilles: 'a-sin', bar: 'ba', bosu: 'bô-xu', bowling: 'bâu-linh',
-  boxing: 'bốc-xinh', burpee: 'bơ-pi', cardio: 'các-đi-ô',
-  chaturanga: 'cha-tu-răng-ga', clean: 'cờ-lin', core: 'co',
-  crusher: 'cờ-rớt-sơ', curtsey: 'cớt-xì', deadlift: 'đét-líp',
-  elliptical: 'e-líp-ti-cồ', ez: 'ê-dét', front: 'frơn',
-  ghd: 'gê-hát-đê', goblet: 'gốp-lét', hack: 'hắc', landmine: 'len-mai',
-  olympic: 'ô-lim-pích', pike: 'pai', planche: 'plăng', plank: 'plăng',
-  preacher: 'prít-chơ', pvc: 'pê-vê-xê', rack: 'rắc',
-  reformer: 'rê-pho-mơ', setup: 'sét-ấp', skull: 's-cồ',
-  smith: 'sờ-mít', snatch: 'sờ-nách', squat: 'sờ-quát',
-  sz: 'ét-dét', tail: 'têu', tennis: 'ten-nít', tiger: 'tai-gơ',
-  trap: 'tráp', yoke: 'dôk'
+  'achilles': 'a-sin', 'arnold': 'a-nôn', 'bar': 'ba', 'bosu': 'bô-xu',
+  'bowling': 'bâu-linh', 'boxing': 'bốc-xinh', 'brachialis': 'brây-ki-a-lít', 'bradford': 'brát-phót',
+  'bulgaria': 'bun-ga-ri-a', 'burpee': 'bơ-pi', 'cardio': 'các-đi-ô', 'chaturanga': 'cha-tu-răng-ga',
+  'clean': 'cờ-lin', 'core': 'co', 'crusher': 'cờ-rớt-sơ', 'cuba': 'cu-ba',
+  'cuban': 'cu-bần', 'curtsey': 'cớt-xì', 'deadlift': 'đét-líp', 'dec': 'đếch',
+  'driven': 'đrai-vần', 'elliptical': 'e-líp-ti-cồ', 'ez': 'ê-dét', 'fingal': 'phin-gồ',
+  'form': 'phom', 'front': 'frơn', 'ghd': 'gê-hát-đê', 'goblet': 'gốp-lét',
+  'good': 'gút', 'hack': 'hắc', 'halo': 'hê-lô', 'hindu': 'hin-đu',
+  'hip': 'híp', 'jack': 'giắc', 'jerk': 'giơ-k', 'jumping': 'giăm-pinh',
+  'kayak': 'ka-dắc', 'landmine': 'len-mai', 'larsen': 'la-sen', 'lever': 'lê-vơ',
+  'maltese': 'môn-tít', 'massage': 'mát-xa', 'morning': 'mo-ning', 'nordic': 'no-đíc',
+  'olympic': 'ô-lim-pích', 'pallof': 'pa-lốp', 'patin': 'pa-tanh', 'pec': 'pếch',
+  'pendlay': 'pen-đây', 'pike': 'pai', 'pilates': 'pi-la-tét', 'pistol': 'pis-tôn',
+  'planche': 'plăng', 'plank': 'plăng', 'plyometric': 'plai-ô-mê-tric', 'preacher': 'prít-chơ',
+  'pullover': 'pu-lô-vơ', 'pvc': 'pê-vê-xê', 'rack': 'rắc', 'reformer': 'rê-pho-mơ',
+  'renegade': 're-nê-gây', 'romania': 'rô-ma-ni-a', 'setup': 'sét-ấp', 'sissy': 'si-si',
+  'skull': 's-cồ', 'skullcrusher': 's-cồ cờ-rớt-sơ', 'smith': 'sờ-mít', 'snatch': 'sờ-nách',
+  'squat': 'sờ-quát', 'strongman': 's-trong-men', 'sumo': 'su-mô', 'sz': 'ét-dét',
+  't-bar': 'ti-ba', 'tail': 'têu', 'tank': 'tăng', 'tennis': 'ten-nít',
+  'thomas': 'thô-mát', 'thrust': 'th-rớt', 'thruster': 'th-rớt-tơ', 'tiger': 'tai-gơ',
+  'torque': 'to-k', 'trap': 'tráp', 'v-up': 'vi-ấp', 'viking-press': 'vai-kinh prét',
+  'yoga': 'dô-ga', 'yoke': 'dôk', 'zercher': 'dơ-chơ', 'zigzag': 'dích-dắc',
+  'zottman': 'dót-men',
 }
 
 const TRANSLITERATION_PATTERN = new RegExp(
