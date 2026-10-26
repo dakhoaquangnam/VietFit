@@ -189,7 +189,7 @@ describe('English-name switches with every exercise-name pack', () => {
       const names = packFor(lang)
       const ex = EXDB.find(e => names[e.id] && names[e.id].toLocaleLowerCase(lang) !== e.n.toLocaleLowerCase('en'))
       expect(ex, lang).toBeTruthy()
-      _setLangState(lang, {}, null, names)
+      _setLangState(lang, {}, null, names, true)
       // German keeps its own casing; a lower-case pack is title-cased like English.
       const translatedClass = CASED_NAME_LANGS.includes(lang) ? '' : 'capitalize'
       expect(exerciseNameFor(ex)).toBe(`${names[ex.id]} (${ex.n})`)

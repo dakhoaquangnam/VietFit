@@ -66,7 +66,7 @@ let descs = null                // { exId: description } for the current languag
 let enDescs = null              // { exId: description } in English (exercise-desc/en.js)
 let detailsLoader = null        // registered by i18n.js; fetches the two English packs above
 let detailsAsked = false
-let enParens = true               // whether translated names show the English original in parentheses
+let enParens = false               // whether translated names show the English original in parentheses (off by default)
 let enOnly = false                // whether translated names are replaced entirely by the English original
 let version = 0                 // bumped on every setLang; drives the React subscription selector
 
@@ -247,7 +247,7 @@ export const exerciseNameSearchText = ex => {
 // Called by i18n.js's setLang once the locale pack has been loaded — kept here rather than
 // exported as setLang because loading packs requires import.meta.glob, which is Vite-only.
 // `dict`, `instr` and `exerciseNames` may be null to reset to their English fallbacks.
-export function _setLangState(newLang, newDict, newInstr, newExerciseNames, showEn = true, enOnlyFlag = false) {
+export function _setLangState(newLang, newDict, newInstr, newExerciseNames, showEn = false, enOnlyFlag = false) {
   const was = lang
   lang = LANGS[newLang] ? newLang : 'en'
   // The old language's descriptions are not this one's: English until its own have loaded.

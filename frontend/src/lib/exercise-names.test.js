@@ -238,7 +238,7 @@ for (const lang of EXERCISE_NAME_LANGS) {
       // One whose name differs from the English, or the loanword rule below takes over.
       const exercise = EXDB.find(e => pack[e.id] && pack[e.id].toLocaleLowerCase(lang) !== e.n.toLocaleLowerCase('en'))
       const name = pack[exercise.id]
-      _setLangState(lang, {}, null, pack)
+      _setLangState(lang, {}, null, pack, true)
       expect(exerciseNameFor(exercise)).toBe(`${name} (${exercise.n})`)
       expect(exerciseNameSearchText(exercise)).toContain(name)
       expect(exerciseNameSearchText(exercise)).toContain(exercise.n)

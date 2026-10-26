@@ -18,7 +18,7 @@ describe('exerciseNameText', () => {
   })
 
   it('title-cases a name from a lower-case pack, the English one in parentheses included', () => {
-    _setLangState('es', {}, null, es)
+    _setLangState('es', {}, null, es, true)
     expect(exerciseNameText(bench)).toBe('Press De Banca Con Barra (Barbell Bench Press)')
   })
 
