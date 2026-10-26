@@ -1393,6 +1393,8 @@ export default {
   'Download the APK from opengym.ch': 'APK’yı opengym.ch adresinden indir',
   'Releases are checked on GitHub. The download is verified against its checksum before the installer opens.': 'Sürümler GitHub üzerinde denetlenir. İndirme, yükleyici açılmadan önce sağlama toplamıyla doğrulanır.',
   'The web app updates together with your server. The Android app installs its own updates from here.': 'Web uygulaması sunucunla birlikte güncellenir. Android uygulaması güncellemelerini buradan kurar.',
+  'The web app updates together with your server.': 'The web app updates together with your server.',
+  'Move with control and stop if you feel sharp pain.': 'Move with control and stop if you feel sharp pain.',
   'Starting download…': 'İndirme başlatılıyor…',
   'Downloading update…': 'Güncelleme indiriliyor…',
   '{0} %': '%{0}',

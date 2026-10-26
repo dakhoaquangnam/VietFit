@@ -1401,6 +1401,8 @@ export default {
   'Download the APK from opengym.ch': 'ดาวน์โหลด APK จาก opengym.ch',
   'Releases are checked on GitHub. The download is verified against its checksum before the installer opens.': 'ตรวจสอบรุ่นจาก GitHub ไฟล์ที่ดาวน์โหลดจะถูกตรวจ checksum ก่อนเปิดตัวติดตั้ง',
   'The web app updates together with your server. The Android app installs its own updates from here.': 'เว็บแอปอัปเดตพร้อมกับเซิร์ฟเวอร์ของคุณ แอป Android ติดตั้งอัปเดตจากที่นี่',
+  'The web app updates together with your server.': 'The web app updates together with your server.',
+  'Move with control and stop if you feel sharp pain.': 'Move with control and stop if you feel sharp pain.',
   'Starting download…': 'กำลังเริ่มดาวน์โหลด…',
   'Downloading update…': 'กำลังดาวน์โหลดอัปเดต…',
   '{0} %': '{0}%',

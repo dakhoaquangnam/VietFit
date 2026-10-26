@@ -1238,6 +1238,8 @@ export default {
   "Download the APK from opengym.ch": "Завантаж APK з opengym.ch",
   "Releases are checked on GitHub. The download is verified against its checksum before the installer opens.": "Релізи перевіряються на GitHub. Перед відкриттям встановлювача завантаження звіряється з контрольною сумою.",
   "The web app updates together with your server. The Android app installs its own updates from here.": "Веб-застосунок оновлюється разом із сервером. Застосунок для Android встановлює свої оновлення звідси.",
+  "The web app updates together with your server.": "The web app updates together with your server.",
+  "Move with control and stop if you feel sharp pain.": "Move with control and stop if you feel sharp pain.",
   "Starting download…": "Починаю завантаження…",
   "Downloading update…": "Завантаження оновлення…",
   "{0} %": "{0} %",
