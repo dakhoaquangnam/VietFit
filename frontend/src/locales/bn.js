@@ -507,6 +507,7 @@ export default {
   'In Chrome: ⋮ menu → Add to Home screen': 'Chrome-এ: ⋮ মেনু → হোম স্ক্রিনে যোগ করুন',
   'In Safari: Share → Add to Home Screen': 'Safari-তে: শেয়ার → হোম স্ক্রিনে যোগ করুন',
   'to install openGym as a full-screen app.': 'openGym-কে ফুল-স্ক্রিন অ্যাপ হিসেবে ইনস্টল করতে।',
+  'to install VietFit as a full-screen app.': 'to install VietFit as a full-screen app.',
   'Your data syncs with your profile. Sign in anywhere and it’s there.': 'আপনার ডেটা আপনার প্রোফাইলের সাথে সিঙ্ক হয়। যেকোনো জায়গায় সাইন ইন করলেই তা পাবেন।',
   'Guest data stays on this device, so export a backup now and then!': 'গেস্ট ডেটা এই ডিভাইসেই থাকে, তাই মাঝে মাঝে একটি ব্যাকআপ এক্সপোর্ট করুন!',
   'free & open source (AGPL v3)': 'ফ্রি ও ওপেন সোর্স (AGPL v3)',

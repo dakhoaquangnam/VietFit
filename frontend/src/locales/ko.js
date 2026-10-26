@@ -481,6 +481,7 @@ export default {
   'In Chrome: ⋮ menu → Add to Home screen': 'Chrome에서: ⋮ 메뉴 → 홈 화면에 추가',
   'In Safari: Share → Add to Home Screen': 'Safari에서: 공유 → 홈 화면에 추가',
   'to install openGym as a full-screen app.': '하면 openGym을 전체 화면 앱으로 설치할 수 있어요.',
+  'to install VietFit as a full-screen app.': 'to install VietFit as a full-screen app.',
   'Your data syncs with your profile. Sign in anywhere and it’s there.': '데이터가 프로필과 동기화돼요. 어디서 로그인해도 그대로 있어요.',
   'Guest data stays on this device, so export a backup now and then!': '게스트 데이터는 이 기기에만 있으니 가끔 백업을 내보내세요!',
   'free & open source (AGPL v3)': '무료 오픈소스 (AGPL v3)',

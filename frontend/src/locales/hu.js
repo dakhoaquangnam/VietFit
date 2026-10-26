@@ -478,6 +478,7 @@ export default {
   'In Chrome: ⋮ menu → Add to Home screen': 'Chrome-ban: ⋮ menü → Hozzáadás a kezdőképernyőhöz',
   'In Safari: Share → Add to Home Screen': 'Safariban: Megosztás → Hozzáadás a kezdőképernyőhöz',
   'to install openGym as a full-screen app.': 'hogy az openGym-et teljes képernyős appként telepítsd.',
+  'to install VietFit as a full-screen app.': 'to install VietFit as a full-screen app.',
   'Your data syncs with your profile. Sign in anywhere and it’s there.': 'Az adataid szinkronizálódnak a profiloddal. Jelentkezz be bárhol, és ott lesznek.',
   'Guest data stays on this device, so export a backup now and then!': 'A vendégadatok ezen az eszközön maradnak, úgyhogy néha exportálj egy biztonsági mentést!',
   'free & open source (AGPL v3)': 'ingyenes & nyílt forráskódú (AGPL v3)',
