@@ -419,9 +419,19 @@ h4.sec{
    the alpha doubled up and the icon read as a stack of loose layers. Carrying the
    fade on the <svg> instead of in the stroke colour flattens the icon first and
    fades it as one shape — and it does that for every icon, not just this one. */
-#tabbar button .icn{font-size:25px;--icon-stroke:1.65;color:var(--label)}
+#tabbar button .icn{font-size:25px;--icon-stroke:1.65;color:var(--label);transition:color var(--fast)}
 #tabbar button.on{color:var(--acc)}
 #tabbar button.on .icn{--icon-stroke:2;color:inherit;opacity:1}
+/* iOS-style tab switch: the newly selected tab's icon pops with a spring
+   overshoot instead of only changing colour. The animation runs when the
+   button gains .on, so re-renders (once a second during a rest) never
+   restart it; the global reduced-motion rule already disables it. */
+@keyframes tab-pop{
+  0%{transform:scale(.85)}
+  60%{transform:scale(1.18)}
+  100%{transform:scale(1)}
+}
+#tabbar button.on .tab-ic{animation:tab-pop .45s cubic-bezier(.34,1.56,.64,1)}
 /* A connection problem while the banner is switched off (Settings → Show connection status):
    a dot on the Home tab and on the Settings gear. */
 #tabbar .tab-ic{position:relative;display:inline-flex}
@@ -435,7 +445,8 @@ h4.sec{
   width:52px;height:52px;border-radius:50%;background:var(--acc);color:var(--on-acc);
   display:flex;align-items:center;justify-content:center;position:relative;
   box-shadow:0 6px 18px -4px color-mix(in srgb,var(--acc) 55%,transparent);
-  transition:transform var(--fast) var(--ease);
+  /* Spring overshoot on release, iOS-style, instead of a plain ease. */
+  transition:transform .38s cubic-bezier(.34,1.56,.64,1);
 }
 #tabbar button.start:active .cir{transform:scale(.93)}
 #tabbar button.start .cir .icn{font-size:26px;--icon-stroke:2;color:inherit;opacity:1}
