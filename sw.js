@@ -4,7 +4,7 @@
    itself lives in localStorage. `CACHE` carries the build hash (vite.config.js rewrites it), so
    every deploy is a new worker with its own cache and the previous build's files are dropped on
    activate; the media cache (`MEDIA`) is kept across builds. */
-const CACHE = 'opengym-rt-659b62f4e1'
+const CACHE = 'opengym-rt-4d3284d029'
 // Where the page leaves this browser's push device id (lib/push.js shareDeviceId) for the
 // pushsubscriptionchange handler below, which has no localStorage to read it from. Not a build
 // cache, so activate's sweep leaves it alone.
@@ -38,7 +38,7 @@ const isMediaPath = p => p.includes('/exercise-media/') || p.includes('/img/') |
 // The code the app loads only when it needs it (the photo and video ingest, the QR reader...),
 // listed by the build (vite.config.js, scripts/sw-stamp.mjs). Without it the first photo added
 // offline after an update had no ingest to run. Unstamped (a dev server, a test) it is empty.
-const LAZY = "[\"./assets/api-DYF324lR.js\",\"./assets/backup-media-CGbneZz7.js\",\"./assets/base-Dh-EGeYr.js\",\"./assets/body-paths-D_5SR19s.js\",\"./assets/capacitor-fetch-DG1tAAbz.js\",\"./assets/coach-demo-V08czkC7.js\",\"./assets/coach-device-DoLZoh8j.js\",\"./assets/coach-local-DTKxTyfK.js\",\"./assets/de-D2OSpcyH.js\",\"./assets/demoSeed-B-_P_rC3.js\",\"./assets/dist-DpEKHzv0.js\",\"./assets/en-BZEO-2l9.js\",\"./assets/en-B_U-spcQ.js\",\"./assets/esm-B0Ozpuhz.js\",\"./assets/esm-BP9s0463.js\",\"./assets/esm-BlbyJ-jj.js\",\"./assets/esm-C2_gtCqF.js\",\"./assets/esm-eKW0nFZW.js\",\"./assets/esm-htZWYkou.js\",\"./assets/exercises-W7vdH9D0.js\",\"./assets/health-sync-CpKS7zZz.js\",\"./assets/history-DVksuIq_.js\",\"./assets/index-BVd4GF5l.js\",\"./assets/index-BilEx8qY.css\",\"./assets/jsQR-dbrgLl2D.js\",\"./assets/lean-qr-BHx9WpGV.js\",\"./assets/media-ingest-fOymZD2I.js\",\"./assets/media-refs-_lrQC9h1.js\",\"./assets/media-store-LW7D0W6v.js\",\"./assets/media-store-fs-DzWGZbfX.js\",\"./assets/mobile-h8SN5Jo0.js\",\"./assets/native-DVvWA53e.js\",\"./assets/nudge-check-DzOfnCjF.js\",\"./assets/ort.wasm.min-CDlV4_hP.js\",\"./assets/piper-o91UDS6e-Wmm33IvQ.js\",\"./assets/piper-tts-web-CZ-uxVYx.js\",\"./assets/plan-share-WqnoeCYy.js\",\"./assets/preload-helper-HclGiUj8.js\",\"./assets/rolldown-runtime-QTnfLwEv.js\",\"./assets/units-BNpHmZux.js\",\"./assets/useStore-vajLVQ7e.js\",\"./assets/useUI-Bhlm78l5.js\",\"./assets/vi-BSG0KTpB.js\",\"./assets/voices_static-D_OtJDHM-B3vNA43t.js\",\"./assets/web-BL8yQl1t.js\",\"./assets/web-BW_DdHW_.js\",\"./assets/web-C48Foyti.js\",\"./assets/web-CLEYOX8K.js\",\"./assets/web-Cc0i0aFG.js\",\"./assets/web-SbAKams_.js\"]"
+const LAZY = "[\"./assets/Admin-H4WtYJDI.js\",\"./assets/CheckIn-B2JlilOs.js\",\"./assets/CoachChat-COSjGBna.js\",\"./assets/CoachConsentSheet-D_HHnxLs.js\",\"./assets/CoachIntake-CesMAuwk.js\",\"./assets/CoachSetup-C0bjz3VT.js\",\"./assets/DurationWheel-WSZuFuPI.js\",\"./assets/History-CXEmd1If.js\",\"./assets/Library-DZVkFdgA.js\",\"./assets/Measurements-C_r-3yOm.js\",\"./assets/Muscles-D0-KDAQO.js\",\"./assets/ProgressPhotos-DGkqAyTq.js\",\"./assets/ReportSheet-BmLeIvBN.js\",\"./assets/RoutineEdit-AM3tFSxv.js\",\"./assets/Settings-BVEaoTAR.js\",\"./assets/Stats-DbxWDden.js\",\"./assets/StructuralBalance-CrO2Orng.js\",\"./assets/api-CaQ6_CBv.js\",\"./assets/backfill-EA09BtZj.js\",\"./assets/backup-media-B0gzMIr7.js\",\"./assets/base-BLJaIpUi.js\",\"./assets/body-paths-D_5SR19s.js\",\"./assets/capacitor-fetch-BkSXRaR7.js\",\"./assets/categories-B2tdkgdE.js\",\"./assets/coach-api-BrLMcIxk.js\",\"./assets/coach-consent-CTwpAjD2.js\",\"./assets/coach-demo-CXol5bHH.js\",\"./assets/coach-device-pD9nQDsZ.js\",\"./assets/coach-local-IBl4Timc.js\",\"./assets/day-photos-D3kDdzww.js\",\"./assets/de-CUISC6gj.js\",\"./assets/demoSeed-CgJWeQGr.js\",\"./assets/en-BJ9FHc_q.js\",\"./assets/en-CNDRxJeJ.js\",\"./assets/equipment-CyAfrMsK.js\",\"./assets/esm-BULp83QW.js\",\"./assets/esm-DqRstBfu.js\",\"./assets/esm-Dz7gWavA.js\",\"./assets/esm-IhFQFjlz.js\",\"./assets/esm-ZLP4qwAm.js\",\"./assets/esm-nv_hQcmi.js\",\"./assets/exercises-DwPBICZ5.js\",\"./assets/halloween-C5NFpjT0.css\",\"./assets/halloween-DWChIfXt.js\",\"./assets/health-sync-C63pzELO.js\",\"./assets/history-R-DggrdY.js\",\"./assets/index-DfMv5K5T.js\",\"./assets/index-Scbnr2rR.css\",\"./assets/jsQR-DMfxOdIb.js\",\"./assets/jsx-runtime-LKYXHABd.js\",\"./assets/leaflet-D5ygxVXx.js\",\"./assets/leaflet-src-Dcu4YAMi.js\",\"./assets/leaflet-vh-t_kPv.css\",\"./assets/lean-qr-DWZdVoNy.js\",\"./assets/measurements-CgBX5wDh.js\",\"./assets/media-ingest-BbMDQ3x8.js\",\"./assets/media-limits-BV4RveHG.js\",\"./assets/media-prefetch-txuhryuP.js\",\"./assets/media-refs-PQYmCWv8.js\",\"./assets/media-store-BAegM_R5.js\",\"./assets/media-store-fs-Cf91pY37.js\",\"./assets/mobile-BZ4-Y0GV.js\",\"./assets/native-BGa5fXOM.js\",\"./assets/nudge-check-DOafP_wS.js\",\"./assets/onerm-C0eDHhhl.js\",\"./assets/ort.wasm.min-Dccv3RDF.js\",\"./assets/pending-CFwFNB9R.js\",\"./assets/piper-o91UDS6e-eCDym1zs.js\",\"./assets/piper-tts-web-DcVJzVBA.js\",\"./assets/plan-share-DjFx9KgB.js\",\"./assets/preload-helper-CRzLMJPS.js\",\"./assets/providers-DpGiKoK0.js\",\"./assets/rolldown-runtime-XKyaHtl9.js\",\"./assets/scan-web-CmoQTcYD.js\",\"./assets/seasonal-C0wR1kwc.js\",\"./assets/sheets-DMq-gaQN.js\",\"./assets/sync-merge-DdvwlPLW.js\",\"./assets/ui-DWWK470m.js\",\"./assets/use-coach-gate-CU6qx8Wf.js\",\"./assets/useStore-DEoxjSF1.js\",\"./assets/useUI-xTE4cXRr.js\",\"./assets/vi-BSG0KTpB.js\",\"./assets/voices_static-D_OtJDHM-B3vNA43t.js\",\"./assets/web-B1Qslnwh.js\",\"./assets/web-BwILLA5d.js\",\"./assets/web-BxYxIv5q.js\",\"./assets/web-CiIdDK4U.js\",\"./assets/web-DTZPDbr6.js\",\"./assets/web-UyeI6Zbn.js\",\"./assets/workout-media-CaaOARQW.js\"]"
 const lazyAssets = () => { try { const a = JSON.parse(LAZY); return Array.isArray(a) ? a : [] } catch { return [] } }
 
 // What the shell needs to boot without a network: index.html plus every script/style/icon it
@@ -252,6 +252,17 @@ const API = (() => { try { return new URL('api/', location.href).pathname } catc
 // How long a request for the app itself waits on the network before a cached copy answers it.
 const NET_WAIT_MS = 3000
 
+// The build's own chunks and stylesheets (assets/<name>-<hash>.js|css): the name changes whenever
+// the content does, so a copy in this build's cache is the file, and a start serves them from
+// here instead of asking the network about each of them again (40-odd round trips before Home).
+const isHashedAsset = p => /\/assets\/[^/]+-[A-Za-z0-9_-]{8}\.(?:js|css)$/.test(p)
+const cacheFirst = e => caches.match(e.request, { ignoreSearch: true }).then(hit => hit || fetch(e.request).then(res => {
+  // Only a real answer is kept: an auth proxy's login page would otherwise stand in for the chunk
+  // for the rest of this build.
+  if (res.ok && !res.redirected) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)).catch(() => {}) }
+  return res
+}))
+
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url)
   if (e.request.method !== 'GET' || url.origin !== location.origin) return
@@ -259,6 +270,10 @@ self.addEventListener('fetch', e => {
 
   if (isMediaPath(url.pathname)) {
     e.respondWith(media(e))
+    return
+  }
+  if (isHashedAsset(url.pathname)) {
+    e.respondWith(cacheFirst(e))
     return
   }
   // Network first; the copy for the cache is cloned before the response is handed to the page —
