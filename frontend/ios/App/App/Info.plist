@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>openGym</string>
+	<string>VietFit</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -73,20 +73,20 @@
 		<true/>
 	</dict>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>Used to reach your own openGym server or AI model on your home network, when you connect one.</string>
+	<string>Used to reach your own VietFit server or AI model on your home network, when you connect one.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to scan your gym membership QR code, and to take a photo or video of an exercise you add yourself.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Used to record the sound of a video you take of an exercise you add yourself.</string>
 	<key>BAAppGroupID</key>
-	<string>group.ch.opengym.app</string>
+	<string>group.com.dakhoaquangnam.vietfit</string>
 	<key>BAHasManagedAssetPacks</key>
 	<true/>
 	<key>BAUsesAppleHosting</key>
 	<true/>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>ch.opengym.app.nudge-check</string>
+		<string>com.dakhoaquangnam.vietfit.nudge-check</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

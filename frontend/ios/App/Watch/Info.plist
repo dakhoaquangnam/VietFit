@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>openGym</string>
+	<string>VietFit</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -21,9 +21,9 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>openGym shows your heart rate during a workout and next to each set.</string>
+	<string>VietFit shows your heart rate during a workout and next to each set.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>openGym saves your workouts to Apple Health when you switch it on.</string>
+	<string>VietFit saves your workouts to Apple Health when you switch it on.</string>
 	<key>WKBackgroundModes</key>
 	<array>
 		<string>workout-processing</string>
@@ -32,7 +32,7 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>ch.opengym.app.watchkitapp</string>
+			<string>com.dakhoaquangnam.vietfit.watchkitapp</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>opengym-watch</string>
@@ -42,7 +42,7 @@
 	<key>WKApplication</key>
 	<true/>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>ch.opengym.app</string>
+	<string>com.dakhoaquangnam.vietfit</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
 </dict>

@@ -1,8 +1,8 @@
 {
-  "appId": "ch.duartesantos.opengym",
-  "appName": "openGym",
+  "appId": "com.dakhoaquangnam.vietfit",
+  "appName": "VietFit",
   "webDir": "dist",
-  "backgroundColor": "#0c0e12",
+  "backgroundColor": "#ffffff",
   "android": {
     "allowMixedContent": true
   },

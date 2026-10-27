@@ -1,13 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    // NOTE: namespace stays with the original Java package (ch.duartesantos.opengym):
+    // it is invisible to users and the store, and renaming it would mean moving every
+    // plugin source plus its R imports. Only applicationId below is the store identity.
     namespace = "ch.duartesantos.opengym"
     compileSdk = rootProject.ext.compileSdkVersion
     buildFeatures {
         buildConfig = true
     }
     defaultConfig {
-        applicationId "ch.duartesantos.opengym"
+        applicationId "com.dakhoaquangnam.vietfit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 27
