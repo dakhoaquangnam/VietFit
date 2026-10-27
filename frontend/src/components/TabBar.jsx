@@ -42,8 +42,14 @@ export default function TabBar({ onStart }) {
     nav('/workout')
   }
 
+  // The sliding bubble behind the lit tab: regular tabs sit in columns 0, 1, 3, 4
+  // (the centre column is the Start button, which the bubble glides behind).
+  // On the workout screen no regular tab is lit, so the bubble hides.
+  const bubbleIdx = on('home') ? 0 : on('plan') ? 1 : on('stats') ? 3 : on('library') ? 4 : -1
+
   return (
     <nav id="tabbar">
+      <span aria-hidden="true" className={'tab-bubble' + (bubbleIdx < 0 ? ' off' : '')} style={bubbleIdx < 0 ? undefined : { transform: `translateX(${bubbleIdx * 100}%)` }} />
       <Tab active={on('home')} icon="house" label={t('Home')} dot={trouble} onClick={() => nav('/home')} />
       <Tab active={on('plan')} icon="calendar" label={t('Plan')} onClick={() => nav('/plan')} />
       {/* On the workout screen itself there is nothing to resume, so the button reads as the

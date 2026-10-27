@@ -400,27 +400,46 @@ h4.sec{
    letting text through. The blur is also down from 24px to 10px: this is a fixed element, so
    the WebView recomposites the blurred region on every scroll frame, and on Android that is
    the single most expensive thing on the screen. See @supports below for the no-blur case. */
+/* Floating pill bar, liquid-glass style: the bar floats above the bottom edge
+   and the lit tab sits inside a glossy capsule that glides between tabs. */
 #tabbar{
-  position:fixed;inset-inline-start:0;inset-inline-end:0;bottom:0;z-index:50;
+  position:fixed;inset-inline-start:12px;inset-inline-end:12px;bottom:calc(10px + var(--sab));z-index:50;
   display:flex;justify-content:space-around;align-items:flex-end;
-  padding:7px 6px calc(6px + var(--sab));
-  background:color-mix(in srgb,var(--bg-el) 94%,transparent);
-  -webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);
-  border-top:var(--hair) solid var(--sep-op);
+  padding:8px 6px 7px;
+  background:color-mix(in srgb,var(--bg-el) 92%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
+  border-radius:30px;
+  box-shadow:0 10px 32px -6px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.5);
 }
-:root[data-theme="light"] #tabbar{background:rgba(249,249,251,.94)}
+:root[data-theme="light"] #tabbar{background:rgba(255,255,255,.88)}
+:root[data-theme="dark"] #tabbar{box-shadow:0 10px 32px -6px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08)}
 #tabbar button{
-  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
-  color:var(--label-3);font-size:10px;font-weight:500;letter-spacing:.005em;padding-top:3px;
+  flex:1;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--label);font-size:11px;font-weight:500;letter-spacing:.005em;padding-top:3px;
   transition:color var(--fast);
 }
+/* The sliding capsule behind the lit tab. One column wide (five equal columns,
+   the centre one being Start), gliding with a spring curve; it passes behind
+   the raised Start circle. Hidden when no regular tab is lit. */
+#tabbar .tab-bubble{
+  position:absolute;z-index:0;top:7px;bottom:7px;left:6px;width:calc((100% - 12px) / 5);
+  border-radius:24px;
+  background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.55));
+  box-shadow:0 6px 18px -4px rgba(0,0,0,.18), inset 0 1px 1px rgba(255,255,255,.9), inset 0 -1px 1px rgba(0,0,0,.04);
+  transition:transform .45s cubic-bezier(.34,1.4,.64,1), opacity var(--fast);
+}
+:root[data-theme="dark"] #tabbar .tab-bubble{
+  background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.08));
+  box-shadow:0 6px 18px -4px rgba(0,0,0,.5), inset 0 1px 1px rgba(255,255,255,.18);
+}
+#tabbar .tab-bubble.off{opacity:0}
 /* The inactive tint is semi-transparent, so wherever two strokes cross inside an
    icon (the calendar's hangers over its frame, the divider's caps on its sides)
    the alpha doubled up and the icon read as a stack of loose layers. Carrying the
    fade on the <svg> instead of in the stroke colour flattens the icon first and
    fades it as one shape — and it does that for every icon, not just this one. */
 #tabbar button .icn{font-size:25px;--icon-stroke:1.65;color:var(--label);transition:color var(--fast)}
-#tabbar button.on{color:var(--acc)}
+#tabbar button.on{color:var(--acc);font-weight:600}
 #tabbar button.on .icn{--icon-stroke:2;color:inherit;opacity:1}
 /* iOS-style tab switch: the newly selected tab's icon pops with a spring
    overshoot instead of only changing colour. The animation runs when the
@@ -440,7 +459,7 @@ h4.sec{
   background:var(--orange);box-shadow:0 0 0 2px var(--bg-el);pointer-events:none;
 }
 .iconbtn .tab-dot{top:5px;right:5px;box-shadow:0 0 0 2px var(--bg)}
-#tabbar button.start{margin-top:-24px}
+#tabbar button.start{margin-top:-24px;z-index:2}
 #tabbar button.start .cir{
   width:52px;height:52px;border-radius:50%;background:var(--acc);color:var(--on-acc);
   display:flex;align-items:center;justify-content:center;position:relative;
