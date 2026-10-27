@@ -122,9 +122,9 @@ describe('demo seed — the training stream is a fixture', () => {
   let D = null
 
   beforeAll(() => {
-    // Local noon, not noon UTC: noon UTC is already evening east of UTC+6, and the
-    // seed leaves today's session to try out only before 18:00 local — so a UTC pin
-    // would grow an extra Push Day session onto the fixture there.
+    // Local noon, not noon UTC: the seed counts in local days and leaves today's session to
+    // try out only before 18:00 local, so a UTC pin would already be tomorrow east of UTC+12
+    // (evening east of UTC+6) and would grow an extra Push Day session onto the fixture there.
     vi.useFakeTimers({ now: new Date(TODAY + 'T12:00:00'), toFake: ['Date'] })
     D = buildDemoState()
   })
