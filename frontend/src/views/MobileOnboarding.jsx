@@ -118,8 +118,8 @@ export function ConnectSheet({ close, initialUrl = '', again = false }) {
     <h3>{again ? t('Pair again') : t('Connect to my server')}</h3>
     <div className="muted small" style={{ marginBottom: 14 }}>
       {again
-        ? t('Open Settings → Account → “Pair the mobile app” on your openGym site in a browser and enter the new code shown there. What this phone kept is merged into your account.')
-        : t('Open Settings → Account → “Pair the mobile app” on the openGym site you’re already signed into, then enter its address and the code shown there.')}
+        ? t('Open Settings → Account → “Pair the mobile app” on your VietFit site in a browser and enter the new code shown there. What this phone kept is merged into your account.')
+        : t('Open Settings → Account → “Pair the mobile app” on the VietFit site you’re already signed into, then enter its address and the code shown there.')}
     </div>
     <input ref={ref} className="input" placeholder={t('Server address (e.g. gym.example.com)')} value={url}
       onFocus={onFocus} onChange={e => setUrl(e.target.value)} autoCapitalize="none" autoCorrect="off" inputMode="url" />
@@ -148,12 +148,12 @@ export default function MobileOnboarding() {
   return (
     <div className="narrow" style={wrap}>
       {head}
-      <div className="muted" style={{ marginBottom: 34 }}>{t('How do you want to use openGym?')}</div>
+      <div className="muted" style={{ marginBottom: 34 }}>{t('How do you want to use VietFit?')}</div>
       <Button variant="primary" icon="lock" onClick={() => chooseLocalMode()}>{t('Use on this device')}</Button>
       <div style={{ height: 10 }} />
       <Button icon="cloud" onClick={() => useUI.getState().openSheet(close => <ConnectSheet close={close} />)}>{t('Connect to my server')}</Button>
       <div className="dim small" style={{ marginTop: 26, lineHeight: 1.5 }}>
-        {t('Local keeps everything on this phone. Connecting syncs to your own openGym server instead. You can switch later in Settings.')}
+        {t('Local keeps everything on this phone. Connecting syncs to your own VietFit server instead. You can switch later in Settings.')}
       </div>
       <div style={{ height: 18 }} />
       <Button icon="gear" onClick={() => openCfAccess()}>{t('Connection settings')}</Button>

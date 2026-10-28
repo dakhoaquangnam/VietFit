@@ -2967,7 +2967,7 @@ function ShareWorkoutImage({ w, nameOf, close }) {
   const name = 'opengym-workout-' + (workoutDay(w) || todayISO()) + '.png'
   const share = async () => {
     setBusy(true)
-    await shareImage(img.blob, name, w.name || 'openGym')
+    await shareImage(img.blob, name, w.name || 'VietFit')
     setBusy(false)
     close()
   }

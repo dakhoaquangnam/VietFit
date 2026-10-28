@@ -91,7 +91,7 @@ const mount = async () => {
   await act(async () => { root.render(<Settings page="about" />) })
   await act(async () => { for (let i = 0; i < 4; i++) await Promise.resolve() })
 }
-const updateRow = () => [...host.querySelectorAll('.lrow')].find(r => r.textContent.includes('Update to openGym v9.9.9'))
+const updateRow = () => [...host.querySelectorAll('.lrow')].find(r => r.textContent.includes('Update to VietFit v9.9.9'))
 const checkRow = () => [...host.querySelectorAll('.lrow')].find(r => r.textContent.includes('Check for updates'))
 describe('Settings — in-app update check', () => {
   it('web build: never asks for releases; the Updates section has no download row at all', async () => {
