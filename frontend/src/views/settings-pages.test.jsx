@@ -42,6 +42,19 @@ vi.mock('../sheets.jsx', () => ({
   equipmentProfileSheet: vi.fn(), plateInventorySheet: vi.fn(), menuSheet: vi.fn(),
 }))
 
+// The VieNeu voice key lives in secure storage; here it is a plain map.
+const secrets = vi.hoisted(() => ({ store: new Map() }))
+vi.mock('../lib/coach-secrets.js', () => ({
+  VIENEU_API_KEY: 'vieneu.apiKey',
+  secureGet: k => Promise.resolve(secrets.store.get(k) || null),
+  secureSet: async (k, v) => { secrets.store.set(k, v) },
+  secureRemove: async k => { secrets.store.delete(k) },
+  withTimeout: p => p,
+  getApiKey: () => Promise.resolve(secrets.store.get('coach.apiKey') || null),
+  setApiKey: async v => { secrets.store.set('coach.apiKey', v) },
+  clearApiKey: async () => { secrets.store.delete('coach.apiKey') },
+}))
+
 import Settings from './Settings.jsx'
 
 globalThis.__APP_VERSION__ ??= 'test'
@@ -62,6 +75,7 @@ beforeEach(() => {
   mocks.toast = vi.fn()
   mocks.sheets = []
   mocks.navs = []
+  secrets.store.clear()
   Object.defineProperty(navigator, 'vibrate', { value: () => true, configurable: true, writable: true })
   host = document.createElement('div')
   document.body.appendChild(host)
@@ -313,9 +327,9 @@ describe('the pages', () => {
 
   it('every old row has a home: the Workout page holds the rest, logging and the before/during rows', () => {
     mount('workout')
-    expect([...host.querySelectorAll('.sect-t')].map(e => e.textContent)).toEqual(['Rest', 'Logging', 'Before and during'])
+    expect([...host.querySelectorAll('.sect-t')].map(e => e.textContent)).toEqual(['Rest', 'Logging', 'Before and during', 'Read aloud'])
     expect(titles()).toEqual(['Rest timer', 'Rest between warm-ups', 'Rest-pause rest', 'Effort per set', 'Shown under each exercise', 'Layout',
-      'Collapse completed exercises', 'Skip completed exercises', 'Weigh in before workouts', 'Keep screen awake', 'Exercise animations', 'Fine-tuning'])
+      'Collapse completed exercises', 'Skip completed exercises', 'Weigh in before workouts', 'Keep screen awake', 'Exercise animations', 'VieNeu API key', 'Fine-tuning'])
     // QA 10-05: the "screen stays on" line is the awake row's own subtitle, not a section footer
     // that read as if it explained the animations above it.
     expect(rowTitled('Keep screen awake').querySelector('.lrow-s').textContent).toMatch(/^The screen stays on/)
@@ -366,6 +380,37 @@ describe('the pages', () => {
   it('a search hit flashes its row', () => {
     mount('alerts', 'Flash the screen')
     expect(rowTitled('Flash the screen').classList.contains('sp-flash')).toBe(true)
+  })
+})
+
+describe('the VieNeu voice key', () => {
+  const keyField = () => host.querySelector('input[type="password"]')
+  const type = value => {
+    const input = keyField()
+    const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set
+    act(() => { setter.call(input, value); input.dispatchEvent(new Event('input', { bubbles: true })) })
+  }
+
+  it('saves the key on blur and shows it as saved, never its value', async () => {
+    mount('workout')
+    await act(async () => {})
+    expect(rowTitled('VieNeu API key')).toBeTruthy()
+    expect(keyField().placeholder).toBe('…')
+    type('test-key-123')
+    act(() => { keyField().dispatchEvent(new FocusEvent('focusout', { bubbles: true })) })
+    await act(async () => {})
+    expect(secrets.store.get('vieneu.apiKey')).toBe('test-key-123')
+    expect(keyField().value).toBe('')
+    expect(keyField().placeholder).toContain('(saved)')
+    expect(mocks.toast).toHaveBeenCalledWith('Saved')
+  })
+
+  it('shows a stored key as saved without its value', async () => {
+    secrets.store.set('vieneu.apiKey', 'existing-key')
+    mount('workout')
+    await act(async () => {})
+    expect(keyField().value).toBe('')
+    expect(keyField().placeholder).toContain('(saved)')
   })
 })
 

@@ -1,5 +1,5 @@
-// tts-read: chunking for the read-aloud feature (the Piper engine itself
-// needs a browser + model, so it is verified live, not here).
+// tts-read: chunking for the read-aloud feature (the VieNeu engine itself
+// needs a key and a network, so it is verified live, not here).
 import { describe, expect, it } from 'vitest'
 import { splitText, readChunks, MAX_CHUNK_CHARS } from './tts-read.js'
 
@@ -46,6 +46,13 @@ describe('readChunks', () => {
   it('speaks numbers and units as Vietnamese words', () => {
     expect(readChunks('Nâng tạ 12kg.', ['Giữ 30 giây.']))
       .toEqual(['Nâng tạ mười hai ki-lô-gam.', 'Giữ ba mươi giây.'])
+  })
+
+  // VieNeu reads English in the original, so the reader skips the phonetic
+  // readings: "squat" stays "squat", not "sờ-quát".
+  it('leaves English gym terms untransliterated for VieNeu', () => {
+    expect(readChunks('Bài squat sumo.', ['Siết chặt cơ core.']))
+      .toEqual(['Bài squat sumo.', 'Siết chặt cơ core.'])
   })
 
   it('works with only steps, or with neither', () => {

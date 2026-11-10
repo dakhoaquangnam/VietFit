@@ -2638,4 +2638,6 @@ export default {
   'Downloading voice…': 'Downloading voice…',
   'Generating voice…': 'Generating voice…',
   'Reading with device voice': 'Reading with device voice',
+  'Read aloud': 'Read aloud',
+  'VieNeu API key': 'VieNeu API key',
 }

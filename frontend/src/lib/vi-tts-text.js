@@ -1,12 +1,15 @@
 // Vietnamese text normalisation for the read-aloud feature.
 //
 // Turns digits, dates, times and units into speakable Vietnamese words
-// BEFORE the text reaches the Piper voice, so "12kg" is read as
-// "mười hai ki-lô-gam" instead of however the phonemizer guesses digits.
+// BEFORE the text reaches the VieNeu voice, so "12kg" is read as
+// "mười hai ki-lô-gam" instead of however the voice guesses digits.
 // English gym terms left untranslated in the packs ("squat", "core",
-// "Smith", ...) are replaced with Vietnamese readings the same way.
-// The voice, the engine and the phonemizer are untouched: this output is
-// still plain Vietnamese text, which piper-tts-web phonemizes as usual.
+// "Smith", ...) are replaced with Vietnamese readings the same way —
+// unless the caller passes { skipTransliteration: true }, which the
+// VieNeu reader does: it reads English in the original, and the phonetic
+// readings would make it mispronounce them.
+// The voice and the engine are untouched: this output is still plain
+// Vietnamese text, which the voice reads as usual.
 //
 // Pure functions, no dependencies. Written from the standard rules for
 // reading Vietnamese numbers (mốt / tư / lăm, lẻ, không trăm, ...), kept
@@ -83,7 +86,7 @@ export function numberToWords(numStr) {
 }
 
 // English gym terms left untranslated in the exercise packs, read as
-// Vietnamese approximations so Piper does not guess their pronunciation.
+// Vietnamese approximations so a phoneme-based voice does not guess their pronunciation.
 // Whole words only: "bar" in "barbell" is left alone.
 const TRANSLITERATIONS = {
   'achilles': 'a-sin', 'arnold': 'a-nôn', 'bar': 'ba', 'bosu': 'bô-xu',
@@ -157,15 +160,18 @@ function convertUnits(text) {
  * Main entry: raw Vietnamese text -> speakable Vietnamese text.
  * Digits that reach the end are read as words by convertStandaloneNumbers,
  * so earlier steps may leave digits in place (dates, times, ranges).
+ * With opts.skipTransliteration the English gym terms stay in the original:
+ * VieNeu reads English as English, and the phonetic readings would make it
+ * mispronounce them. Numbers, dates, times and units are still converted.
  */
-export function processVietnameseText(text) {
+export function processVietnameseText(text, opts) {
   if (!text || typeof text !== 'string') return ''
   text = text.normalize('NFC').replace(/\s+/g, ' ').trim()
   if (!text) return ''
 
   // English gym terms first: their readings contain no digits or units,
-  // so later steps leave them alone.
-  text = transliterate(text)
+  // so later steps leave them alone. Skipped for VieNeu (see above).
+  if (!opts?.skipTransliteration) text = transliterate(text)
 
   // Thousand separators: "1.000" -> "1000" (dots, Vietnamese style).
   text = text.replace(/(\d{1,3}(?:\.\d{3})+)(?=\s|$|[^\d.,])/g, (_, num) => num.replace(/\./g, ''))

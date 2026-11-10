@@ -2322,6 +2322,8 @@ export default {
   "Downloading voice…": "Đang tải giọng đọc…",
   "Generating voice…": "Đang tạo giọng đọc…",
   "Reading with device voice": "Đang đọc bằng giọng của máy",
+  "Read aloud": "Đọc thành tiếng",
+  "VieNeu API key": "Khóa API VieNeu",
   "Count warm-ups in volume": "Tính khởi động vào khối lượng",
   "Handy when you compare with another app. Records ignore warm-ups either way.": "Tiện khi so sánh với app khác. Kỷ lục thì kiểu gì cũng bỏ qua khởi động.",
   "Lifted in total": "Tổng tạ đã nâng",

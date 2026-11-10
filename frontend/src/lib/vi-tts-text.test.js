@@ -1,6 +1,6 @@
 // vi-tts-text: Vietnamese number / unit / date reading for read-aloud.
-// Pure text transformation, so it is fully testable here (the Piper voice
-// itself still needs a browser + model and is verified live, not here).
+// Pure text transformation, so it is fully testable here (the VieNeu voice
+// itself still needs a key and a network and is verified live, not here).
 import { describe, expect, it } from 'vitest'
 import { numberToWords, processVietnameseText } from './vi-tts-text.js'
 
@@ -91,6 +91,20 @@ describe('transliteration', () => {
 
   it('does not replace inside longer words', () => {
     expect(processVietnameseText('Cầm thanh barbell.')).toBe('Cầm thanh barbell.')
+  })
+
+  // VieNeu reads English in the original: the phonetic readings above would
+  // make it mispronounce the terms, so the reader skips this step.
+  it('keeps English gym terms with skipTransliteration', () => {
+    expect(processVietnameseText('Giữ cơ core siết chặt, hạ xuống tư thế squat.', { skipTransliteration: true }))
+      .toBe('Giữ cơ core siết chặt, hạ xuống tư thế squat.')
+    expect(processVietnameseText('Bài squat sumo trên máy Smith.', { skipTransliteration: true }))
+      .toBe('Bài squat sumo trên máy Smith.')
+  })
+
+  it('still reads numbers and units with skipTransliteration', () => {
+    expect(processVietnameseText('Nâng tạ 12kg trong 30 giây.', { skipTransliteration: true }))
+      .toBe('Nâng tạ mười hai ki-lô-gam trong ba mươi giây.')
   })
 
   it('reads the second batch of terms found in the descriptions', () => {

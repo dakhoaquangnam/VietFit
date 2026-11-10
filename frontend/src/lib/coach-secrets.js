@@ -8,6 +8,9 @@
 // cases the fallback is a process-local map that forgets on reload, which is the honest
 // behaviour for a place that cannot keep a secret.
 const KEY = 'coach.apiKey'
+// The read-aloud voice (lib/tts-read.js) keeps its own key the same way:
+// VieNeu TTS Lite, the voice that reads exercise descriptions in Vietnamese.
+export const VIENEU_API_KEY = 'vieneu.apiKey'
 const memory = new Map()
 
 // The loaded plugin travels inside a plain object, never as a promise's own value (no `await`

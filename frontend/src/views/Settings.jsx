@@ -38,6 +38,7 @@ import { BUILTIN_PX } from '../lib/anim-quality.js'
 import { selfUpdates } from '../lib/channel.js'
 import { forgetCoach } from '../lib/coach-api.js'
 import { coachAvailable } from '../lib/coach.js'
+import { secureGet, secureSet, VIENEU_API_KEY } from '../lib/coach-secrets.js'
 import { REST_MAX, REST_PAUSE_MIN, REST_PAUSE_MAX, fmtRest, fmtDuration } from '../lib/duration.js'
 import { starterPlanSheet, confirmSheet, importFromApp, importFromHevy, equipmentProfileSheet, plateInventorySheet, dumbbellInventorySheet, barDefaultsSheet, menuSheet } from '../sheets.jsx'
 import Icon from '../components/Icon.jsx'
@@ -121,6 +122,19 @@ export default function Settings({ page = null, find = null, via = null, entryKe
   const credsChanged = () => { passkeys.load(); setCredsV(v => v + 1) }
   const { update, importConflict, importBackup, setUnit, resetEverything: resetAll, setUser, pullState, pushState, resetDemo } = useStore()
   const toast = useUI(s => s.toast)
+  // The VieNeu voice key for the read-aloud button (lib/tts-read.js): typed
+  // here, kept in secure storage, never shown back. The field is cleared on
+  // save, like the Coach key in views/CoachSetup.jsx.
+  const [vieneuKey, setVieneuKey] = useState('')
+  const [hasVieneuKey, setHasVieneuKey] = useState(false)
+  useEffect(() => { secureGet(VIENEU_API_KEY).then(k => setHasVieneuKey(!!k)) }, [])
+  const saveVieneuKey = async () => {
+    const v = vieneuKey.trim()
+    if (!v) return
+    await secureSet(VIENEU_API_KEY, v)
+    setHasVieneuKey(true); setVieneuKey('')
+    toast(t('Saved'))
+  }
   const fileRef = useRef(null)
   const importRef = useRef(null)
   const body = useRef(null)
@@ -581,6 +595,16 @@ export default function Settings({ page = null, find = null, via = null, entryKe
         {/* Store apps: how sharp the animations are, from packs this device downloads. Per device,
             never synced: the profile is not touched (components/Animations.jsx). */}
         <AnimationQualityRow />
+      </Section>
+      {/* The voice that reads exercise descriptions aloud (sheets.jsx shows the
+          Listen button in Vietnamese): its key, kept in secure storage like
+          the Coach key. No key, no reading — the button says so. */}
+      <Section title={t('Read aloud')} footer={MOBILE ? t('The key is stored in this phone’s secure storage and never leaves it except to call the provider.') : t('On the web the key lives in this browser’s storage, not the phone’s secure storage, and never leaves this browser except to call the provider.')}>
+        <Row icon="speaker" iconTint="var(--teal)" title={t('VieNeu API key')} />
+        <div style={{ padding: '8px 12px' }}>
+          <TextField value={vieneuKey} type="password" placeholder={hasVieneuKey ? '••••••••  ' + t('(saved)') : '…'} autoCapitalize="none" autoCorrect="off"
+            onChange={e => setVieneuKey(e.target.value)} onBlur={saveVieneuKey} />
+        </div>
       </Section>
       <Section>
         <Row icon="wrench" iconTint="var(--grey)" title={t('Fine-tuning')} subtitle={t('Buttons, timed sets')} accessory="chevron" onClick={() => open('advanced')} />

@@ -2363,6 +2363,8 @@ export default {
   'Downloading voice…': 'Downloading voice…',
   'Generating voice…': 'Generating voice…',
   'Reading with device voice': 'Reading with device voice',
+  'Read aloud': 'Read aloud',
+  'VieNeu API key': 'VieNeu API key',
   // --- PDF exports and the performance report ---
   'Page {0} of {1}': '第 {0} 页，共 {1} 页',
   'Training plan': '训练计划',
