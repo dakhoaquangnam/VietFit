@@ -653,12 +653,12 @@ h4.sec{
    is missing; a browser that has it keeps the bars see-through even with Reduce Transparency on.
    Same opaque fills, on every translucent surface. */
 @media (prefers-reduced-transparency: reduce){
-  #tabbar,#timer,#toast,.conn-bar,.whdr.stick{-webkit-backdrop-filter:none;backdrop-filter:none}
+  #tabbar,#timer,#toast,.conn-bar,.whdr.stick,.stats-index{-webkit-backdrop-filter:none;backdrop-filter:none}
   #tabbar{background:var(--bg-el)}
   :root[data-theme="light"] #tabbar{background:#f9f9fb}
   #timer{background:var(--surface-raised)}
   #toast{background:var(--surface-2)}
-  .conn-bar,.whdr.stick{background:var(--bg)}
+  .conn-bar,.whdr.stick,.stats-index{background:var(--bg)}
   /* The badges over an animation and the dim behind a sheet: no frost, and the badge gets a
      darker pill so its white text no longer depends on what the picture shows behind it. */
   .exmedia .gifhint,.exmedia .giftoggle,.mback{-webkit-backdrop-filter:none;backdrop-filter:none}
@@ -683,6 +683,162 @@ h4.sec{
 /* Home's week countdown under the strip (#753) */
 .wkleft{margin:6px 0 2px;text-align:center}
 .wkleft.done{color:var(--green-ink)}
+
+/* ------------------------------------------------------ stats redesign -- */
+/* The headline numbers as one divided card (app screens: KPIs are type, not tiles): three across,
+   the lifetime total under them at full width. */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:12px;background:var(--surface);border-radius:var(--r-card)}
+.kpis .tile{background:none;border-radius:0;padding:12px 14px;min-width:0;position:relative}
+.kpis .tile+.tile{border-inline-start:var(--hair) solid var(--sep)}
+.kpis .tile.wide{grid-column:1 / -1;border-inline-start:0;border-top:var(--hair) solid var(--sep)}
+.kpis .tile .l{font-size:var(--fs-footnote);line-height:var(--lh-small);color:var(--label-2);overflow-wrap:break-word}
+.kpis .tile .v{font-size:var(--fs-title2);margin-top:2px;overflow-wrap:anywhere}
+/* Exercise progress: what to chart as one inset group, the caption, a day a row. */
+.card .ex-pick{background:var(--surface-2);margin-bottom:10px}
+.ex-pick .lrow-stack-value .lrow-v{white-space:normal;overflow-wrap:break-word}
+.ex-cap{margin-top:8px;line-height:var(--lh-small)}
+.ex-cap b{font-weight:600}
+.ex-note{margin-top:4px;line-height:var(--lh-small)}
+.ex-legend{margin-top:6px}
+.ex-days{margin-top:10px}
+.ex-day{display:grid;grid-template-columns:auto minmax(0,1fr) 4.2em;align-items:center;gap:10px;min-height:44px;margin-inline:-6px;padding:4px 6px;border-radius:8px;cursor:pointer;transition:background-color var(--fast) var(--ease)}
+.ex-day+.ex-day{border-top:var(--hair) solid var(--sep)}
+.ex-day:active{background:var(--press-fill)}
+.ex-day-d{font-size:var(--fs-footnote);color:var(--label-2);white-space:nowrap}
+.ex-day-s{font-size:var(--fs-subhead);text-align:end;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.ex-day-e{text-align:end}
+/* effort on a day: a dot as full as the chart's (fuller = less left in the tank) and its number */
+.ex-eff{display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-caption);color:var(--label-2);white-space:nowrap}
+.ex-eff::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold-ink);opacity:calc(.3 + var(--m, 1) * .7)}
+/* Effort: the average leads, the share of hard sets is its sentence */
+.effort-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px}
+.effort-sub{margin-top:4px;line-height:var(--lh-small)}
+.effort-sub b{font-weight:600}
+.effort-off{margin-top:4px;color:var(--gold-ink)}
+.effort-foot{margin-top:12px;line-height:var(--lh-small)}
+.card h2 .dim{text-transform:none;letter-spacing:0}
+.stats-list-h{margin-bottom:10px}
+.stats-links{margin-bottom:12px}
+.effort-card h4.sec{margin:16px 0 6px;padding:0}
+/* A phone under 360px: three cells of about 90px; the figure a step smaller so "-1.6 kg" stays on
+   one line (it broke as "-1.6 / kg" at 320). */
+@media (max-width:360px){
+  .kpis .tile{padding:10px 11px}
+  .kpis .tile .v{font-size:var(--fs-title3)}
+}
+
+/* Weekly sets per muscle (components/WeeklySets.jsx): one line per muscle, the range as a band
+   on the bar and the week's sets as its fill. */
+/* Stats redesign: the one bar system (components/StatBars.jsx). Every list of amounts on Stats is a
+   .sbar-row: the name, a track with the fill, an optional target band and an optional plan tick,
+   and the value with tabular figures at the end. Fill colours by tone: grey for what supports the
+   screen and for room left under a range, the green ink in range, the orange ink past it (the
+   1.4.5 features pass's inks, 4.5:1 in both themes); never a colour without the figure beside it.
+   Rows divide with the list's hairline, between rows only. */
+.sbar-list{display:flex;flex-direction:column}
+.sbar-row{display:grid;grid-template-columns:minmax(0,1fr) 30% minmax(6.5em,max-content);align-items:center;column-gap:10px;min-height:36px;padding:5px 0}
+.sbar-row+.sbar-row{border-top:var(--hair) solid var(--sep)}
+.sbar-row.tap{min-height:44px;margin-inline:-6px;padding-inline:6px;border-radius:8px;cursor:pointer;transition:background-color var(--fast) var(--ease)}
+.sbar-row.tap:active{background:var(--press-fill)}
+.sbar-n{min-width:0;font-size:var(--fs-subhead);line-height:var(--lh-small);overflow-wrap:break-word}
+.sbar-row.on .sbar-n{font-weight:600}
+.sbar-t{position:relative;height:8px;border-radius:4px;background:var(--surface-2)}
+.sbar-f{position:absolute;inset-block:0;inset-inline-start:0;border-radius:4px;background:var(--label-2)}
+.sbar-band{position:absolute;inset-block:0;background:rgba(48,209,88,.22);background:color-mix(in srgb,var(--green-ink) 22%,transparent)}
+:root[data-theme="light"] .sbar-band{background:rgba(26,127,55,.18);background:color-mix(in srgb,var(--green-ink) 18%,transparent)}
+.sbar-row:has(.sbar-band) .sbar-f{inset-block:2px;border-radius:3px}
+.sbar-tick{position:absolute;inset-block:-3px;width:2px;border-radius:1px;background:var(--label)}
+.sbar-row.acc .sbar-f{background:var(--acc)}
+.sbar-row.in .sbar-f{background:var(--green-ink)}
+.sbar-row.above .sbar-f{background:var(--orange-ink)}
+.sbar-v{font-size:var(--fs-subhead);line-height:var(--lh-small);font-variant-numeric:tabular-nums;text-align:end;white-space:nowrap;color:var(--label)}
+.sbar-v b{font-weight:600}
+.sbar-of{color:var(--label-2)}
+/* a two-line row: the name with a small tag, then a footnote line (Strength's exercises) */
+.sbar-2l .sbar-n{display:flex;flex-direction:column;gap:1px}
+.sbar-l1{display:flex;align-items:baseline;gap:6px;min-width:0}
+.sbar-l1>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sbar-tag{flex:none;font-size:var(--fs-caption2);color:var(--label-dim)}
+.sbar-l2{display:block;font-size:var(--fs-footnote);line-height:var(--lh-small);color:var(--label-2);font-weight:400;white-space:normal}
+.sbar-find{display:flex;justify-content:flex-end;margin-top:6px}
+.sbar-list+.btn,.sbar-find+.btn,.slevel-row+.btn{margin-top:6px}
+/* A phone narrower than about 400px has no room for name, bar and figure on one line: the name and
+   the figure share the first line and the bar runs the full width under them, so no name is ever
+   broken inside a word ("Should / ers") and every bar still starts on the same edge. */
+@media (max-width:400px){
+  .sbar-row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n v" "t t";row-gap:5px;padding:7px 0}
+  .sbar-n{grid-area:n}
+  .sbar-v{grid-area:v}
+  .sbar-t{grid-area:t}
+}
+/* One legend style: the swatch is the mark it explains, scaled down. */
+.slegend{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;margin:8px 0 0;padding:0;list-style:none;font-size:var(--fs-footnote);line-height:var(--lh-small);color:var(--label-2)}
+.slegend li{display:inline-flex;align-items:center;gap:6px;min-width:0}
+.slegend li.muted{color:var(--label-dim)}
+.slegend-m{flex:none;width:10px;height:10px;border-radius:3px;background:var(--m,var(--label-2))}
+.slegend-m.band{width:14px;height:8px;border-radius:2px;background:rgba(48,209,88,.22);background:color-mix(in srgb,var(--green-ink) 22%,transparent)}
+:root[data-theme="light"] .slegend-m.band{background:rgba(26,127,55,.18);background:color-mix(in srgb,var(--green-ink) 18%,transparent)}
+.slegend-m.tick{width:2px;height:12px;border-radius:1px;background:var(--label)}
+.slegend-m.dot{width:8px;height:8px;border-radius:50%}
+.slegend-v{color:var(--label);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* a share of a whole: one bar, 2px seams, its legend as a two-column key with the figures */
+.sstack-bar{display:flex;gap:2px;height:14px;border-radius:4px;overflow:hidden;background:var(--surface-2)}
+.sstack-bar>span{min-width:2px}
+.sstack-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;margin-top:10px}
+.sstack-legend .slegend-v{margin-inline-start:auto}
+
+/* The Muscles card: one line of controls, the week or the period's note, the map, the bars, the key. */
+.mus-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+.mus-ctl>.seg{flex:1 1 150px;margin:0;min-width:0}
+.mus-ctl>.seg button span{white-space:nowrap}
+.mus-ctl>.menu-btn{flex:none;margin-inline-start:auto}
+.mus-week{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 4px}
+.mus-week .small{font-weight:600}
+.mus-cap{margin:2px 0 8px;min-height:28px}
+.mus-hard.on{color:var(--gold-ink)}
+.mus-key{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px 8px;margin-top:8px}
+.mus-key .slegend{margin:0}
+.mus-miss{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin-top:8px;padding:0;border:0;border-top:var(--hair) solid var(--sep);background:none;color:var(--label-2);font:inherit;font-size:var(--fs-footnote);text-align:start;cursor:pointer;transition:background-color var(--fast) var(--ease)}
+.mus-miss:active{background:var(--press-fill)}
+.mus-miss>span:first-child{flex:1;min-width:0}
+.mus-miss-n{color:var(--label);font-variant-numeric:tabular-nums}
+.mus-miss .chev{flex:none}
+.mus-miss+.mchips{margin:2px 0 4px}
+/* the map a size smaller here than on its own: the bars under it carry the figures */
+.muscles-card .bm-v{max-height:min(30vh,200px)}
+/* the Home line under the streak: a row in the card, 44px, filling on a press */
+.wsets-home{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin-top:8px;padding:6px 0;border:0;border-top:var(--hair) solid var(--sep);
+  background:none;color:var(--label-2);font:inherit;font-size:var(--fs-footnote);line-height:var(--lh-small);text-align:start;cursor:pointer;transition:background var(--fast)}
+.wsets-home:active{background:var(--press-fill)}
+.wsets-home .icn:first-child{color:var(--green-ink);flex:none}
+.wsets-home span{flex:1;min-width:0}
+/* the ranges sheet: the name, then low and high; the steppers go under the name when the two
+   do not fit beside it (a 320px phone, a long name, a large text size) */
+.wsets-edit{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;padding:8px 0}
+.wsets-edit+.wsets-edit{border-top:var(--hair) solid var(--sep)}
+.wsets-edit-n{flex:1 1 5.5em;min-width:0;font-weight:500;overflow-wrap:break-word}
+.wsets-edit-r{flex:none;display:flex;align-items:center;gap:6px;margin-inline-start:auto}
+.wsets-edit-r .stp{flex:none;width:108px}
+
+/* Strength level per lift (components/StrengthLevel.jsx): five steps, the reached ones filled. */
+.slevel-name{font-size:var(--fs-title3);font-weight:600;line-height:var(--lh-title);letter-spacing:var(--ls-title)}
+.slevel-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin:6px 0}
+.slevel-bar span{height:6px;border-radius:3px;background:var(--surface-2)}
+.slevel-bar span.on{background:var(--acc-ink)}
+/* the Stats card: one line a lift (stats redesign): the lift, then its level and ratio at the end
+   of the line; on a narrow phone or a long name the level wraps under it, never cut. */
+.slevel-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px;padding:9px 0}
+.slevel-row+.slevel-row{border-top:var(--hair) solid var(--sep)}
+.slevel-ex{flex:1 1 9em;font-size:var(--fs-subhead);font-weight:500;min-width:0;overflow-wrap:break-word}
+.slevel-meta{flex:none;margin-inline-start:auto;font-size:var(--fs-footnote);line-height:var(--lh-small);color:var(--label-2);font-variant-numeric:tabular-nums}
+.slevel-meta b{color:var(--label);font-weight:600}
+.slevel-src{margin-top:8px}
+.slevel-about{padding:0;border:0;background:none;color:var(--acc-ink);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+/* About you: a field's label over it, the "not set" hint on one line with its icon */
+.about-lbl{margin:0 0 6px;font-size:var(--fs-footnote);line-height:var(--lh-small);color:var(--label-2)}
+.about-hint{display:flex;align-items:center;gap:5px;margin-top:6px}
+.about-hint .icn{flex:none}
+.stp.unset .num{color:var(--label-3)}
 /* a day off with a note on it (#261, lib/day-notes.js): the same colour on every calendar */
 .wday .dot.noted{background:var(--indigo)}
 .wday:active{background:var(--press-fill)}
@@ -1081,6 +1237,19 @@ body.chips-dragging *{cursor:inherit}
    with the screen edge from the first pixel, and given the page's own ground plus a light blur so
    the rows scrolling underneath read as underneath. The connection indicator, when there is
    one, sits over its top (--conn) and its content starts below it. */
+/* Stats' sticky index (Stats.jsx StatsIndex, P5): the page ground with the bars' frost, edge to
+   edge, held under the status bar; each part keeps its heading clear of it when jumped to. */
+.stats-index{
+  position:sticky;top:calc(var(--sat) + var(--conn));z-index:20;
+  margin:-6px calc(-1 * var(--pad)) 10px;padding:6px var(--pad) 8px;
+  background:var(--bg);background:color-mix(in srgb,var(--bg) 94%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);
+}
+.stats-sect{scroll-margin-top:calc(var(--sat) + var(--conn) + 58px)}
+/* a control reached by Tab scrolls clear of the sticky index too, not under it */
+:root:has(.stats-index){scroll-padding-top:calc(var(--sat) + var(--conn) + 58px)}
+.stats-sect+.stats-sect{margin-top:26px}
+.stats-sect-h{font-size:var(--fs-title3);font-weight:700;letter-spacing:var(--ls-title);line-height:var(--lh-title);margin:0 2px 12px}
 .whdr.stick{
   position:sticky;top:0;z-index:20;
   margin:calc(-1 * (var(--sat) + var(--conn) + 8px)) calc(-1 * var(--pad)) 6px;
@@ -2028,7 +2197,9 @@ body.no-tabbar #timer.working{box-shadow:inset 0 var(--hair) 0 var(--acc),0 -10p
 .stat-v{font-size:26px;font-weight:600;letter-spacing:-.026em;line-height:1.1}
 .mchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .mchip{font-size:var(--fs-caption);padding:4px 9px;border-radius:99px;background:var(--surface-2);color:var(--label-2)}
-.mchip.miss{background:rgba(255,159,10,0.16);background:color-mix(in srgb,var(--orange) 16%,transparent);color:var(--orange)}
+/* Untrained muscles are an invitation, not an alarm (stats redesign): the chip in the quiet fill
+   with the full ink, as any other chip; the words say what it is. */
+.mchip.miss{background:var(--surface-2);color:var(--label)}
 button.mchip{border:none;font:inherit;font-size:var(--fs-caption);cursor:pointer}
 /* "Exercises ›" on an untrained muscle picked on the map (#553), at the end of its row. On a
    narrow phone the row has no room for it (the name shrank to nothing at 320 and 360px, and the

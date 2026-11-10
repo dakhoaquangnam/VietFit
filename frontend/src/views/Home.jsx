@@ -12,6 +12,7 @@ import QueueRow from '../components/QueueRow.jsx'
 import MiniBodyMap from '../components/MiniBodyMap.jsx'
 import { queueOf, queueView, weekTally, pinState } from '../lib/queue.js'
 import { workoutsLeft } from '../lib/week-left.js'
+import { WeeklySetsHomeLine } from '../components/WeeklySets.jsx'
 import { scheduleModeOf } from '../lib/rotation.js'
 import { useConnectionTrouble } from '../components/SyncBanner.jsx'
 import { Button } from '../components/ui.jsx'
@@ -237,5 +238,8 @@ export default function Home() {
         sub={<>{doneThisWeek}{plannedPerWeek ? ' / ' + plannedPerWeek : ''} {t('this week')} · {tn('{0} workout total', '{0} workouts total', S.workouts.length)}</>}
         action={<Icon name="calendar" className="chev" style={{ fontSize: 'var(--fs-title3)' }} />} />
     </div>
+    {/* Settings → Look & Home → Weekly sets on Home (lib/muscle-targets.js): the muscle with
+        the most room this week, one tap from the Stats card. */}
+    {S.homeMuscleSets === true && <WeeklySetsHomeLine S={S} onOpen={ev => { ev.stopPropagation(); nav('/stats') }} />}
   </div>
 }

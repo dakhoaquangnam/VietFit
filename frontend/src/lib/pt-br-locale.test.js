@@ -46,7 +46,7 @@ describe('Brazilian Portuguese locale', () => {
     // 'Read aloud' and 'VieNeu API key' (the read-aloud voice key).
     // 2026-11-10: one more, from the 1.4.5 redesign's GĐ1: 'Routine name' (the
     // routine-name input's label), English in pt-PT too, so inherited as-is.
-    expect(fingerprint, 'pt-PT inheritance changed; review the inherited pt-BR wording').toBe('d24d48ab7a471e42178ae42dc8d98f5e804e34ca42eb4a2960afe114dd7b46fd')
+    expect(fingerprint, 'pt-PT inheritance changed; review the inherited pt-BR wording').toBe('e3e1cb0c32aa7d8c4357f84dd7e7f29b0251bb75cef3f0288a7b5c9491f06274')
   })
 
   // pt-PT labelled Unpair 'Desfazer': Undo, in Portuguese (it is pt-BR's Undo), on the button that

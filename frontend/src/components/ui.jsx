@@ -118,10 +118,13 @@ export function Switch({ checked, onChange, disabled, ...accessibility }) {
 /* ============================ segmented ============================ */
 
 // options: [{ value, label, icon? }]  — the selected pill slides between cells.
-export function Segmented({ options, value, onChange, className = '' }) {
+// `ariaLabelledby` names the choice for a screen reader by its visible label (a group of
+// pressed buttons otherwise reads as three loose words).
+export function Segmented({ options, value, onChange, className = '', ariaLabelledby }) {
   const i = Math.max(0, options.findIndex(o => o.value === value))
   return (
-    <div className={'seg ' + className} style={{ '--n': options.length, '--i': i }}>
+    <div className={'seg ' + className} style={{ '--n': options.length, '--i': i }}
+      role={ariaLabelledby ? 'group' : undefined} aria-labelledby={ariaLabelledby}>
       <span className="seg-sel" aria-hidden="true" />
       {options.map(o => (
         <button
@@ -316,10 +319,10 @@ export function Section({ title, footer, children, className = '' }) {
   )
 }
 
-export function Row({ icon, iconTint, title, subtitle, value, accessory = 'none', onClick, danger, children, className = '' }) {
+export function Row({ icon, iconTint, title, subtitle, value, accessory = 'none', onClick, danger, children, className = '', tour }) {
   const Tag = onClick ? 'button' : 'div'
   return (
-    <Tag className={'lrow' + (onClick ? ' tap' : '') + (danger ? ' danger' : '') + ' ' + className} onClick={onClick}>
+    <Tag className={'lrow' + (onClick ? ' tap' : '') + (danger ? ' danger' : '') + ' ' + className} onClick={onClick} data-tour={tour}>
       {icon && <span className="lrow-i" style={iconTint ? { '--tint': iconTint } : null}><Icon name={icon} /></span>}
       <span className="lrow-m">
         <span className="lrow-t">{title}</span>
@@ -351,6 +354,24 @@ export function SelectRow({ icon, iconTint, title, value, options, onChange, she
     <Row icon={icon} iconTint={iconTint} title={title} value={cur ? cur.label : value} accessory="chevron" onClick={open}
       className={stackedValue ? 'lrow-stack-value' : ''} />
   )
+}
+
+/** The picker sheet of SelectRow on its own, for a control that is not a row (Stats' menu buttons). */
+export function openSelectSheet({ title, value, options, onChange, search }) {
+  const { openSheet } = require_ui()
+  return openSheet(close => <SelectSheet title={title} value={value} options={options} onChange={onChange} search={search} close={close} />)
+}
+
+/**
+ * A compact button that names the current choice and opens the picker sheet: for a choice that
+ * would overflow a segmented control (Stats: the chart of an exercise, the muscles' period).
+ * The accessible name says what is chosen for what ("Period: Week").
+ */
+export function MenuButton({ title, value, options, onChange, className = '' }) {
+  const cur = options.find(o => o.value === value) || options[0]
+  return <Button size="sm" trailingIcon="chevronDown" className={'menu-btn' + (className ? ' ' + className : '')}
+    aria-haspopup="dialog" aria-label={title + ': ' + (cur?.label ?? '')}
+    onClick={() => openSelectSheet({ title, value, options, onChange })}>{cur?.label}</Button>
 }
 
 function SelectSheet({ title, value, options, onChange, search, close }) {
