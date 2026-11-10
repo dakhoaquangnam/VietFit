@@ -70,6 +70,7 @@ export const SEARCH = [
   { page: 'workout', title: 'Rest between warm-ups', icon: 'timer', tint: 'var(--yellow)', kw: 'warm-up warmup ramp rest break timer shorter no rest' },
   { page: 'workout', title: 'Effort per set', icon: 'gauge', tint: 'var(--purple)', kw: 'rir rpe effort reps in reserve difficulty', opts: ['RIR', 'RPE'] },
   { page: 'workout', title: 'Shown under each exercise', icon: 'history', tint: 'var(--blue)', kw: 'last time best set reference previous', opts: ['Last time', 'Best set'] },
+  { page: 'workout', title: 'Compare sets with last time', icon: 'arrowUp', tint: 'var(--green)', kw: 'arrow trend last time previous better worse same set compare up down' },
   { page: 'workout', title: 'Layout', icon: 'layout', tint: 'var(--blue)', kw: 'workout view cards list compact', opts: ['Cards', 'List', 'Compact'] },
   { page: 'workout', title: 'Collapse completed exercises', icon: 'minimize', tint: 'var(--teal)', kw: 'collapse fold minimize hide done finished completed exercises list compact remaining left to do' },
   { page: 'workout', title: 'Skip completed exercises', icon: 'skipForward', tint: 'var(--teal)', kw: 'skip jump done finished completed exercises cards focus next previous' },
@@ -135,6 +136,7 @@ export const SEARCH = [
   { page: 'look', title: 'Exercise drawings', icon: 'figureStrength', tint: 'var(--teal)', kw: 'figure male female woman man picture', opts: ['Male', 'Female'] },
   { page: 'look', title: 'Gym check-in', icon: 'qr', tint: 'var(--blue)', kw: 'qr code membership card check in barcode' },
   { page: 'look', title: 'Body weight', icon: 'scale', tint: 'var(--green)', kw: 'weight card home' },
+  { page: 'look', title: 'Week and month recap', icon: 'figureStrength', tint: 'var(--teal)', kw: 'recap week month summary card home new' },
   { page: 'look', title: 'Weekly sets on Home', icon: 'figureStrength', tint: 'var(--teal)', kw: 'weekly sets muscle volume range home card line' },
   { page: 'look', title: 'Seasonal themes', icon: 'pumpkin', tint: 'var(--orange)', kw: 'seasonal season holiday halloween theme decoration' },
   // Seasonal themes

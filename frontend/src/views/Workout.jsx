@@ -9,6 +9,9 @@ import { EXIDX, exOr, betterWeight } from '../lib/exercises.js'
 import { usesBar } from '../lib/bar.js'
 import { loadKindFor, baseWeightFor, inventoryFor, rowLoad, sameLoad, plateDelta, dropGrid } from '../lib/plates.js'
 import { effectiveRoutines, effectiveRoutineIds, lastEntryFor, bestWeightFor, bestWeightForEntry, freestyleConfig, pickedExerciseConfig, setsDoneActive, setUnitsTotal, supersetUnits, unitOf, setLabel, modeOf, isBw, isPerSide, repStep, EFFORT, effortOf, stepEffort, capEffort, cascadeWeight, insertWarmupRow, barFloor, makeWarmupAt, canBeWarmup, makeWorkAt, removeRowAt, removeLastSet, setSpanAt, copyRowAt, copySpanAt, insertRowAt, pairAdjacent, unpairSuperset, cleanupSg, applyIntensifierPlan, pinnedNoteFor, exNoteFor, setsRepsOf, sessionVolume } from '../lib/history.js'
+import { setTrendOn, setTrendsFor, trendGlyph, trendLabel } from '../lib/set-trend.js'
+import { formulaOf } from '../lib/onerm.js'
+import { setNoteOf } from '../lib/set-notes.js'
 import { cleanNum, fmtNum, fmtPlate, fmtVol, exerciseNameText, fmtDate, fmtDaysAgo, todayISO, exCount, DAYN } from '../lib/format.js'
 import { speedUnitOf, toSpeed, fromSpeed } from '../lib/speed.js'
 import { clampIncline, hasIncline, inclineFits, inclineFrom, INCLINE_STEP } from '../lib/incline.js'
@@ -27,7 +30,7 @@ import { workoutSettingsSheet } from '../components/WorkoutSettingsSheet.jsx'
 import { SessionMapButton } from '../components/SessionMuscles.jsx'
 import { durationSheet } from '../components/DurationWheel.jsx'
 import { REST_MAX, fmtRest, restWheelValue } from '../lib/duration.js'
-import { startFlow, exercisePicker, exConfigSheet, exerciseDetailSheet, finishWorkout, exitWorkoutEdit, workoutCompleteSheet, confirmSheet, exerciseNoteSheet, sessionNoteSheet, renameWorkoutSheet, swapActiveWorkoutExercise, barWeightSheet, menuSheet, effortPickerSheet, exerciseHistorySheet, addRoutineToSessionSheet, finishWorkoutSheet, finishWorkoutNow, swapActiveWorkoutToBackup } from '../sheets.jsx'
+import { startFlow, exercisePicker, exConfigSheet, exerciseDetailSheet, finishWorkout, exitWorkoutEdit, workoutCompleteSheet, confirmSheet, exerciseNoteSheet, sessionNoteSheet, renameWorkoutSheet, swapActiveWorkoutExercise, barWeightSheet, menuSheet, effortPickerSheet, exerciseHistorySheet, addRoutineToSessionSheet, finishWorkoutSheet, finishWorkoutNow, swapActiveWorkoutToBackup, setNoteSheet } from '../sheets.jsx'
 import { afterScrollRestore, scrollRestorePending } from '../components/Modals.jsx'
 import { effortColor } from '../lib/effort.js'
 import Elapsed from '../components/Elapsed.jsx'
@@ -209,6 +212,14 @@ function ExerciseBlock({ entryIdx, compact, dense, editing, onToggle, onToggleSi
   // The routine's own last session of this exercise (or any, for a routine that has none), the
   // same one the rows and the progression line were built from (#216).
   const last = lastEntryFor(H, entry.id, entry.rid)
+  // Each finished set against the same set last time (#907, lib/set-trend.js): a small arrow on
+  // the set's number, said in words to a screen reader. Settings → Workout can switch it off.
+  const trends = setTrendOn(S) ? setTrendsFor(entry, last, { formula: formulaOf(S) }) : null
+  const trendMark = i => {
+    const tr = trends?.[i]
+    return tr ? <span className={'settrend ' + (tr.dir > 0 ? 'up' : tr.dir < 0 ? 'down' : 'same')} aria-hidden="true">{trendGlyph(tr)}</span> : null
+  }
+  const trendSay = (i, label) => (trends?.[i] ? label + ', ' + trendLabel(trends[i], S.unit) : label)
   const standingNote = exNoteFor(S, entry.id)
   // Only worth surfacing while there is still work left: once the exercise is finished, a note
   // telling you what to do in it is behind you, and the block is already long.
@@ -484,6 +495,8 @@ function ExerciseBlock({ entryIdx, compact, dense, editing, onToggle, onToggleSi
     const warm = isWarmupRow(s)
     const sideTag = sideTagOf(s)
     const ownRestHere = ownSetRest(entry.sets[setSpanAt(entry.sets, i)[0]])
+    const spanStart = setSpanAt(entry.sets, i)[0]
+    const noteHere = setNoteOf(entry.sets[spanStart])
     menuSheet({
       title: warm ? t('Warm-up') : sideTag ? t('Set {0} ({1})', setNumOf(s, i), sideTag) : t('Set {0}', setNumOf(s, i)),
       subtitle: setLabel(entry.id, s, entry.target, speedUnit),
@@ -504,6 +517,8 @@ function ExerciseBlock({ entryIdx, compact, dense, editing, onToggle, onToggleSi
           !warm && cardio && { icon: 'gauge', label: t('How hard it felt'), sub: s.rpe != null ? t(EFFORT.rpe.hd) + ' ' + fmtNum(s.rpe) : t('Not rated yet'), onClick: () => effortPickerSheet('rpe', s.rpe ?? null, nv => onField(i, 'rpe', nv), { cardio: true }) },
           // Just this set's rest, this session (#609): a long one before the top set, none after a light one.
           !editing && { icon: 'timer', label: t('Rest after this set'), sub: ownRestHere == null ? t('Default ({0})', fmtRest(setRestDefault(i))) : ownRestHere === 0 ? t('No timer') : fmtRest(ownRestHere), onClick: () => openSetRest(i) },
+          // A word about this one set (lib/set-notes.js), kept with the workout.
+          { icon: 'note', label: noteHere ? t('Edit note') : t('Note'), sub: noteHere || t('A word about this set'), onClick: () => setNoteSheet(entryIdx, spanStart, warm ? t('Warm-up') : t('Set {0}', setNumOf(s, i))) },
         ] },
         { title: t('Add to this set'), items: [
           !warm && mode === 'reps' && !isRestPauseSet(s) && { icon: 'arrowDown', label: t('Drop set'), sub: t('+ Drop'), onClick: () => addDropRow(i) },
@@ -644,7 +659,7 @@ function ExerciseBlock({ entryIdx, compact, dense, editing, onToggle, onToggleSi
   const failSay = (s, label) => isFailureSet(s) ? label + ', ' + t('Taken to failure') : label
   const plainRow = (s, i) => (
     <div ref={el => onSetRowRef?.(i, el)} className={'setrow' + (s.done ? ' done' : '') + (col3 ? ' eff3' : '') + (timed ? ' timed' : '')}>
-      <button type="button" className="n" aria-label={failSay(s, sideTagOf(s) ? t('Set {0} ({1})', setNumOf(s, i), sideTagOf(s)) : t('Set {0}', setNumOf(s, i)))} aria-describedby={optsId} title={t('More')} onClick={() => openSetMenu(s, i)}>{setNumOf(s, i)}{failMark(s)}</button>
+      <button type="button" className="n" aria-label={trendSay(i, failSay(s, sideTagOf(s) ? t('Set {0} ({1})', setNumOf(s, i), sideTagOf(s)) : t('Set {0}', setNumOf(s, i))))} aria-describedby={optsId} title={t('More')} onClick={() => openSetMenu(s, i)}>{setNumOf(s, i)}{failMark(s)}{trendMark(i)}</button>
       {/* Both words sit in the pill's one grid cell (::before/::after, hidden), so Left and
           Right are as wide as the longer of the two in every language and the inputs
           after them line up (#322). */}
@@ -771,7 +786,7 @@ function ExerciseBlock({ entryIdx, compact, dense, editing, onToggle, onToggleSi
             // ticked on its own (issue #60). Warm-ups split the same way as the work sets they
             // ramp toward, so a warm-up side set shows L/R too (#388).
             <div ref={el => onSetRowRef?.(i, el)} className={'setrow-side' + (s.done ? ' done' : '')}>
-              <button type="button" className="n" aria-label={failSay(s, t('Set {0}', phaseNum))} aria-describedby={optsId} title={t('More')} onClick={() => openSetMenu(s, i)}>{phaseNum}{failMark(s)}</button>
+              <button type="button" className="n" aria-label={trendSay(i, failSay(s, t('Set {0}', phaseNum)))} aria-describedby={optsId} title={t('More')} onClick={() => openSetMenu(s, i)}>{phaseNum}{failMark(s)}{trendMark(i)}</button>
               <div className="side-rows">
                 {sideRow(s, i, 'L', col1, col2, col3)}
                 {sideExtras(s, i, 'L')}
@@ -786,6 +801,11 @@ function ExerciseBlock({ entryIdx, compact, dense, editing, onToggle, onToggleSi
             </button>
           </div>}
           {loadLine(String(i))}
+          {/* The set's own note (lib/set-notes.js): a quiet line under the row, a tap edits it. */}
+          {!pairTail && setNoteOf(s) && <button type="button" className="setnote-line" aria-label={t('Edit note') + ': ' + setNoteOf(s)}
+            onClick={() => setNoteSheet(entryIdx, i, isWarmupRow(s) ? t('Warm-up') : t('Set {0}', setNumOf(s, i)))}>
+            <Icon name="note" /><span>{setNoteOf(s)}</span>
+          </button>}
           {/* Drop-sets and rest-pause bursts extend this same row — no long rest, no new set.
               A planned exercise arrives with these already filled in (applyIntensifierPlan);
               every value here is just as editable as the main row's own weight/reps. */}
@@ -2299,7 +2319,24 @@ function ActiveWorkout() {
     </div>}
     {!listMode && <div style={{ height: 10 }} />}
     {wc.exerciseButtons && listMode && A.entries.length > 0 && <div className="muted small" style={{ marginBottom: 6 }}>{t('Move, swap and remove below act on the exercise marked {0}.', t('Current'))}</div>}
-    <Button onClick={addExercise} icon="plus">{t('Add exercise')}</Button>
+    {/* The end of the workout (redesign 1.4.5, P3): adding an exercise and the session's note are
+        one inset list of two rows, not two centred text buttons 40px apart, so the finish button
+        under them is the one thing that stands out. Wrapping up is when you know how the session
+        went, so the note sits here with the finish rather than in the header. */}
+    <div className="sect-b wk-end">
+      <button type="button" className="lrow tap wk-end-row acc" onClick={addExercise}>
+        <Icon name="plusCircle" className="wk-end-i" />
+        <span className="lrow-m"><span className="lrow-t">{t('Add exercise')}</span></span>
+      </button>
+      <button type="button" className={'lrow tap wk-end-row' + (A.note ? ' has-note' : '')} onClick={sessionNoteSheet}>
+        <Icon name="note" className="wk-end-i" />
+        <span className="lrow-m">
+          <span className="lrow-t">{A.note ? t('Edit session note') : t('Add session note')}</span>
+          {A.note && <span className="lrow-s wk-end-note">{A.note}</span>}
+        </span>
+        <Icon name="chevronRight" className="lrow-c" />
+      </button>
+    </div>
     {wc.exerciseButtons && A.entries.length > 0 && <>
       <div style={{ height: 6 }} />
       <div className="row">
@@ -2318,14 +2355,9 @@ function ActiveWorkout() {
         <Button size="sm" icon="minus" style={{ color: 'var(--red)' }} disabled={working} onClick={removeExerciseSheet}>{t('Remove exercise')}</Button>
       </div>
     </>}
-    <div style={{ height: 10 }} />
-    {/* Wrapping up is when you know how the session went, so the note sits with the finish
-        button rather than somewhere in the header. */}
-    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
-      <Button size="sm" icon="note" variant={A.note ? 'tinted' : undefined} onClick={sessionNoteSheet}>
-        {A.note ? t('Edit session note') : t('Add session note')}
-      </Button>
-    </div>
+    <div style={{ height: 16 }} />
+    {/* Finish is a full-width primary button once every set is done; before that it is the quiet
+        "Finish workout early" line, since the header's Finish already covers the early way out. */}
     {(() => {
       const exDone = A.entries.filter(e => e.sets.length && e.sets.every(s => s.done)).length
       const allDone = A.entries.length > 0 && exDone === A.entries.length

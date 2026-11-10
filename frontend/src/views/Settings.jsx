@@ -549,6 +549,12 @@ export default function Settings({ page = null, find = null, via = null, entryKe
             { value: 'last', label: t('Last time'), subtitle: t('What you did the last time, in that routine.') },
             { value: 'best', label: t('Best set'), subtitle: t('Your heaviest set of the exercise, from any workout.') },
           ]} />
+        {/* Each finished set against the same set last time (#907, lib/set-trend.js), in the
+            workout and in History. On unless switched off. */}
+        <Row icon="arrowUp" iconTint="var(--green)" title={t('Compare sets with last time')}
+          subtitle={t('A small ↑, = or ↓ on each set you finish, in the workout and in History.')}>
+          <Switch aria-label={t('Compare sets with last time')} checked={S.setTrend !== false} onChange={v => update(s => { s.setTrend = v })} />
+        </Row>
         {/* One exercise at a time (cards with Prev/Next), the whole session stacked as a
             scrollable list, or that list stripped to just names and set rows (compact). Legacy or
             unknown values read as cards. The workout's ⋯ menu can override it for one session. */}
@@ -905,6 +911,11 @@ export default function Settings({ page = null, find = null, via = null, entryKe
         <Row icon="scale" iconTint="var(--green)" title={t('Body weight')}
           subtitle={t('Show the body weight card on Home.')}>
           <Switch checked={S.showWeightCard !== false} onChange={v => update(s => { s.showWeightCard = v })} />
+        </Row>
+        {/* A card on Home when a new week or month starts (components/Recap.jsx): what the last one added up to. */}
+        <Row icon="figureStrength" iconTint="var(--teal)" title={t('Week and month recap')}
+          subtitle={t('A small card when a new week or month starts: what the last one added up to.')}>
+          <Switch checked={S.recap !== false} onChange={v => update(s => { s.recap = v })} />
         </Row>
         {/* This week's sets for the muscle with the most room, under the streak (components/WeeklySets.jsx). */}
         <Row icon="figureStrength" iconTint="var(--teal)" title={t('Weekly sets on Home')}
