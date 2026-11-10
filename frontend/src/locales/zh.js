@@ -2594,4 +2594,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': '仅限这部手机。有些主屏幕要过一会儿才会跟上。',
   'The icon could not be changed.': '无法更换图标。',
   'Try the Halloween app icon': '试试万圣节应用图标',
+  "{0} of {1} left this week": "本周还剩 {0}/{1} 次",
+  "All done this week. Nice.": "本周全部完成，漂亮。",
+  "No weekly countdown on Home.": "首页不显示本周倒数。",
 }

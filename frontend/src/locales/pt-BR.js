@@ -1669,6 +1669,9 @@ export const PT_BR_OVERRIDES = {
   'App icon': 'Ícone do app',
   'Just for this phone. Some home screens take a moment to catch up.': 'Só para este celular. Algumas telas iniciais demoram um pouco para perceber.',
   'Try the Halloween app icon': 'Experimente o ícone de Halloween do app',
+  "{0} of {1} left this week": "Faltam {0} de {1} nesta semana",
+  "All done this week. Nice.": "Tudo feito nesta semana. Mandou bem.",
+  "No weekly countdown on Home.": "Sem contagem semanal no Início.",
 }
 
 export default { ...pt, ...PT_BR_OVERRIDES,

@@ -59,11 +59,13 @@ export default function Library() {
     : []
   const row = e => {
     const best = bestWeightFor(S, e.id)
-    return <div key={e.id} className="item" {...tappable(() => exerciseDetailSheet(e))}>
+    // The row is not a button: its name is, stretched over the row (.tap-main), with Plan
+    // a sibling above it (card dismiss pass), so neither tap can land on the other.
+    return <div key={e.id} className="item tap-host">
       <Thumb ex={e} />
-      <div className="grow"><div className={`tt ${exerciseNameClass(e)}`}>{isFav(S, e.id) && <Icon name="starFill" className="fav-star" />}{exerciseNameFor(e)}</div><div className="ss capitalize">{t(MUSCLE_NAME[e.tg] || e.tg || e.bp)} · {t(e.eq)}</div></div>
+      <button type="button" className="grow item-open tap-main" aria-haspopup="dialog" onClick={() => exerciseDetailSheet(e)}><span className={`tt ${exerciseNameClass(e)}`}>{isFav(S, e.id) && <Icon name="starFill" className="fav-star" />}{exerciseNameFor(e)}</span><span className="ss capitalize">{t(MUSCLE_NAME[e.tg] || e.tg || e.bp)} · {t(e.eq)}</span></button>
       {best > 0 && <span className="tag acc">{fmtNum(best)}</span>}
-      <Button size="sm" variant="tinted" icon="plus" onClick={ev => { ev.stopPropagation(); addToRoutineSheet(e) }}>{t('Plan')}</Button>
+      <Button size="sm" variant="tinted" icon="plus" onClick={() => addToRoutineSheet(e)}>{t('Plan')}</Button>
     </div>
   }
 

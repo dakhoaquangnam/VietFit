@@ -90,7 +90,8 @@
        highlight for a table cell;
      - controls (.btn, .chip, a segment, a stepper) scale to --press-scale, and the small round
        ones (.iconbtn, a set's tick, a swatch) to --press-scale-sm, which reads at 30 px;
-     - cards (.card.tappable) scale less, --press-scale-card, because they are larger.
+     - cards (.card.tappable, and a .card.tap-host when its primary is pressed) scale less,
+       --press-scale-card, because they are larger.
      All of them answer on pointer-down within --fast, on --ease (EMIL: 100-160 ms press feedback,
      scale .95-.98; APPLE §1: feedback on touch-down, never on release). */
   --press-scale:.97; --press-scale-sm:.92; --press-scale-card:.985;
@@ -396,6 +397,24 @@ h4.sec{
 /* The body-weight card header (Home and Stats): title on the left, Goal + Log on the right. In
    German the title and the two buttons ("Ziel", "+ Eintragen") outgrow a 320px card by about
    55px, so the button pair may drop to a second line — still flush right, hence the auto margin. */
+/* One card header for Home (components/CardHead.jsx, redesign 1.4.5 P2): icon, a small line, a
+   17/600 title, an optional subtitle, at most one trailing control. */
+.card-head{display:flex;align-items:center;gap:8px;min-width:0}
+.card-head-main{display:flex;align-items:center;gap:10px;flex:1;min-width:0;text-align:start;color:inherit}
+.card-head-toggle{padding:0;border:0;background:none;font:inherit;cursor:pointer}
+.card-head-t{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
+.card-head-title{font-size:var(--fs-body);font-weight:600;line-height:1.25;letter-spacing:var(--ls-body);overflow-wrap:break-word;text-wrap:balance}
+.card-head-sub{font-size:var(--fs-footnote);line-height:var(--lh-small);color:var(--label-2)}
+.card-head-g{flex:none;display:grid;place-items:center;width:29px;height:29px;font-size:var(--fs-title2)}
+.card-head>.iconbtn{flex:none;width:30px;height:30px;font-size:14px}
+/* the card × owns its corner (card dismiss pass): 54 x 50 px, from the 8px gap before it to the
+   card's padding edge, so a slightly-off tap still puts the card away (UUX touch-target-size) */
+.card-head>.iconbtn::before{inset-block:-10px;inset-inline:-8px -16px}
+.card-head>.chev{flex:none}
+.card-head+*{margin-top:10px}
+.card-head-indent{padding-inline-start:39px}
+.card-head+.streak-meta-line{margin-top:2px}
+.card-head+.ch-mini,.card-head+.streak-party{margin-top:8px}
 .bw-head{flex-wrap:wrap;row-gap:8px}
 .bw-head>.row{margin-inline-start:auto}
 .bw-rate{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;width:100%;margin-top:6px;padding:6px 2px;background:none;border:0;color:var(--label-2);font:inherit;font-size:var(--fs-subhead);line-height:1.3;text-align:start;cursor:pointer}
@@ -416,6 +435,33 @@ h4.sec{
    press the way a button does. A scale, not a fill: the seasonal cards bring their own ground. */
 .card.tappable{transition:transform var(--fast) var(--ease)}
 .card.tappable:active{transform:scale(var(--press-scale-card))}
+
+/* Card dismiss pass (1.4.4): one pattern for a card or a row that opens something AND holds a
+   control of its own (the recap's ×, the streak's weekly-sets line, Add to my plan, the quick add,
+   Plan, a past workout's picture). The card is not a button. Its primary is a real <button>
+   (.tap-main: CardHead's text, or a row's name) whose ::after stretches over the whole card, and the
+   other controls are siblings layered above that cover. So:
+   - a tap on or near the × lands on the × and nothing else, with no stopPropagation anywhere;
+   - the card's press (the scale, or a row's fill) answers the primary only, never the ×;
+   - a screen reader meets two plain buttons, one name each, never a button inside a button.
+   (UUX touch-target-size / press-feedback / Semantic native controls; APPLE §10 hit padding;
+   EMIL press feedback; WIG no nested interactive elements.) */
+.tap-host{position:relative;isolation:isolate}
+.tap-main{padding:0;margin:0;text-align:start;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap-main::after{content:'';position:absolute;inset:0;z-index:1;border-radius:var(--r-card)}
+.tap-main:focus-visible{outline:none}
+.tap-main:focus-visible::after{outline:2.5px solid var(--acc-ink);outline-offset:2px}
+/* every other control in the card sits above the cover; position only where nothing set one */
+:where(.tap-host) :where(button, a[href], input, select, textarea, [role="button"]):not(.tap-main){z-index:2}
+:where(.tap-host button:not(.tap-main), .tap-host a[href], .tap-host [role="button"]){position:relative}
+/* the routine editor's grip picks the row up with a mouse, so it stays reachable above the cover */
+.tap-host [data-drag-handle]{position:relative;z-index:2}
+.card.tap-host{transition:transform var(--fast) var(--ease)}
+.card.tap-host:has(.tap-main:active){transform:scale(var(--press-scale-card))}
+.item.tap-host:has(.tap-main:active),.wd-ex.tap-host:has(.tap-main:active){background:var(--press-fill)}
+.wd-ex .tap-main::after{border-radius:10px}
+.wd-ex .item-open{display:flex;flex-direction:column}
+:where(.wd-ex .item-open)>span{display:block}
 
 /* ------------------------------------------------------ inset group list -- */
 .sect{margin-bottom:22px}
@@ -535,61 +581,28 @@ h4.sec{
    letting text through. The blur is also down from 24px to 10px: this is a fixed element, so
    the WebView recomposites the blurred region on every scroll frame, and on Android that is
    the single most expensive thing on the screen. See @supports below for the no-blur case. */
-/* Floating pill bar, liquid-glass style: the bar floats above the bottom edge
-   and the lit tab sits inside a glossy capsule that glides between tabs. */
 #tabbar{
-  position:fixed;inset-inline-start:12px;inset-inline-end:12px;bottom:calc(10px + var(--sab));z-index:50;
+  position:fixed;inset-inline-start:0;inset-inline-end:0;bottom:0;z-index:50;
   display:flex;justify-content:space-around;align-items:flex-end;
-  padding:8px 6px 12px;
-  background:var(--bg-el);background:color-mix(in srgb,var(--bg-el) 92%,transparent);
-  -webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);
-  border-radius:30px;
-  box-shadow:0 10px 32px -6px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.5);
+  padding:7px 6px calc(6px + var(--sab));
+  background:var(--bg-el);background:color-mix(in srgb,var(--bg-el) 94%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);
+  border-top:var(--hair) solid var(--sep-op);
 }
-:root[data-theme="light"] #tabbar{background:rgba(255,255,255,.88)}
-:root[data-theme="dark"] #tabbar{box-shadow:0 10px 32px -6px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08)}
+:root[data-theme="light"] #tabbar{background:rgba(249,249,251,.94)}
 #tabbar button{
-  flex:1;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
   color:var(--label-2);font-size:10px;font-weight:500;letter-spacing:.005em;padding-top:3px;
   transition:color var(--fast);
 }
-/* The sliding capsule behind the lit tab. One column wide (five equal columns,
-   the centre one being Start), gliding with a spring curve; it passes behind
-   the raised Start circle. Hidden when no regular tab is lit.
-   Vertical centring matters here: the buttons are bottom-anchored, so with
-   equal top/bottom insets the label used to sit flush on the capsule's bottom
-   edge. The insets below leave the same 6px between the icon and the capsule's
-   top as between the label and its bottom, whatever the font metrics. */
-#tabbar .tab-bubble{
-  position:absolute;z-index:0;top:5px;bottom:6px;left:6px;width:calc((100% - 12px) / 5);
-  border-radius:24px;
-  background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.55));
-  box-shadow:0 6px 18px -4px rgba(0,0,0,.18), inset 0 1px 1px rgba(255,255,255,.9), inset 0 -1px 1px rgba(0,0,0,.04);
-  transition:transform .45s cubic-bezier(.34,1.4,.64,1), opacity var(--fast);
-}
-:root[data-theme="dark"] #tabbar .tab-bubble{
-  background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.08));
-  box-shadow:0 6px 18px -4px rgba(0,0,0,.5), inset 0 1px 1px rgba(255,255,255,.18);
-}
-#tabbar .tab-bubble.off{opacity:0}
 /* The inactive tint is semi-transparent, so wherever two strokes cross inside an
    icon (the calendar's hangers over its frame, the divider's caps on its sides)
    the alpha doubled up and the icon read as a stack of loose layers. Carrying the
    fade on the <svg> instead of in the stroke colour flattens the icon first and
    fades it as one shape — and it does that for every icon, not just this one. */
-#tabbar button .icn{font-size:25px;--icon-stroke:1.65;color:var(--label);transition:color var(--fast)}
-#tabbar button.on{color:var(--acc-ink);font-weight:600}
+#tabbar button .icn{font-size:25px;--icon-stroke:1.65;color:var(--label)}
+#tabbar button.on{color:var(--acc-ink)}
 #tabbar button.on .icn{--icon-stroke:2;color:inherit;opacity:1}
-/* iOS-style tab switch: the newly selected tab's icon pops with a spring
-   overshoot instead of only changing colour. The animation runs when the
-   button gains .on, so re-renders (once a second during a rest) never
-   restart it; the global reduced-motion rule already disables it. */
-@keyframes tab-pop{
-  0%{transform:scale(.85)}
-  60%{transform:scale(1.18)}
-  100%{transform:scale(1)}
-}
-#tabbar button.on .tab-ic{animation:tab-pop .45s cubic-bezier(.34,1.56,.64,1)}
 /* A connection problem while the banner is switched off (Settings → Show connection status):
    a dot on the Home tab and on the Settings gear. */
 #tabbar .tab-ic{position:relative;display:inline-flex}
@@ -598,13 +611,12 @@ h4.sec{
   background:var(--orange);box-shadow:0 0 0 2px var(--bg-el);pointer-events:none;
 }
 .iconbtn .tab-dot{top:5px;right:5px;box-shadow:0 0 0 2px var(--bg)}
-#tabbar button.start{margin-top:-24px;z-index:2;gap:6px}
+#tabbar button.start{margin-top:-24px}
 #tabbar button.start .cir{
   width:52px;height:52px;border-radius:50%;background:var(--acc);color:var(--on-acc);
   display:flex;align-items:center;justify-content:center;position:relative;
   box-shadow:0 6px 18px -4px var(--acc);box-shadow:0 6px 18px -4px color-mix(in srgb,var(--acc) 55%,transparent);
-  /* Spring overshoot on release, iOS-style, instead of a plain ease. */
-  transition:transform .38s cubic-bezier(.34,1.56,.64,1);
+  transition:transform var(--fast) var(--ease);
 }
 #tabbar button.start:active .cir{transform:scale(.93)}
 #tabbar button.start .cir .icn{font-size:26px;--icon-stroke:2;color:inherit;opacity:1}
@@ -667,6 +679,10 @@ h4.sec{
 .wday .dot.plan{background:var(--label-3)}
 .wday .dot.ovr{background:var(--orange)}
 .wday .dot.done{background:var(--acc)}
+
+/* Home's week countdown under the strip (#753) */
+.wkleft{margin:6px 0 2px;text-align:center}
+.wkleft.done{color:var(--green-ink)}
 /* a day off with a note on it (#261, lib/day-notes.js): the same colour on every calendar */
 .wday .dot.noted{background:var(--indigo)}
 .wday:active{background:var(--press-fill)}
@@ -683,7 +699,7 @@ h4.sec{
   border-radius:var(--r-card);padding:10px 12px;min-height:60px;
   transition:background var(--fast);text-align: start;width:100%;
 }
-.item:active{background:var(--press-fill)}
+.item:not(.tap-host):active{background:var(--press-fill)}
 .routine-list{position:relative}
 /* One column at every width (#277), whatever page it is on. The desktop layout puts the #app
    lists outside a .narrow page in two columns, and before the .narrow rule below won on
@@ -2186,6 +2202,7 @@ body.no-tabbar.resting #toast{bottom:calc(100px + var(--sab))}
 .wd-set{white-space:nowrap}
 .wd-ex .ss{font-size:var(--fs-subhead);line-height:1.35;color:var(--label-2);margin-top:2px}
 .wd-thumb{background:none;border:none;padding:0;cursor:pointer;display:block;flex:none}
+.wd-ex:not(.tap-host):active{background:var(--press-fill)}
 .wd-ex:active{background:var(--press-fill)}
 .wd-ss{box-shadow:inset 3px 0 0 var(--acc);padding-inline-start:11px;margin-bottom:12px}
 .wd-ss .ss-label{margin:0 0 8px}

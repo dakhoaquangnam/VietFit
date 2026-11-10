@@ -15,6 +15,7 @@ import { t, dateLocale } from './i18n.js'
 import { effectiveRoutines, streakWeeks, exLine, bestWeightForEntry } from './history.js'
 import { deriveSessionName } from './session-merge.js'
 import { queueOf, weekTally } from './queue.js'
+import { workoutsLeft } from './week-left.js'
 import { todayISO, isoOf, fmtNum, weekStartOf, startOfWeek, exerciseNameText } from './format.js'
 import { accentPair, accentValue } from './accent.js'
 import { speedUnitOf } from './speed.js'
@@ -105,6 +106,9 @@ export function buildWidgetSnapshot (S, { today = todayISO() } = {}) {
     ink: pair?.ink || '#000000',
     days,
     week: { done: week.done || 0, planned: week.planned || 0 },
+    // v1.4.5 (#753): what is left of the week's plan, { left, of }, or null with no plan (a
+    // rotation without a weekly target). The native widgets do not read it yet.
+    weekLeft: (() => { try { const l = workoutsLeft(st, today); return l ? { left: l.left, of: l.of } : null } catch { return null } })(),
     streak,
     lastPR: lastPrOf(st),
     active: activeOf(st),

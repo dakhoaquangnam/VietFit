@@ -2594,4 +2594,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': 'Yalnızca bu telefon için. Bazı ana ekranların fark etmesi biraz sürer.',
   'The icon could not be changed.': 'Simge değiştirilemedi.',
   'Try the Halloween app icon': 'Cadılar Bayramı uygulama simgesini dene',
+  "{0} of {1} left this week": "Bu hafta {1} antrenmandan {0} kaldı",
+  "All done this week. Nice.": "Bu hafta hepsi tamam. Harika.",
+  "No weekly countdown on Home.": "Ana sayfada haftalık geri sayım yok.",
 }

@@ -2587,4 +2587,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': '只限這支手機。有些主畫面要過一下才會跟上。',
   'The icon could not be changed.': '無法更換圖示。',
   'Try the Halloween app icon': '試試萬聖節 App 圖示',
+  "{0} of {1} left this week": "本週還剩 {0}/{1} 次",
+  "All done this week. Nice.": "本週全部完成，漂亮。",
+  "No weekly countdown on Home.": "首頁不顯示本週倒數。",
 }

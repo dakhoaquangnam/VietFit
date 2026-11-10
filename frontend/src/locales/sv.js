@@ -2641,4 +2641,7 @@ export default {
   'Reading with device voice': 'Reading with device voice',
   'Read aloud': 'Read aloud',
   'VieNeu API key': 'VieNeu API key',
+  "{0} of {1} left this week": "{0} av {1} kvar den här veckan",
+  "All done this week. Nice.": "Allt klart den här veckan. Snyggt.",
+  "No weekly countdown on Home.": "Ingen veckonedräkning på startsidan.",
 }
