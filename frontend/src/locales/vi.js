@@ -2581,4 +2581,7 @@ export default {
   "Just for this phone. Some home screens take a moment to catch up.": "Chỉ cho điện thoại này. Vài màn hình chính cần một lúc để cập nhật.",
   "The icon could not be changed.": "Không đổi được biểu tượng.",
   "Try the Halloween app icon": "Thử biểu tượng app Halloween",
+  "{0} of {1} left this week": "Còn {0} trong {1} buổi tuần này",
+  "All done this week. Nice.": "Xong hết tuần này rồi. Tuyệt vời.",
+  "No weekly countdown on Home.": "Không đếm ngược tuần trên Trang chính.",
 }

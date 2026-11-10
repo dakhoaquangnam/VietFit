@@ -2594,4 +2594,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': 'Solo para este móvil. Algunas pantallas de inicio tardan un momento en enterarse.',
   'The icon could not be changed.': 'No se pudo cambiar el icono.',
   'Try the Halloween app icon': 'Prueba el icono de Halloween',
+  "{0} of {1} left this week": "Quedan {0} de {1} esta semana",
+  "All done this week. Nice.": "Todo hecho esta semana. Bien.",
+  "No weekly countdown on Home.": "Sin cuenta atrás semanal en Inicio.",
 }
