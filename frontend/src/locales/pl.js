@@ -33,6 +33,7 @@ export default {
   'Settings': 'Ustawienia',
   'Freestyle': 'Dowolny',
   'Routine': 'Plan treningowy',
+  'Routine name': 'Routine name',
   'routine': 'planu',
   'Cardio': 'Cardio',
   'Superset': 'Superseria',

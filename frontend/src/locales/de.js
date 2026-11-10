@@ -34,6 +34,7 @@ export default {
   'Settings': 'Einstellungen',
   'Freestyle': 'Freies Training',
   'Routine': 'Routine',
+  'Routine name': 'Routine name',
   'routine': 'Routine',
   'Cardio': 'Cardio',
   'Superset': 'Supersatz',

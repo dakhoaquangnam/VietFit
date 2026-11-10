@@ -35,6 +35,7 @@ export default {
   'Settings': 'Beállítások',
   'Freestyle': 'Szabad edzés',
   'Routine': 'Rutin',
+  'Routine name': 'Routine name',
   'routine': 'rutin',
   'Cardio': 'Kardió',
   'Superset': 'Szuperszett',

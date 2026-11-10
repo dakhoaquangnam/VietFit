@@ -27,6 +27,7 @@ export default {
   "Settings": "Cài đặt",
   "Freestyle": "Tập tự do",
   "Routine": "Lịch tập",
+  "Routine name": "Tên lịch tập",
   "routine": "lịch tập",
   "Cardio": "Cardio",
   "Superset": "Superset",

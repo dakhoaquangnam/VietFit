@@ -33,6 +33,7 @@ export default {
   'Settings': '설정',
   'Freestyle': '자유 운동',
   'Routine': '루틴',
+  'Routine name': 'Routine name',
   'routine': '루틴',
   'Cardio': '유산소',
   'Superset': '슈퍼세트',
