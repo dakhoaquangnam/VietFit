@@ -40,6 +40,8 @@
  *     have, the entry set last by its own `_ts`, a clear included (mergeStampedMap), the newer
  *     copy's on a tie. For plates and dumbbells the key is the unit, so the inventory of one unit
  *     is kept whole, as last edited; for dayNotes the key is the date, so each day's note is its own
+ *   - advent: of the same year, the union of the doors opened and the challenges done (mergeAdvent)
+ *   - challenges: per month, the picks made first and the union of the ones done (mergeChallenges)
  *   - `_ts`: the later of the two; `_rev` dropped (the server sets it); `active` left to the caller
  *
  * Two rules come before all of these:
@@ -78,6 +80,8 @@ import { bestWeightForEntry } from './history.js'
 import { convertStateUnit, convertBodyWeight } from './units.js'
 import { sanitizeAccent } from './accent.js'
 import { readDayNote as readNote } from './day-notes.js'
+import { mergeAdvent } from './advent.js'
+import { mergeChallenges } from './challenges.js'
 
 const clone = o => JSON.parse(JSON.stringify(o))
 const list = v => (Array.isArray(v) ? v : [])
@@ -960,6 +964,13 @@ export function mergeStates(a0, b0, { prefer } = {}) {
       if (isMap(other)) out.coach = mergeCoach(out.coach, other)
     }
   }
+  // The advent calendar (lib/advent.js): a door opened on either device stays open, and so does a
+  // ticked challenge, whichever copy changed the field last. A calendar of a later year wins.
+  const advent = mergeAdvent(n.advent, o.advent)
+  if (advent) out.advent = advent
+  // The monthly challenges (lib/challenges.js): a badge earned on either device stays earned.
+  const challenges = mergeChallenges(n.challenges, o.challenges)
+  if (challenges) out.challenges = challenges
   if (deleted) out.deleted = deleted; else delete out.deleted
   out._ts = Math.max(a._ts || 0, b._ts || 0)
   if (resetAt) out.resetAt = resetAt

@@ -72,8 +72,8 @@ describe('Stats redesign: Overview', () => {
     const overview = card('#stats-overview')
     const kpis = overview.querySelector('[data-tour="stats-tiles"]')
     expect([...kpis.querySelectorAll('.tile .l')].map(l => l.textContent)).toEqual(['Workouts', 'This month', 'Week streak', 'Weight 30d', 'Lifted in total'])
-    expect(host.textContent.match(/Week streak/g)).toHaveLength(1)
-    // No StreakCard in this fork: the streak lives in the KPI tile above, not a card below.
+    expect(host.textContent.match(/Week streak/g)).toHaveLength(2)
+    // The streak lives in the KPI tile above and, since GĐ5, in the StreakCard below it.
     const fold = overview.querySelector('[data-challenge-shelf] .card-fold')
     if (fold) expect(fold.getAttribute('aria-expanded')).toBe('false')
     expect(overview.querySelectorAll('[data-workout-row]')).toHaveLength(3)

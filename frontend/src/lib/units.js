@@ -8,6 +8,8 @@ import { EXIDX } from './exercises.js'
 import { defaultBarWeight, barTypeWeight } from './bar.js'
 
 const LB_PER_KG = 2.2046226218
+/** One lb in kg, exact: the year's total volume is compared in kg whatever the profile's unit. */
+export const LB_KG = 0.45359237
 
 export function convertWeight(value, from, to) {
   if (from === to || value == null || value === '' || !Number.isFinite(Number(value))) return value

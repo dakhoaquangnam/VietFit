@@ -64,6 +64,8 @@ import { csvExportSheet } from '../components/CsvExportSheet.jsx'
 import GymReminderPage, { GymEditPage } from './GymReminder.jsx'
 import { readGymConfig } from '../lib/gym-reminder.js'
 import { THEMES, inSeason, seasonChoice, activeSeason } from '../lib/seasonal.js'
+import { adventOf, adventOpenable } from '../lib/advent.js'
+import { openSeasonal } from '../components/Seasonal.jsx'
 
 /* Settings (v1.3.11). The root is one screen: an account card, eleven rows that each open a page
    (/settings/<page>), and a search over every row. Rare things live one level further down
@@ -922,6 +924,12 @@ export default function Settings({ page = null, find = null, via = null, entryKe
           subtitle={t('The muscle with the most room left this week, under your streak.')}>
           <Switch aria-label={t('Weekly sets on Home')} checked={S.homeMuscleSets === true} onChange={v => update(s => { s.homeMuscleSets = v })} />
         </Row>
+        {/* Three goals a month on Home, sized to how you train (lib/challenges.js). Off: no card,
+            no Stats progress; badges already earned stay on the shelf. */}
+        <Row icon="target" iconTint="var(--orange)" title={t('Monthly challenges')}
+          subtitle={t('Three goals a month on Home, sized to how you train.')}>
+          <Switch aria-label={t('Monthly challenges')} checked={S.monthlyChallenges !== false} onChange={v => update(s => { s.monthlyChallenges = v })} />
+        </Row>
         {/* The bar at the top that says the app is offline, kept local, or not synced (#369, #330).
             Here and not under Server & sync, which a phone kept local never shows. Switching it on
             also brings back the no-server line its × hid (#454). */}
@@ -958,9 +966,16 @@ export default function Settings({ page = null, find = null, via = null, entryKe
           </Row>}
         </Section>
       })}
-      {/* While Halloween shows, a way to the matching icon in Look & Home (it is there all year). */}
-      {MOBILE && platformNow() === 'ios' && activeSeason(S) === 'halloween' && <Section>
-        <Row icon="pumpkin" iconTint="var(--orange)" title={t('Try the Halloween app icon')} accessory="chevron"
+      {/* Christmas: the advent calendar, for all of December (lib/advent.js), from the theme's chunk. */}
+      {activeSeason(S) === 'christmas' && adventOpenable() && <Section>
+        <Row icon="calendar" iconTint="var(--green)" title={'🎄 ' + t('Advent calendar')}
+          subtitle={t('{0} of 24 doors open', adventOf(S).opened.length)} accessory="chevron"
+          onClick={() => openSeasonal('christmas', 'advent')} />
+      </Section>}
+      {/* While a theme with its own icon shows, a way to it in Look & Home (it is there all year).
+          The fork's icon row is iPhone-only (AppIconRow.test.jsx): the gate stays. */}
+      {MOBILE && platformNow() === 'ios' && seasonWithIcon(S) && <Section>
+        <Row icon={seasonWithIcon(S).icon} iconTint={seasonWithIcon(S).tint} title={t(seasonWithIcon(S).appIconTitle)} accessory="chevron"
           onClick={() => nav('/settings/look', { state: { find: 'App icon' } })} />
       </Section>}
     </>,
@@ -1312,8 +1327,18 @@ function MobileReminderCard({ S, update, toast }) {
         </Row>
       )}
       {S.reminder?.on && <NudgeRows S={S} setReminder={setReminder} />}
+      <WrappedNotifyRow S={S} update={update} />
     </Section>
   )
+}
+
+// Your year in VietFit (lib/wrapped.js): one notification on Dec 1, on unless switched off here.
+// The phone plans it itself; a server sends it as a web push. Off takes back a planned one.
+function WrappedNotifyRow({ S, update }) {
+  const on = S.wrappedNotify !== false
+  return <Row icon="sparkles" iconTint="var(--acc)" title={t('Your year in openGym')} subtitle={t('One notification on 1 December when your year is ready.')}>
+    <Switch checked={on} onChange={() => update(s => { s.wrappedNotify = !on })} aria-label={t('Your year in openGym')} />
+  </Row>
 }
 
 // The missed-workout nudge (lib/nudge.js): a switch and its tone, under the reminder they ride
@@ -1403,6 +1428,7 @@ function PushCard({ S, update, toast }) {
       {on && S.reminder?.on && (
         <NudgeRows S={S} setReminder={patch => update(s => { s.reminder = { ...(s.reminder || DEF.reminder), ...patch, tz: localTZ() } })} />
       )}
+      {on && <WrappedNotifyRow S={S} update={update} />}
     </Section>
     {on && <div style={{ marginTop: -12, marginBottom: 22 }}><Button size="sm" icon="bell" onClick={test}>{t('Send test notification')}</Button></div>}
   </>
@@ -1413,6 +1439,12 @@ function PushCard({ S, update, toast }) {
 // (see lib/equipment.js). Purely local/synced state — no server changes needed.
 // What the chosen accent is called: a preset's colour name, or the user's own.
 // The theme showing right now, by name, for the row that opens them.
+// The showing theme, when it has a home-screen icon of its own to suggest.
+function seasonWithIcon(S) {
+  const th = THEMES.find(x => x.id === activeSeason(S))
+  return th?.appIcon ? th : null
+}
+
 function activeSeasonTitle(S) {
   const id = activeSeason(S)
   const th = id && THEMES.find(x => x.id === id)

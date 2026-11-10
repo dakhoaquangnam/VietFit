@@ -9,11 +9,19 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
-const st = vi.hoisted(() => ({ S: {}, loaded: 0 }))
+const st = vi.hoisted(() => ({ S: {}, loaded: 0, xmas: 0 }))
 vi.mock('../store/useStore.js', () => ({ useStore: sel => sel({ S: st.S }) }))
 vi.mock('../seasonal/halloween.jsx', () => {
   st.loaded++
   return { Layer: () => <i className="layer" />, Deco: ({ spot }) => <i className={'deco-' + spot} /> }
+})
+vi.mock('../seasonal/christmas.jsx', () => {
+  st.xmas++
+  return {
+    Layer: ({ hidden, workout }) => <i className={'xlayer' + (hidden ? ' hidden' : '') + (workout ? ' workout' : '')} />,
+    Deco: ({ spot }) => <i className={'xdeco-' + spot} />,
+    open: what => { st.opened = what; return true },
+  }
 })
 
 const SRC = join(__dirname, '..')
@@ -27,16 +35,18 @@ const files = (dir, out = []) => {
 }
 
 describe('no theme code in the main bundle', () => {
-  it('only components/Seasonal.jsx names a theme module, and only through import()', () => {
-    const naming = files(SRC).filter(f => !f.includes(join('src', 'seasonal') + '/')).filter(f => /seasonal\/halloween/.test(readFileSync(f, 'utf8')))
+  it.each(['halloween', 'christmas'])('only components/Seasonal.jsx names a theme module, and only through import() (%s)', id => {
+    const re = new RegExp('seasonal/' + id + '|seasonal/advent-doors')
+    const naming = files(SRC).filter(f => !f.includes(join('src', 'seasonal') + '/')).filter(f => re.test(readFileSync(f, 'utf8')))
     expect(naming.map(f => relative(SRC, f))).toEqual([join('components', 'Seasonal.jsx')])
     const text = readFileSync(join(SRC, 'components', 'Seasonal.jsx'), 'utf8')
-    expect(text).not.toMatch(/^\s*import[^(]*seasonal\/halloween/m)
-    expect(text).toMatch(/import\('\.\.\/seasonal\/halloween\.jsx'\)/)
+    expect(text).not.toMatch(new RegExp('^\\s*import[^(]*seasonal/' + id, 'm'))
+    expect(text).toContain(`import('../seasonal/${id}.jsx')`)
   })
   it('the theme\'s stylesheet comes with its module, not with index.css', () => {
-    expect(readFileSync(join(SRC, 'index.css'), 'utf8')).not.toMatch(/hw-|halloween/)
+    expect(readFileSync(join(SRC, 'index.css'), 'utf8')).not.toMatch(/hw-|halloween|xm-|christmas/)
     expect(readFileSync(join(SRC, 'seasonal', 'halloween.jsx'), 'utf8')).toMatch(/import '\.\/halloween\.css'/)
+    expect(readFileSync(join(SRC, 'seasonal', 'christmas.jsx'), 'utf8')).toMatch(/import '\.\/christmas\.css'/)
   })
 })
 
@@ -66,7 +76,8 @@ describe('fetched only while a theme shows', () => {
   })
 
   it('out of season on Auto: the same', async () => {
-    vi.setSystemTime(new Date(2026, 11, 3, 12))
+    vi.setSystemTime(new Date(2026, 10, 15, 12))   // mid-November: between Halloween and Christmas
+    expect(st.xmas).toBe(0)
     st.S = {}
     const { SeasonalLayer } = await import('./Seasonal.jsx')
     await act(async () => root.render(<SeasonalLayer />))
@@ -87,5 +98,57 @@ describe('fetched only while a theme shows', () => {
     await settle()
     expect(host.querySelector('.layer')).not.toBeNull()
     expect(document.documentElement.dataset.season).toBe('halloween')
+  })
+
+  it('December on Auto: the Christmas module, not Halloween\'s', async () => {
+    vi.useRealTimers()
+    vi.useFakeTimers({ toFake: ['Date'], shouldAdvanceTime: true }); vi.setSystemTime(new Date(2026, 11, 5, 12))
+    st.S = {}
+    const before = st.loaded
+    const { SeasonalLayer, SeasonDeco } = await import('./Seasonal.jsx')
+    const settle = async () => { for (let i = 0; i < 4; i++) await act(async () => { await new Promise(r => setTimeout(r, 20)) }) }
+    await act(async () => root.render(<SeasonDeco spot="home-advent" />))
+    await settle()
+    await act(async () => root.render(<><SeasonDeco spot="home-advent" /><SeasonalLayer /></>))
+    await settle()
+    expect(st.xmas).toBe(1)
+    expect(st.loaded).toBe(before)
+    expect(host.querySelector('.xdeco-home-advent')).not.toBeNull()
+    expect(document.documentElement.dataset.season).toBe('christmas')
+  })
+
+  it('on the workout screen the layer is told whether "Also during workouts" is on', async () => {
+    vi.useRealTimers()
+    vi.useFakeTimers({ toFake: ['Date'], shouldAdvanceTime: true }); vi.setSystemTime(new Date(2026, 11, 5, 12))
+    const { SeasonalLayer } = await import('./Seasonal.jsx')
+    const settle = async () => { for (let i = 0; i < 4; i++) await act(async () => { await new Promise(r => setTimeout(r, 20)) }) }
+    st.S = {}
+    await act(async () => root.render(<SeasonalLayer hidden />))
+    await settle()
+    expect(host.querySelector('.xlayer.hidden.workout')).not.toBeNull()
+    st.S = { seasonal: { christmasWorkout: false } }
+    await act(async () => root.render(<SeasonalLayer hidden key="b" />))
+    await settle()
+    expect(host.querySelector('.xlayer.hidden')).not.toBeNull()
+    expect(host.querySelector('.xlayer.workout')).toBeNull()
+  })
+
+  // No tour in the fork yet (GĐ6): upstream's 'while the app tour runs' test waits for it.
+
+  it('Off in December: nothing, and the Christmas module is never fetched', async () => {
+    vi.setSystemTime(new Date(2026, 11, 5, 12))
+    st.S = { seasonal: { christmas: 'off' } }
+    const before = st.xmas
+    const { SeasonalLayer, SeasonDeco } = await import('./Seasonal.jsx')
+    await act(async () => root.render(<><SeasonalLayer /><SeasonDeco spot="home-advent" /></>))
+    expect(host.innerHTML).toBe('')
+    expect(st.xmas).toBe(before)
+  })
+
+  it('openSeasonal reaches the theme\'s own open()', async () => {
+    const { openSeasonal } = await import('./Seasonal.jsx')
+    expect(await openSeasonal('christmas', 'advent')).toBe(true)
+    expect(st.opened).toBe('advent')
+    expect(await openSeasonal('nope', 'advent')).toBe(false)
   })
 })

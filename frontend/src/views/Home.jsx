@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store/useStore.js'
-import { effectiveRoutines, effectiveRoutineIds, nextTrainingDay, streakWeeks, lastBW, setsDoneActive } from '../lib/history.js'
+import { effectiveRoutines, effectiveRoutineIds, nextTrainingDay, lastBW, setsDoneActive } from '../lib/history.js'
+import { streakInfo } from '../lib/streak.js'
+import { StreakFlame, StreakMeta, StreakParty } from '../components/Streak.jsx'
 import { fmtNum, fmtDate, todayISO, isoOf, weekStartOf, weekDayOffset, DAYS, DAYN } from '../lib/format.js'
 import { t, tn, dateLocale } from '../lib/i18n.js'
 import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, starterPlanSheet, bwDeltaColor, weighInsSheet } from '../sheets.jsx'
@@ -23,6 +25,8 @@ import { dayNoteOf } from '../lib/day-notes.js'
 import { weighInAt } from '../lib/bodyweight.js'
 import WeightRate from '../components/WeightRate.jsx'
 import { SeasonDeco } from '../components/Seasonal.jsx'
+import { WrappedHomeCard } from '../components/WrappedEntry.jsx'
+import { ChallengesCard } from '../components/Challenges.jsx'
 
 // Home = what to do now + a quick glance. Deep charts & history live in Stats.
 export default function Home() {
@@ -99,7 +103,11 @@ export default function Home() {
   const next = !S.active && !todayRoutines.length && !(rotating && !plannerQueue) ? nextTrainingDay(S, todayISO()) : null
   // The streak card's fraction: this calendar week's workouts over the weekdays with a plan, or,
   // in a coach week, the queue's sessions and your own days together (lib/queue.js weekTally).
-  const { done: doneThisWeek, planned: plannedPerWeek } = weekTally(S, todayISO())
+  const tally = weekTally(S, todayISO())
+  const { done: doneThisWeek, planned: plannedPerWeek } = tally
+  // The streak with its best run and freezes (lib/streak.js), read back from the workouts.
+  const todayKey = todayISO()
+  const streak = useMemo(() => streakInfo(S, todayKey), [S.workouts, S.weekStart, todayKey]) // eslint-disable-line react-hooks/exhaustive-deps
   const left = workoutsLeft(S, todayISO())
   const bwPoints = S.bodyweight.slice(-30).map(b => ({ t: weighInAt(b), y: b.w, d: b.d }))
 
@@ -175,6 +183,15 @@ export default function Home() {
       <SeasonDeco spot="home-hero" />
     </div>
 
+    {/* Christmas (lib/seasonal.js): the advent calendar's card, 1 to 24 December, from the theme's chunk. */}
+    <SeasonDeco spot="home-advent" />
+
+    {/* December and January: the year in VietFit is ready (lib/wrapped.js homeCardYear). */}
+    <WrappedHomeCard S={S} />
+
+    {/* This month's three challenges and how far you are (lib/challenges.js). */}
+    <ChallengesCard S={S} />
+
     <RecapHomeCard S={S} />
 
     {/* Jump to the gym check-in cards (QR membership codes). Shown here as a quick tap on
@@ -236,10 +253,14 @@ export default function Home() {
     <div className="card tap-host streak-card">
       <SeasonDeco spot="home-streak" />
       {/* in season, a Santa hat on the flame (components/Seasonal.jsx) */}
-      <CardHead className="streak-head" glyph={<Icon name="flame" style={{ color: 'var(--orange)' }} />}
-        title={t('{0} week streak', streakWeeks(S))} open={{ onClick: () => calendarSheet(), haspopup: 'dialog' }}
+      <CardHead className="streak-head" glyph={<span className="streak-flame-wrap"><StreakFlame lit={streak.current > 0} /><SeasonDeco spot="streak-flame" /></span>}
+        title={t('{0} week streak', streak.current)} open={{ onClick: () => calendarSheet(), haspopup: 'dialog' }}
         sub={<>{doneThisWeek}{plannedPerWeek ? ' / ' + plannedPerWeek : ''} {t('this week')} · {tn('{0} workout total', '{0} workouts total', S.workouts.length)}</>}
         action={<Icon name="calendar" className="chev" style={{ fontSize: 'var(--fs-title3)' }} />} />
+      {/* Best + freezes on their own line under the head, as upstream has it: the head's sub
+          stays the week's tally alone (views/Home.queue.test.jsx). */}
+      {(streak.best > 0 || streak.freezes > 0) && <div className="muted small" style={{ marginTop: 2 }}><StreakMeta info={streak} /></div>}
+      <StreakParty S={S} info={streak} tally={tally} />
     </div>
     {/* Settings → Look & Home → Weekly sets on Home (lib/muscle-targets.js): the muscle with
         the most room this week, one tap from the Stats card. */}

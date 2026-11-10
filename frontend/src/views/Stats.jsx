@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store/useStore.js'
 import { dayPhotosOf } from '../lib/day-photos.js'
 import { EXIDX, matchExercise, betterWeight, isAssisted } from '../lib/exercises.js'
-import { lastBW, streakWeeks, setLabel, modeOf, effortOf, entriesForExercise, metricEntriesForExercise, metricModeForEntry, bestWeightForEntry, completedRepsOf, workoutDay, workoutAt, lifetimeVolume } from '../lib/history.js'
+import { lastBW, setLabel, modeOf, effortOf, entriesForExercise, metricEntriesForExercise, metricModeForEntry, bestWeightForEntry, completedRepsOf, workoutDay, workoutAt, lifetimeVolume } from '../lib/history.js'
 import { fmtNum, fmtDate, fmtVol, todayISO, isoOf, weekKey, weekStartOf, exerciseNameText } from '../lib/format.js'
 import { speedUnitOf, speedLabel, toSpeed } from '../lib/speed.js'
 import { t, exerciseNameFor, exerciseNameClass, getLang } from '../lib/i18n.js'
@@ -13,6 +13,10 @@ import WeightRate from '../components/WeightRate.jsx'
 import Heatmap from '../components/Heatmap.jsx'
 import { SeasonDeco } from '../components/Seasonal.jsx'
 import Icon from '../components/Icon.jsx'
+import { StreakCard, Freezes } from '../components/Streak.jsx'
+import { WrappedStatsCard } from '../components/WrappedEntry.jsx'
+import { ChallengesStatsCard } from '../components/Challenges.jsx'
+import { streakInfo } from '../lib/streak.js'
 import { reportSheet } from '../components/ReportSheet.jsx'
 import { muscleTargetsSheet } from '../components/WeeklySets.jsx'
 import { TARGET_MUSCLES, targetOf, statusOf } from '../lib/muscle-targets.js'
@@ -542,6 +546,8 @@ export default function Stats() {
   const workouts = S.workouts
   const monthW = workouts.filter(w => workoutDay(w)?.slice(0, 7) === todayISO().slice(0, 7)).length
   const lifetime = lifetimeVolume(S)
+  // The streak with its best run, freezes and badges (lib/streak.js).
+  const streak = streakInfo(S)
 
   // Dumbbell weights are read in each exercise's current meaning (lib/dumbbells.js), so the
   // chart and its best compare like with like across a switch between per bell and total.
@@ -811,18 +817,23 @@ export default function Stats() {
 
     <section className="stats-sect" id="stats-overview" data-stats-sect="overview" aria-label={t('Overview')}>
     {/* The headline numbers as one divided card: three across, the lifetime total under them at
-        full width (a few hundred sessions make a long number). The week streak is not a tile any
-        more upstream — it is the card right below, once — but this fork has no StreakCard, so the
-        streak tile stays here. */}
+        full width (a few hundred sessions make a long number). The week streak stays a tile too,
+        with its freezes; the StreakCard right below carries the best run and the badges. */}
     <div className="kpis" data-tour="stats-tiles">
       <div className="tile"><div className="l">{t('Workouts')}</div><div className="v">{workouts.length}</div></div>
       <div className="tile"><div className="l">{t('This month')}</div><div className="v">{monthW}</div></div>
-      <div className="tile"><div className="l">{t('Week streak')}</div><div className="v">{streakWeeks(S)}</div></div>
+      <div className="tile"><div className="l">{t('Week streak')}</div><div className="v">{streak.current}{streak.freezes > 0 && <Freezes n={streak.freezes} className="tile-freezes" />}</div></div>
       <div className="tile"><div className="l">{t('Weight 30d')}</div><div className="v" style={{ color: bwDelta30 === null ? 'inherit' : bwDeltaColor(bwDelta30, (lastBW(S) || {}).w || 0) }}>{bwDelta30 === null ? '–' : (bwDelta30 > 0 ? '+' : '') + fmtNum(bwDelta30) + ' ' + S.unit}</div></div>
       {/* Everything ever lifted (Discord): imports included, warm-ups only when the profile
           counts them (#719). */}
       {lifetime > 0 && <div className="tile wide" data-lifetime-volume><SeasonDeco spot="stats-tile" /><div className="l">{t('Lifted in total')}</div><div className="v">{fmtVol(Math.round(lifetime), S.unit)}</div></div>}
     </div>
+
+    {workouts.length > 0 && <StreakCard info={streak} />}
+    {/* The month's challenges and the trophy shelf (lib/challenges.js). */}
+    {workouts.length > 0 && <ChallengesStatsCard S={S} />}
+    {/* Your year in VietFit, for any year with workouts (components/WrappedEntry.jsx). */}
+    <WrappedStatsCard S={S} />
 
     <div className="card">
       <SeasonDeco spot="stats-heatmap" />
