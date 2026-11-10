@@ -33,6 +33,7 @@ export default {
   'Settings': 'सेटिंग्स',
   'Freestyle': 'फ्रीस्टाइल',
   'Routine': 'रूटीन',
+  'Routine name': 'Routine name',
   'routine': 'रूटीन',
   'Cardio': 'कार्डियो',
   'Superset': 'सुपरसेट',

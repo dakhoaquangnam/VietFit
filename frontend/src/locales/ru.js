@@ -33,6 +33,7 @@ export default {
   'Settings': 'Настройки',
   'Freestyle': 'Свободная',
   'Routine': 'Программа',
+  'Routine name': 'Routine name',
   'routine': 'программу',
   'Cardio': 'Кардио',
   'Superset': 'Суперсет',

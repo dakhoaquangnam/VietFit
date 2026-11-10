@@ -27,6 +27,7 @@ export default {
   'Settings': 'الإعدادات',
   'Freestyle': 'تمرين حر',
   'Routine': 'روتين',
+  'Routine name': 'Routine name',
   'routine': 'روتين',
   'Cardio': 'كارديو',
   'Superset': 'سوبر سِت',

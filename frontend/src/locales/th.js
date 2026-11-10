@@ -35,6 +35,7 @@ export default {
   'Settings': 'ตั้งค่า',
   'Freestyle': 'ฟรีสไตล์',
   'Routine': 'รูทีน',
+  'Routine name': 'Routine name',
   'routine': 'รูทีน',
   'Cardio': 'คาร์ดิโอ',
   'Superset': 'ซูเปอร์เซ็ต',

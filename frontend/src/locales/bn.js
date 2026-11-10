@@ -33,6 +33,7 @@ export default {
   'Settings': 'সেটিংস',
   'Freestyle': 'ফ্রিস্টাইল',
   'Routine': 'রুটিন',
+  'Routine name': 'Routine name',
   'routine': 'রুটিন',
   'Cardio': 'কার্ডিও',
   'Superset': 'সুপারসেট',
