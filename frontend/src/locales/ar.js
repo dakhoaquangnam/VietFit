@@ -2649,4 +2649,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': 'لهذا الهاتف فقط. بعض الشاشات الرئيسية تحتاج لحظة لتلحق.',
   'The icon could not be changed.': 'تعذّر تغيير الأيقونة.',
   'Try the Halloween app icon': 'جرّب أيقونة التطبيق الخاصة بالهالوين',
+  "{0} of {1} left this week": "تبقّى {0} من {1} هذا الأسبوع",
+  "All done this week. Nice.": "أنجزت كل شيء هذا الأسبوع. رائع.",
+  "No weekly countdown on Home.": "لا عدّ تنازلي أسبوعي في الرئيسية.",
 }

@@ -2598,4 +2598,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': 'Только для этого телефона. Некоторым рабочим столам нужна минутка, чтобы заметить.',
   'The icon could not be changed.': 'Не удалось сменить значок.',
   'Try the Halloween app icon': 'Попробуй хеллоуинский значок приложения',
+  "{0} of {1} left this week": { one: "Осталась {0} из {1} на этой неделе", few: "Осталось {0} из {1} на этой неделе", many: "Осталось {0} из {1} на этой неделе" },
+  "All done this week. Nice.": "На этой неделе всё сделано. Отлично.",
+  "No weekly countdown on Home.": "Без недельного отсчёта на главной.",
 }

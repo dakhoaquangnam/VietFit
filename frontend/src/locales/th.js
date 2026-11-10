@@ -2605,4 +2605,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': 'เฉพาะโทรศัพท์เครื่องนี้ หน้าจอโฮมบางแบบต้องใช้เวลาสักครู่ถึงจะเปลี่ยน',
   'The icon could not be changed.': 'เปลี่ยนไอคอนไม่ได้',
   'Try the Halloween app icon': 'ลองไอคอนแอปฮาโลวีน',
+  "{0} of {1} left this week": "สัปดาห์นี้เหลือ {0} จาก {1}",
+  "All done this week. Nice.": "สัปดาห์นี้ครบแล้ว เยี่ยม",
+  "No weekly countdown on Home.": "ไม่มีการนับถอยหลังรายสัปดาห์ที่หน้าแรก",
 }

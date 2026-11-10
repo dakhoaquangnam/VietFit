@@ -2673,4 +2673,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': 'শুধু এই ফোনের জন্য। কিছু হোম স্ক্রিন বুঝতে একটু সময় নেয়।',
   'The icon could not be changed.': 'আইকন বদলানো গেল না।',
   'Try the Halloween app icon': 'হ্যালোইন অ্যাপ আইকন চেষ্টা করুন',
+  "{0} of {1} left this week": "এই সপ্তাহে {1}টির মধ্যে {0}টি বাকি",
+  "All done this week. Nice.": "এই সপ্তাহের সব শেষ। দারুণ।",
+  "No weekly countdown on Home.": "হোমে সাপ্তাহিক কাউন্টডাউন নেই।",
 }

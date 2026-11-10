@@ -2594,4 +2594,7 @@ export default {
   'Just for this phone. Some home screens take a moment to catch up.': 'सिर्फ़ इस फ़ोन के लिए। कुछ होम स्क्रीन को समझने में थोड़ा समय लगता है।',
   'The icon could not be changed.': 'आइकन बदला नहीं जा सका।',
   'Try the Halloween app icon': 'हैलोवीन ऐप आइकन आज़माएँ',
+  "{0} of {1} left this week": "इस हफ़्ते {1} में से {0} बाकी",
+  "All done this week. Nice.": "इस हफ़्ते का सब हो गया। बढ़िया।",
+  "No weekly countdown on Home.": "होम पर हफ़्ते की उलटी गिनती नहीं।",
 }
