@@ -44,7 +44,9 @@ describe('Brazilian Portuguese locale', () => {
     // 2026-11-10: two new untranslated strings land here as English, like the other
     // untranslated keys pt-BR inherits ('Listen to description and instructions', …):
     // 'Read aloud' and 'VieNeu API key' (the read-aloud voice key).
-    expect(fingerprint, 'pt-PT inheritance changed; review the inherited pt-BR wording').toBe('df28d6e021ea7ceb4c73b510ea28a09dd197eed176343f17ac5b22ef6670ace4')
+    // 2026-11-10: one more, from the 1.4.5 redesign's GĐ1: 'Routine name' (the
+    // routine-name input's label), English in pt-PT too, so inherited as-is.
+    expect(fingerprint, 'pt-PT inheritance changed; review the inherited pt-BR wording').toBe('d24d48ab7a471e42178ae42dc8d98f5e804e34ca42eb4a2960afe114dd7b46fd')
   })
 
   // pt-PT labelled Unpair 'Desfazer': Undo, in Portuguese (it is pt-BR's Undo), on the button that

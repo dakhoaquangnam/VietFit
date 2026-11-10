@@ -33,6 +33,7 @@ export default {
   'Settings': 'Ayarlar',
   'Freestyle': 'Serbest',
   'Routine': 'Rutin',
+  'Routine name': 'Routine name',
   'routine': 'rutine',
   'Cardio': 'Kardiyo',
   'Superset': 'Süperset',

@@ -34,6 +34,7 @@ export default {
   'Settings': 'Inställningar',
   'Freestyle': 'Fritt pass',
   'Routine': 'Rutin',
+  'Routine name': 'Routine name',
   'routine': 'rutin',
   'Cardio': 'Kondition',
   'Superset': 'Superset',

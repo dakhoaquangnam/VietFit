@@ -33,6 +33,7 @@ export default {
   'Settings': '设置',
   'Freestyle': '自由训练',
   'Routine': '训练日',
+  'Routine name': 'Routine name',
   'routine': '训练日',
   'Cardio': '有氧',
   'Superset': '超级组',
