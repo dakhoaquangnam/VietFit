@@ -46,7 +46,29 @@ describe('Brazilian Portuguese locale', () => {
     // 'Read aloud' and 'VieNeu API key' (the read-aloud voice key).
     // 2026-11-10: one more, from the 1.4.5 redesign's GĐ1: 'Routine name' (the
     // routine-name input's label), English in pt-PT too, so inherited as-is.
-    expect(fingerprint, 'pt-PT inheritance changed; review the inherited pt-BR wording').toBe('10a3bc8db114d4038b1709655da4cc8b50ce69a5832e98fe886111af320c7119')
+    // 2026-11-11: the gym map redraw (GĐ6, upstream a1afc864) removes 8 gym keys and adds
+    // 19 under '// --- gym map (1.4.4) ---', all with real pt-BR wording from upstream.
+    // 2026-11-11: the app tour strings (GĐ6, upstream a0b4f00f) add 53 keys under
+    // '// --- app tour (components/Tour.jsx) ---', all with real pt-BR wording from
+    // upstream; 'No thanks' and 'Records' were already there with the same wording.
+    // 2026-11-11: check-in barcodes (GĐ6, upstream 924699d2) remove "That's not a QR
+    // code..." and add 'That code type is not supported...' under
+    // '// --- check-in barcodes (1.4.4) ---' with real pt-BR wording from upstream;
+    // 'No code found in that image' and 'Barcode' are inherited from pt.js.
+    // 2026-11-11: the Tour v2 strings (GĐ6, upstream 416bd80c) add 115 keys under
+    // '// --- tour v2 (1.4.4) ---' (pt-BR overrides 95, inherits 20 from pt) and remove
+    // the two v1 wordings; 'Routine name' — long an English placeholder in every pack —
+    // takes upstream's real wording ('Nome da rotina', inherited from pt.js); and the
+    // Tour v2 string 'Pick a day' (missing from the fork's packs, present upstream since
+    // before 416bd80c) is added under '// --- tour v2, missing key (1.4.4) ---'.
+    // 2026-11-11: weigh-ins with times (GĐ6, upstream c4459964) add 29 keys under
+    // '// --- weigh-ins with times (1.4.4) ---' (pt-BR overrides 13, inherits 16
+    // from pt) and remove 'That date already has a weigh-in. Delete it first.'
+    // 2026-11-11: Library Filters sheet + Stats index (GĐ6, upstream 4b712756)
+    // add 5 keys under '// --- redesign 1.4.5: the Library's Filters sheet, the
+    // Stats index ---'; 'Overview'/'Lifts' replace the English placeholders the
+    // Stats index carried since GĐ3 (pt-BR: 'Visão geral'/'Exercícios').
+    expect(fingerprint, 'pt-PT inheritance changed; review the inherited pt-BR wording').toBe('c38e7437a87b2ade8d7507d0feebb2ed7304d93821e55159dd819ad44c1be2dc')
   })
 
   // pt-PT labelled Unpair 'Desfazer': Undo, in Portuguese (it is pt-BR's Undo), on the button that

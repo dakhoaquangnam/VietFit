@@ -873,6 +873,30 @@ h4.sec{
 }
 .item:not(.tap-host):active{background:var(--press-fill)}
 .routine-list{position:relative}
+/* The routine editor's rail (P4): the superset link beside Move up over Move down. Each button is
+   40px wide; up and down reach into the row's padding, so each is a 40x40 target and the link a
+   40px square, where they were 28x24 and 32x28 in three separate places. */
+.re-rail{flex:none;display:grid;grid-template-columns:40px 40px;grid-template-rows:30px 30px;column-gap:4px;align-items:stretch;margin-block:-4px}
+.re-rail .iconbtn{width:auto;height:auto;border-radius:9px;font-size:var(--fs-subhead);position:relative;background:var(--surface-2)}
+.re-rail .re-link{grid-column:1;grid-row:1 / span 2;align-self:center;height:40px}
+.re-rail .re-up{grid-column:2;grid-row:1;border-end-start-radius:4px;border-end-end-radius:4px}
+.re-rail .re-down{grid-column:2;grid-row:2;margin-top:2px;border-start-start-radius:4px;border-start-end-radius:4px}
+.re-rail .re-up::before{inset:-10px -2px 0}
+.re-rail .re-down::before{inset:0 -2px -10px}
+.re-rail .re-link::before{inset:-2px}
+.re-rail span.re-link{display:block}
+.re-rail .iconbtn.on-ss{background:var(--acc-soft);color:var(--acc-ink)}
+/* the routine's actions (P4): a grouped list, then Delete apart, red, saying what it removes */
+.re-acts{margin-top:14px}
+.re-acts+.re-acts{margin-top:22px}
+.re-act-i{flex:none;font-size:var(--fs-title3);color:var(--acc-ink)}
+.re-danger .re-act-i{color:var(--red)}
+.re-acts .lrow+.lrow::before{inset-inline-start:46px}
+.lrow:disabled{opacity:.45;cursor:default}
+/* the exercise sheet's Delete (P6): its own group at the end of the sheet */
+.ex-del{margin-top:24px}
+.ex-del-i{flex:none;font-size:var(--fs-title3)}
+.lrow:disabled:active{background:none}
 /* One column at every width (#277), whatever page it is on. The desktop layout puts the #app
    lists outside a .narrow page in two columns, and before the .narrow rule below won on
    specificity this list sat in that grid on a computer, while the reorder measures its rows top
@@ -1000,6 +1024,18 @@ h4.sec{
    without this the label wrapped under it and every chip became a two-line button. One line
    each; a row wider than the sheet scrolls sideways like every .chips strip. */
 .chip.ichip{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+/* The Library's one filter row (P7): a chosen chip is a neutral fill, --label on --surface-3, so
+   the accent is not spent on chrome three times before the first exercise. */
+.lib-filters{margin-bottom:10px}
+.lib-filters .chip.on{background:var(--surface-3);color:var(--label)}
+.lib-filters .chip.ichip .icn{font-size:var(--fs-caption);--icon-stroke:2.2}
+.lib-filters .chip.on .icn{color:var(--label-2)}
+.lib-fbtn .icn{font-size:var(--fs-subhead)!important;--icon-stroke:1.9!important}
+.lib-fn{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--label);color:var(--bg);font-size:var(--fs-caption);font-weight:600;display:inline-grid;place-items:center;font-variant-numeric:tabular-nums}
+.chips.wrap{flex-wrap:wrap;overflow:visible;touch-action:auto}
+.lib-fsheet .chip.on{background:var(--surface-3);color:var(--label)}
+/* the row's "add to my plan": a quiet trailing icon button instead of a tinted "+ Plan" on every row */
+.item .lib-add{width:32px;height:32px;font-size:var(--fs-subhead);background:var(--surface-2);color:var(--label-2)}
 .chip .qstate{text-transform:none}
 /* On a phone these rows scroll by swipe. On a pointer device lib/hchips.js lets you
    click-drag anywhere on the row to pull it along; a grab cursor on rows that actually
@@ -1026,6 +1062,16 @@ body.chips-dragging *{cursor:inherit}
 .measure-date{display:block;margin-bottom:14px}
 .measure-date>span,.measure-field>span:first-child{display:block;color:var(--label-2);font-size:var(--fs-footnote);margin:0 2px 6px}
 .measure-date .field{background:var(--surface-2)}
+/* The weigh-in sheet's date and time side by side (#859); the list's rows open a weigh-in to edit. */
+.bw-when{gap:10px;align-items:stretch;margin-bottom:14px}
+.bw-when>.measure-date{flex:1;min-width:0;margin-bottom:0}
+.bw-when>.bw-time{flex:0 0 auto;display:flex;flex-direction:column}
+.bw-time .timef{display:flex;flex:1;min-height:44px;width:100%;box-sizing:border-box;background:var(--surface-2)}
+.bw-row{padding:9px 2px;border-bottom:1px solid var(--sep)}
+.bw-row.bw-sub{padding-inline-start:14px}
+.bw-when-btn{background:none;border:0;padding:4px 0;font:inherit;color:inherit;text-align:start;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-width:0}
+.bw-src{font-size:11px;color:var(--pink)}
+.bw-day{padding:10px 2px 2px}
 .measure-form{display:grid;grid-template-columns:1fr 1fr;gap:11px 10px}
 .measure-field{min-width:0}
 .measure-input{height:47px;background:var(--surface-2);border-radius:var(--r);display:flex;align-items:center;padding:0 12px;gap:6px}
@@ -2449,6 +2495,15 @@ body.no-tabbar.resting #toast{bottom:calc(100px + var(--sab))}
 /* ---------------------------------------------------------------- misc --- */
 .empty{text-align:center;color:var(--label-2);padding:44px 20px;font-size:var(--fs-subhead);line-height:1.45}
 .empty .ico{font-size:34px;color:var(--label-2);margin-bottom:12px;display:flex;justify-content:center}
+/* An empty list with its first action in place (components/EmptyState.jsx, P9): the sentence and
+   the button together, centred in a quiet frame where the rows will appear. */
+.empty-state{background:var(--surface);border-radius:var(--r-card);padding:28px 20px 22px;margin-block:4px 16px}
+.empty-state.in-sect{background:none;margin:0;padding:22px 16px 18px}
+.empty-state .ico{font-size:30px;margin-bottom:10px}
+.empty-t{font-size:var(--fs-body);font-weight:600;color:var(--label);margin-bottom:4px}
+.empty-x{text-wrap:pretty}
+.empty-acts{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:16px}
+.empty-acts>.btn{width:auto;min-width:min(240px,100%);padding-inline:20px}
 .steps-list{
   padding-inline-start:18px;color:var(--label-2);font-size:var(--fs-subhead);line-height:1.5;
   display:flex;flex-direction:column;gap:9px;
@@ -2837,11 +2892,14 @@ button.wl-summary{width:100%;padding:0 0 10px;text-align:start;border-radius:var
 .sp-version{text-align:center;margin-top:4px;line-height:1.6}
 /* The root rows' previews ("2:00 de descanso · Tarjetas", "Som · Vibração") are two or three facts, and a
    one-line ellipsis cut all but the first. They wrap instead, up to three lines, and never below
-   their longest word (min-content, since overflow:hidden would make auto mean 0). On the narrowest phones there is no room beside
-   the title at all, so the preview moves under it, like a subtitle. */
+   their longest word (min-content, since overflow:hidden would make auto mean 0). On a phone there
+   is no room beside the title for both: at 390px "Plan & schedule" broke over two lines because
+   "Fixed Week · Mon" kept its width. So on every phone width the preview moves under the title,
+   as the row's subtitle, in the secondary grey; a tablet or a desktop keeps it beside the title,
+   where there is room (redesign 1.4.5, P10). */
 .lrow.sp-root-row .lrow-v{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;
   min-width:min-content;max-width:62%;line-height:1.25;text-wrap:balance}
-@media (max-width:360px){
+@media (max-width:430px){
   .lrow.sp-root-row:has(.lrow-v){display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:12px;row-gap:1px}
   .lrow.sp-root-row:has(.lrow-v) .lrow-i{grid-column:1;grid-row:1 / span 2}
   .lrow.sp-root-row:has(.lrow-v) .lrow-m{grid-column:2;grid-row:1}
@@ -2891,6 +2949,57 @@ button.wl-summary{width:100%;padding:0 0 10px;text-align:start;border-radius:var
   left:calc(-1 * var(--eb-l,0px));right:calc(-1 * var(--eb-r,0px));
   box-shadow:0 0 28px rgba(0,0,0,.28);
 }
+
+/* Gym reminder (#614, views/GymReminder.jsx; redrawn in 1.4.4). The list: cards like Plan's
+   routines, a switch and a ⋯ each. A switched-off gym fades but stays readable. */
+.gym-list-t{margin-top:4px}
+.gym-list{margin-bottom:12px}
+.gym-item{padding-block:8px}
+.gym-item .item-open{flex:1;min-width:0;padding:4px 0;background:none;border:0;color:inherit;font:inherit;cursor:pointer}
+.gym-item .item-open .ss{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gym-item.off .lrow-i,.gym-item.off .item-open{opacity:.5}
+.gym-more{flex:none;display:grid;place-items:center;width:36px;height:44px;margin-inline-end:-6px;border:0;background:none;color:var(--label-2);font-size:20px;border-radius:10px;cursor:pointer}
+.gym-more:active{background:var(--surface-2)}
+.gym-empty{padding:30px 20px 22px}
+.gym-add{margin:0 0 26px}
+/* The editor: a big map in a card, the search floating on top of it, the radius in the accent. */
+.gmap{position:relative;height:clamp(360px,calc(100dvh - 300px),640px);border-radius:var(--r-lg);overflow:hidden;background:var(--surface-2);isolation:isolate;box-shadow:0 0 0 .5px var(--sep)}
+.gym-map{position:absolute;inset:0;z-index:0;background:var(--surface-2)}
+/* Dark mode: OpenStreetMap's tiles turned to night on the phone, no second tile provider. */
+:root:not([data-theme="light"]) .gym-map .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.88) saturate(.7)}
+/* Attribution stays readable in both themes and clear of the card's rounded corner. */
+.gym-map.leaflet-container .leaflet-control-attribution{font-size:10px;line-height:1.5;background:var(--surface);color:var(--label-2);opacity:.92;border-radius:8px;padding:1px 7px;margin:0 10px 8px 0}
+.gym-map.leaflet-container .leaflet-control-attribution a{color:var(--label)}
+.gym-map .leaflet-bar{border:0;box-shadow:0 2px 10px rgba(0,0,0,.25);border-radius:12px;overflow:hidden}
+.gym-map .leaflet-bar a{width:38px;height:38px;line-height:38px;font-size:20px;background:var(--surface);color:var(--label);border-color:var(--sep)}
+.gym-map .leaflet-bar a.leaflet-disabled{color:var(--label-3);background:var(--surface)}
+.gym-pin span{position:relative;display:block;width:34px;height:34px;border-radius:50% 50% 50% 0;background:var(--acc);transform:rotate(-45deg);box-shadow:0 3px 8px rgba(0,0,0,.35);border:3px solid #fff}
+.gym-pin span::after{content:'';position:absolute;inset:9px;border-radius:50%;background:#fff}
+.gym-handle span{display:block;width:28px;height:28px;border-radius:50%;background:#fff;border:3px solid var(--acc);box-shadow:0 2px 6px rgba(0,0,0,.35);cursor:ew-resize}
+.gym-radius{stroke:var(--acc);fill:var(--acc);stroke-width:2.5}
+.gmap-top{position:absolute;z-index:1000;inset:10px 10px auto;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.gmap-top>*{pointer-events:auto}
+.gmap-search{display:flex;gap:8px;align-items:center}
+.gmap-search>.searchf{flex:1;min-width:0}
+.gmap-search .field{height:48px;font-size:17px;background:var(--surface);box-shadow:0 3px 14px rgba(0,0,0,.28)}
+:root[data-theme="light"] .gmap-search .field{background:var(--surface)}
+.gmap-search>.btn{flex:none;width:auto;height:48px;padding-inline:16px;box-shadow:0 3px 14px rgba(0,0,0,.28)}
+.gmap-note{align-self:flex-start;margin:0;padding:3px 9px;border-radius:999px;font-size:11.5px;color:var(--label-2);background:var(--surface);opacity:.94}
+.gmap-hits{max-height:min(330px,calc(100% - 90px));overflow-y:auto;overscroll-behavior:contain;gap:6px;padding:2px;border-radius:var(--r-card)}
+.gmap-hit{box-shadow:0 2px 10px rgba(0,0,0,.22);cursor:pointer;min-height:56px}
+.gmap-hit .ss{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gmap-hit.none{cursor:default;min-height:0}
+.gmap-chip{position:absolute;z-index:1000;left:50%;transform:translateX(-50%);bottom:24px;white-space:nowrap;padding:6px 11px;border-radius:999px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;background:var(--acc);color:var(--on-acc);box-shadow:0 2px 8px rgba(0,0,0,.3);pointer-events:none}
+.gmap-hint{margin:8px 4px 14px}
+.gmap-btns{display:flex;flex-direction:column;gap:8px;margin:0 0 24px}
+.gmap-btns>.btn.primary{min-height:52px;font-size:17px}
+@media (min-width:700px){.gmap-btns{flex-direction:row}.gmap-btns>.btn{flex:1}}
+.gym-field{padding:8px 12px}
+.gym-field input{width:100%}
+.gym-radius-row{display:flex;align-items:center;gap:12px;padding:12px 14px}
+.gym-radius-row>:first-child{flex:1}
+.gym-radius-val{min-width:64px;text-align:end;font-variant-numeric:tabular-nums;color:var(--label-2)}
+.gym-actions{display:flex;flex-direction:column;gap:10px;margin:4px 0 30px}
 
 /* Your year in VietFit: Home's December card (components/WrappedEntry.jsx). The stories' own
    styles load with them (components/Wrapped.css). */

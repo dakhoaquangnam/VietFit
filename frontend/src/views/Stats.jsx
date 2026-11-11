@@ -807,7 +807,7 @@ export default function Stats() {
     <div className="hdr"><SeasonDeco spot="stats-hdr" /><div><h1>{t('Stats')}</h1><div className="sub">{t('Progress & history')}</div></div>
       <div className="row" style={{ gap: 8 }}>
         <button className="iconbtn" onClick={reportSheet} aria-label={t('Performance report')} title={t('Performance report')}><Icon name="note" /></button>
-        <button className="iconbtn" onClick={() => nav('/history')} aria-label={t('History')}><Icon name="history" /></button>
+        <button className="iconbtn" data-tour="stats-history" onClick={() => nav('/history')} aria-label={t('History')}><Icon name="history" /></button>
       </div></div>
 
     {/* The page in four parts (redesign 1.4.5, P5), each with its own heading, and a sticky index

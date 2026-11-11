@@ -9,8 +9,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
-const st = vi.hoisted(() => ({ S: {}, loaded: 0, xmas: 0 }))
+const st = vi.hoisted(() => ({ S: {}, loaded: 0, xmas: 0, tour: false }))
 vi.mock('../store/useStore.js', () => ({ useStore: sel => sel({ S: st.S }) }))
+vi.mock('../lib/tour.js', () => ({ useTourRunning: () => st.tour }))
 vi.mock('../seasonal/halloween.jsx', () => {
   st.loaded++
   return { Layer: () => <i className="layer" />, Deco: ({ spot }) => <i className={'deco-' + spot} /> }
@@ -56,7 +57,7 @@ describe('fetched only while a theme shows', () => {
     vi.useFakeTimers({ toFake: ['Date'] }); vi.setSystemTime(new Date(2026, 9, 25, 12))
     host = document.createElement('div'); document.body.appendChild(host); root = createRoot(host)
   })
-  afterEach(() => { act(() => root.unmount()); host.remove(); vi.useRealTimers(); delete document.documentElement.dataset.season })
+  afterEach(() => { act(() => root.unmount()); host.remove(); vi.useRealTimers(); delete document.documentElement.dataset.season; st.tour = false })
 
   it('switched off in season: nothing rendered, nothing loaded, no data-season', async () => {
     st.S = { seasonal: { halloween: 'off' } }
@@ -134,6 +135,17 @@ describe('fetched only while a theme shows', () => {
   })
 
   // No tour in the fork yet (GĐ6): upstream's 'while the app tour runs' test waits for it.
+
+  it('while the app tour runs: nothing at all, the layer and every spot step aside', async () => {
+    vi.useRealTimers()
+    vi.useFakeTimers({ toFake: ['Date'], shouldAdvanceTime: true }); vi.setSystemTime(new Date(2026, 11, 5, 12))
+    st.S = {}
+    st.tour = true
+    const { SeasonalLayer, SeasonDeco } = await import('./Seasonal.jsx')
+    await act(async () => root.render(<><SeasonalLayer /><SeasonDeco spot="home-advent" /><SeasonDeco spot="home-streak" /></>))
+    expect(host.innerHTML).toBe('')
+    expect(document.documentElement.dataset.season).toBeUndefined()
+  })
 
   it('Off in December: nothing, and the Christmas module is never fetched', async () => {
     vi.setSystemTime(new Date(2026, 11, 5, 12))

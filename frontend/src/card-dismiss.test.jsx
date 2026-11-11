@@ -74,12 +74,11 @@ describe('Home: the streak card and check-in', () => {
 })
 
 describe('exercise rows with a trailing button', () => {
-  it('Library: Plan does not open the exercise, the name does', () => {
+  it('Library: Add to my plan does not open the exercise, the name does', () => {
     const host = render(<Library />)
     const row = [...host.querySelectorAll('.list .item.tap-host')][0]
     expect(row.getAttribute('role')).toBeNull()
-    const plan = [...row.querySelectorAll('button')].find(b => b.textContent.trim() === 'Plan')
-    act(() => plan.click())
+    act(() => row.querySelector('.lib-add').click())
     const afterAdd = useUI.getState().sheets.slice()
     expect(afterAdd.length).toBeLessThanOrEqual(1)
     if (afterAdd.length) expect(renderTop().querySelector('.exdetail-name')).toBeNull()

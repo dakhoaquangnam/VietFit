@@ -90,7 +90,9 @@ export const SearchField = forwardRef(function SearchField({ value, onChange, on
       <Icon name="magnifier" className="lead" />
       <input ref={ref} className="field" value={value} onChange={onChange} {...rest} />
       {!!value && (
-        <button className="clear" onClick={onClear} aria-label={t('Clear')}>
+        /* type="button": inside a form the first button is what Enter presses, and that must be
+           the form's own Search, not this (the gym map's search cleared itself on Enter). */
+        <button type="button" className="clear" onClick={onClear} aria-label={t('Clear')}>
           <Icon name="xmark" />
         </button>
       )}
@@ -120,10 +122,11 @@ export function Switch({ checked, onChange, disabled, ...accessibility }) {
 // options: [{ value, label, icon? }]  — the selected pill slides between cells.
 // `ariaLabelledby` names the choice for a screen reader by its visible label (a group of
 // pressed buttons otherwise reads as three loose words).
-export function Segmented({ options, value, onChange, className = '', ariaLabelledby }) {
+// `tour`: the app tour's anchor for this control (data-tour, lib/tour.js); likewise below.
+export function Segmented({ options, value, onChange, className = '', ariaLabelledby, tour }) {
   const i = Math.max(0, options.findIndex(o => o.value === value))
   return (
-    <div className={'seg ' + className} style={{ '--n': options.length, '--i': i }}
+    <div className={'seg ' + className} style={{ '--n': options.length, '--i': i }} data-tour={tour}
       role={ariaLabelledby ? 'group' : undefined} aria-labelledby={ariaLabelledby}>
       <span className="seg-sel" aria-hidden="true" />
       {options.map(o => (
@@ -289,9 +292,10 @@ export function Slider({ value, min = 0, max = 100, step = 1, onChange, classNam
 
 /* ============================ checkbox ============================ */
 
-export function Check({ checked, onChange, className = '', size, label }) {
+export function Check({ checked, onChange, className = '', size, label, tour }) {
   return (
     <button
+      data-tour={tour}
       role="checkbox"
       aria-checked={!!checked}
       aria-label={label}
@@ -309,9 +313,9 @@ export function Check({ checked, onChange, className = '', size, label }) {
 // The inset-grouped list is the app's main structural primitive: a titled
 // section holding rows separated by hairlines that stop short of the leading
 // edge, so the icon column reads as a continuous rail.
-export function Section({ title, footer, children, className = '' }) {
+export function Section({ title, footer, children, className = '', tour }) {
   return (
-    <section className={'sect ' + className}>
+    <section className={'sect ' + className} data-tour={tour}>
       {title && <h2 className="sect-t">{title}</h2>}
       <div className="sect-b">{children}</div>
       {footer && <p className="sect-f">{footer}</p>}

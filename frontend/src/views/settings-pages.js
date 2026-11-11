@@ -119,6 +119,7 @@ export const SEARCH = [
   { page: 'units', title: 'Weight decimals', icon: 'ruler', tint: 'var(--teal)', kw: 'decimals precision microplates rounding' },
   { page: 'units', title: 'Speed unit', icon: 'figureRun', tint: 'var(--teal)', kw: 'speed mph kmh km/h miles cardio' },
   { page: 'units', title: '1RM formula', icon: 'chart', tint: 'var(--teal)', kw: '1rm one rep max epley brzycki lombardi formula estimate' },
+  { page: 'units', title: 'Daily weigh-in value', icon: 'scale', tint: 'var(--teal)', kw: 'weigh-in body weight morning first average last several day trend chart', opts: ['Morning (first)', 'Average', 'Last'] },
   { page: 'units', title: 'About you', icon: 'person', tint: 'var(--teal)', kw: 'sex gender age year of birth born strength level standards' },
   { page: 'units', title: 'Count warm-ups in volume', icon: 'sunrise', tint: 'var(--teal)', kw: 'warm-up warmup volume tonnage total gross work sets' },
   // Equipment
@@ -136,6 +137,7 @@ export const SEARCH = [
   { page: 'look', title: 'Exercise drawings', icon: 'figureStrength', tint: 'var(--teal)', kw: 'figure male female woman man picture', opts: ['Male', 'Female'] },
   { page: 'look', title: 'Gym check-in', icon: 'qr', tint: 'var(--blue)', kw: 'qr code membership card check in barcode' },
   { page: 'look', title: 'Body weight', icon: 'scale', tint: 'var(--green)', kw: 'weight card home' },
+  { page: 'look', title: 'Recovery tips', icon: 'figureStrength', tint: 'var(--green)', kw: 'recovery recovering rest muscle fatigue hint tip card home sore' },
   { page: 'look', title: 'Week and month recap', icon: 'figureStrength', tint: 'var(--teal)', kw: 'recap week month summary card home new' },
   { page: 'look', title: 'Weekly sets on Home', icon: 'figureStrength', tint: 'var(--teal)', kw: 'weekly sets muscle volume range home card line' },
   { page: 'look', title: 'Monthly challenges', icon: 'target', tint: 'var(--orange)', kw: 'challenge challenges monthly month goal goals badge badges trophy motivation' },
@@ -161,6 +163,11 @@ export const SEARCH = [
   { page: 'data', title: 'Reset everything', icon: 'trash', tint: 'var(--red)', kw: 'delete wipe reset erase' },
   // About & updates
   { page: 'about', title: 'Check for updates', icon: 'download', tint: 'var(--green)', kw: 'update apk android version', when: c => c.mobile && c.android },
+  { page: 'about', title: 'Show the tour again', icon: 'lightbulb', tint: 'var(--yellow)', kw: 'tour tutorials intro introduction tutorial walkthrough guide help onboarding how to start' },
+  { page: 'about', title: 'Build your first plan', icon: 'calendar', tint: 'var(--yellow)', kw: 'tutorial guide routine plan create first help how to' },
+  { page: 'about', title: 'Create your own exercise', icon: 'plusCircle', tint: 'var(--yellow)', kw: 'tutorial guide custom exercise own new help how to' },
+  { page: 'about', title: 'Edit your data', icon: 'pencil', tint: 'var(--yellow)', kw: 'tutorial guide edit fix change workout weigh-in history correct help how to' },
+  { page: 'about', title: 'Export & import', icon: 'folder', tint: 'var(--yellow)', kw: 'tutorial guide export import backup restore csv strong hevy sync help how to' },
   { page: 'about', title: 'Version', icon: 'info', tint: 'var(--grey)', kw: 'version about licence license open source' },
   { page: 'about', title: 'In Chrome: ⋮ menu → Add to Home screen', icon: 'share', tint: 'var(--blue)', kw: 'install app home screen tip pwa', when: c => c.installTip && c.androidWeb },
   { page: 'about', title: 'In Safari: Share → Add to Home Screen', icon: 'share', tint: 'var(--blue)', kw: 'install app home screen tip pwa', when: c => c.installTip && !c.androidWeb && !c.desktopWeb },

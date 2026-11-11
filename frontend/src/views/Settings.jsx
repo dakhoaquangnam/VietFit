@@ -7,6 +7,7 @@ import { speedUnitOf } from '../lib/speed.js'
 import { formulaOf, FORMULA_NAMES } from '../lib/onerm.js'
 import { copyText } from '../lib/clipboard.js'
 import { useUI } from '../store/useUI.js'
+import { startTour, TUTORIALS, TUTORIAL_COPY, tutorialDone } from '../lib/tour.js'
 import { ACCENTS, ACCENT_NAMES, todayISO, localTZ, weekStartOf, MONDAY, SUNDAY, fmtPlate } from '../lib/format.js'
 import { inventoryFor, ownsPlates } from '../lib/plates.js'
 import { BAR_TYPES, ownBarDefault } from '../lib/bar.js'
@@ -64,6 +65,7 @@ import { csvExportSheet } from '../components/CsvExportSheet.jsx'
 import GymReminderPage, { GymEditPage } from './GymReminder.jsx'
 import { readGymConfig } from '../lib/gym-reminder.js'
 import { THEMES, inSeason, seasonChoice, activeSeason } from '../lib/seasonal.js'
+import { dailyModeOf, settleAll } from '../lib/weigh-ins.js'
 import { adventOf, adventOpenable } from '../lib/advent.js'
 import { openSeasonal } from '../components/Seasonal.jsx'
 
@@ -92,6 +94,9 @@ export function SettingsRoute() {
   if (page === 'coach') return <Navigate to="/coach/setup" replace />
   return <Settings key={page || 'root'} page={page || null} find={loc.state?.find || null} via={loc.state?.via || null} entryKey={loc.key} />
 }
+
+// The tutorials' rows in About & updates.
+const TUTORIAL_ICON = { plan: 'calendar', custom: 'plusCircle', edit: 'pencil', backup: 'folder' }
 
 // "Mon" / "Sun" in the app's language, for the Plan & schedule row's preview.
 const shortWeekday = day => {
@@ -839,6 +844,16 @@ export default function Settings({ page = null, find = null, via = null, entryKe
             { value: 'lander', label: 'Lander' },
             { value: 'weighted', label: t('Blend of all'), subtitle: t('Averages seven formulas and reads your RIR when you log it.') },
           ]} />
+        {/* #859: a day can hold several weigh-ins. Which one is the day's number for the chart, the
+            trend, the goal line, widgets, Wrapped and the Coach (lib/weigh-ins.js). Morning is the
+            default: it is the weight worth comparing from one day to the next. */}
+        <SelectRow icon="scale" iconTint="var(--teal)" title={t('Daily weigh-in value')}
+          value={dailyModeOf(S)} onChange={v => update(s => { s.bwDaily = v; settleAll(s, v) })}
+          options={[
+            { value: 'first', label: t('Morning (first)'), subtitle: t('Before breakfast is the one to compare.') },
+            { value: 'avg', label: t('Average'), subtitle: t('Every weigh-in of the day counts the same.') },
+            { value: 'last', label: t('Last'), subtitle: t('The most recent one of the day.') },
+          ]} />
         {/* Gross volume for people comparing with other apps (#719). Off is the app's own rule,
             work sets only; on, every screen that shows a volume counts done warm-ups too
             (lib/history.js sessionVolume). Records and progression never read warm-ups. */}
@@ -914,6 +929,12 @@ export default function Settings({ page = null, find = null, via = null, entryKe
           subtitle={t('Show the body weight card on Home.')}>
           <Switch checked={S.showWeightCard !== false} onChange={v => update(s => { s.showWeightCard = v })} />
         </Row>
+        {/* A small card when a muscle is still recovering or has been left out a while
+            (lib/recovery-hint.js). One at a time, and it can be put away for the day. */}
+        <Row icon="figureStrength" iconTint="var(--green)" title={t('Recovery tips')}
+          subtitle={t('A small hint on Home about what has rested and what is still recovering.')}>
+          <Switch aria-label={t('Recovery tips')} checked={S.recoveryHint !== false} onChange={v => update(s => { s.recoveryHint = v })} />
+        </Row>
         {/* A card on Home when a new week or month starts (components/Recap.jsx): what the last one added up to. */}
         <Row icon="figureStrength" iconTint="var(--teal)" title={t('Week and month recap')}
           subtitle={t('A small card when a new week or month starts: what the last one added up to.')}>
@@ -982,14 +1003,14 @@ export default function Settings({ page = null, find = null, via = null, entryKe
 
     data: () => <>
       <Section title={t('Back up')}>
-        <Row icon="share" iconTint="var(--blue)" title={t('Export backup (JSON)')} subtitle={hasMedia ? t('Without photos and videos') : undefined} accessory="chevron" onClick={doExport} />
+        <Row icon="share" iconTint="var(--blue)" title={t('Export backup (JSON)')} subtitle={hasMedia ? t('Without photos and videos') : undefined} accessory="chevron" onClick={doExport} tour="data-export" />
         {hasMedia && <Row icon="share" iconTint="var(--blue)" title={t('Export with photos & videos (.zip)')} accessory="chevron" onClick={doExportZip} />}
         <Row icon="note" iconTint="var(--green)" title={t('Performance report (PDF)')} subtitle={t('Charts, totals and every workout of the last days or weeks.')} accessory="chevron" onClick={reportSheet} />
         {/* One row per set for spreadsheets and other apps (#647); our own importer reads it back. */}
-        <Row icon="share" iconTint="var(--green)" title={t('Export as spreadsheet (CSV)')} subtitle={t('Workouts, body weight and measurements')} accessory="chevron" onClick={csvExportSheet} />
+        <Row icon="share" iconTint="var(--green)" title={t('Export as spreadsheet (CSV)')} subtitle={t('Workouts, body weight and measurements')} accessory="chevron" onClick={csvExportSheet} tour="data-csv" />
         {/* 14 is AUTO_BACKUP_KEEP in lib/mobile.js, written out because the Settings tests mock
             that module wholesale; mobile.autobackup.test.js pins the two together. */}
-        {MOBILE && <Row icon="folder" iconTint="var(--blue)" title={t('Auto-backup on changes')}
+        {MOBILE && <Row icon="folder" iconTint="var(--blue)" title={t('Auto-backup on changes')} tour="data-auto"
           subtitle={autoBackupSubtitle(android && S.autoBackup ? backupDir : null, 14)}>
           <Switch checked={!!S.autoBackup} onChange={v => update(s => { s.autoBackup = v })} />
         </Row>}
@@ -998,10 +1019,10 @@ export default function Settings({ page = null, find = null, via = null, entryKe
       </Section>
       {MOBILE && <HealthConnectCard S={S} toast={toast} android={android} />}
       <Section title={t('Bring data in')}>
-        <Row icon="download" iconTint="var(--teal)" title={t('Import backup')} accessory="chevron" onClick={() => fileRef.current.click()} />
+        <Row icon="download" iconTint="var(--teal)" title={t('Import backup')} accessory="chevron" onClick={() => fileRef.current.click()} tour="data-import" />
         <Row icon="download" iconTint="var(--teal)" title={t('Import from another app')}
           subtitle={t('FitNotes, Strong, Hevy, GymMane, VietFit CSV, or body weight from Apple Health')}
-          accessory="chevron" onClick={() => importRef.current.click()} />
+          accessory="chevron" onClick={() => importRef.current.click()} tour="data-apps" />
         <Row icon="key" iconTint="var(--teal)" title={t('Import from Hevy')}
           subtitle={t('Pull your history with a Hevy Pro API key')}
           accessory="chevron" onClick={importFromHevy} />
@@ -1031,6 +1052,19 @@ export default function Settings({ page = null, find = null, via = null, entryKe
           subtitle={checking ? t('Checking…') : t('You have v{0}', __APP_VERSION__)}
           accessory="chevron"
           onClick={() => (updateInfo?.hasUpdate ? onUpdateRowClick() : checkNow())} />}
+      </Section>
+      {/* Tutorials (components/Tour.jsx): the tour from the top, and the four short guided runs
+          its closing card offers. Not over a running workout: the tour's practice session and the
+          tutorials' copies would have to stand in for the real one. */}
+      <Section title={t('Tutorials')}>
+        <Row icon="lightbulb" iconTint="var(--yellow)" title={t('Show the tour again')} subtitle={t('A one-minute walk around the app')} accessory="chevron"
+          onClick={() => (useStore.getState().S.active ? toast(t('Finish your workout first, then the tour is all yours.')) : startTour())} />
+        {TUTORIALS.map(f => {
+          const [title, sub] = TUTORIAL_COPY[f]()
+          return <Row key={f} icon={TUTORIAL_ICON[f]} iconTint="var(--yellow)" title={title} subtitle={sub} accessory="chevron"
+            value={tutorialDone(f) ? t('Done') : null}
+            onClick={() => (useStore.getState().S.active ? toast(t('Finish your workout first, then the tour is all yours.')) : startTour(null, f))} />
+        })}
       </Section>
       {/* "Add to Home screen": not inside the phone app, and not once it is installed. Safari's
           Share menu only on Apple (an iPad says Macintosh too); Windows and Linux get Chrome's
@@ -1122,7 +1156,7 @@ export default function Settings({ page = null, find = null, via = null, entryKe
       <div className="sp-nav">
         {/* Named by what it says ("Settings", "Workout"), so a voice command for the visible
             word finds it; the chevron is hidden from assistive tech. */}
-        <button className="sp-back" data-back={((window.history.state?.idx || 0) > 0 ? pathBefore() : null) || (parent ? '/settings/' + parent : '/settings')} onClick={back}>
+        <button className="sp-back" data-tour="sp-back" data-back={((window.history.state?.idx || 0) > 0 ? pathBefore() : null) || (parent ? '/settings/' + parent : '/settings')} onClick={back}>
           <Icon name="chevronLeft" /><span>{parent ? t(PAGES[parent].title) : t('Settings')}</span>
         </button>
         <h1 className="sp-title">{t(PAGES[page].title)}</h1>
@@ -1175,7 +1209,7 @@ function SettingsRoot({ ctx, preview, open, user, sync, home, go, entryKey }) {
       ))}
     </Section> : <div className="sp-empty">{t('No setting matches “{0}”.', q.trim())}</div>) : <>
       <Section>
-        <button className="lrow tap sp-acct" onClick={() => open('account')}>
+        <button className="lrow tap sp-acct" data-tour="settings-account" onClick={() => open('account')}>
           <span className={'sp-avatar' + (initial ? ' on' : '')} aria-hidden="true">{initial || <Icon name="personCircle" />}</span>
           <span className="lrow-m"><span className="lrow-t">{acct.title}</span><span className="lrow-s">{acct.sub}</span></span>
           <Icon name="chevronRight" className="lrow-c" />
@@ -1184,7 +1218,7 @@ function SettingsRoot({ ctx, preview, open, user, sync, home, go, entryKey }) {
       {ROOT_GROUPS.map(g => g.filter(id => pageVisible(id, ctx))).filter(g => g.length).map(g => (
         <Section key={g[0]}>
           {g.map(id => <Row key={id} icon={PAGES[id].icon} iconTint={PAGES[id].tint} title={t(PAGES[id].title)}
-            value={preview[id]?.() || null} accessory="chevron" onClick={() => open(id)} className="sp-root-row" />)}
+            value={preview[id]?.() || null} accessory="chevron" onClick={() => open(id)} className="sp-root-row" tour={'settings-' + id} />)}
           {/* The phone app sets up its own Coach on the Coach page beside Look; in a hosted app the
               Coach is the server's, set up by an admin on the admin dashboard. Its admins get the
               same row, in the same place, straight to that card; nobody else has anything to set. */}
@@ -1713,7 +1747,7 @@ function HealthConnectCard({ S, toast, android }) {
   const c = HEALTH_COPY[ios ? 'ios' : 'android']()
 
   if (st.status !== 'available') return (
-    <Section title={t('Health Connect')}>
+    <Section title={t('Health Connect')} tour="data-health">
       <Row icon="heart" iconTint="var(--red)" title={t('Health Connect')}
         subtitle={st.status === 'update'
           ? t('Update Health Connect to share workouts and weigh-ins with other apps.')
@@ -1765,7 +1799,7 @@ function HealthConnectCard({ S, toast, android }) {
   })
 
   return (
-    <Section title={c.section}
+    <Section title={c.section} tour="data-health"
       footer={[h.on && c.footer, reading && (h.readWeight && h.wHistory ? t('VietFit reads only while it is open: heart rate for workouts of the last day, weigh-ins of the last year. Older workouts stay as they are.') : t('VietFit reads only while it is open: heart rate for workouts of the last day, weigh-ins of the last 30 days. Older workouts stay as they are.'))].filter(Boolean).join(' ') || null}>
       <Row icon="heart" iconTint="var(--red)" title={c.write}
         subtitle={t('Finished workouts and weigh-ins, from this phone only.')}>

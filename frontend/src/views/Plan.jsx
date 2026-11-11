@@ -9,6 +9,7 @@ import {
   planHasRoutines, exportPlanFile, printWholePlan, importPlanFile,
 } from '../sheets.jsx'
 import Icon from '../components/Icon.jsx'
+import EmptyState from '../components/EmptyState.jsx'
 import { SeasonDeco } from '../components/Seasonal.jsx'
 import { Button, Row, Section, Segmented } from '../components/ui.jsx'
 import SwipeRow from '../components/SwipeRow.jsx'
@@ -173,11 +174,11 @@ export default function Plan() {
       <div><h1>{t('Plan')}</h1><div className="sub">{mode === 'rotation' ? t('Your routines in a loop') : t('Your weekly routine')}</div></div>
       <div className="hdr-actions">
         {showCoach && <Button size="sm" variant="tinted" icon="sparkles" onClick={() => nav('/coach')}>{t('Coach')}</Button>}
-        <button className="iconbtn" onClick={openMenu} aria-label={t('Plan options')} title={t('Plan options')}><Icon name="share" /></button>
+        <button className="iconbtn" data-tour="plan-menu" onClick={openMenu} aria-label={t('Plan options')} title={t('Plan options')}><Icon name="share" /></button>
       </div>
     </div>
     <input ref={fileRef} type="file" accept="application/json,.json" onChange={pickFile} hidden />
-    <Segmented className="plan-views" value={view} onChange={setView}
+    <Segmented className="plan-views" tour="plan-views" value={view} onChange={setView}
       options={[{ value: 'schedule', label: t('Schedule') }, { value: 'routines', label: t('Routines') }]} />
     {view === 'routines'
       ? <Routines S={S} update={update} nav={nav} />
@@ -281,7 +282,7 @@ function Schedule({ S, update, nav, mode }) {
         <div className="tt">{rs.length ? deriveSessionName(rs.map(r => r.name)) : t('Rest day')}</div>
         <div className="ss">{rs.length === 1 ? exCount(rs[0].ex.length) : rs.length ? routineCount(rs.length) : t('Tap to plan something')}</div>
       </div>
-      {rs.length > 0 && <MiniBodyMap routines={rs} body={S.body} />}
+      {rs.length > 0 && <MiniBodyMap routines={rs} body={S.body} tour="plan-body" />}
       <Icon name="chevronRight" className="chev" />
     </div>
   }
@@ -295,7 +296,7 @@ function Schedule({ S, update, nav, mode }) {
   const editing = editLoop && !external
 
   return <>
-    <Section className="plan-mode" footer={mode === 'rotation'
+    <Section className="plan-mode" tour="plan-mode" footer={mode === 'rotation'
       ? t('Routines in a loop. Whatever is next stays next until you train it, whatever the day.')
       : t('The same routines on the same weekdays, every week.')}>
       <Row icon="repeat" iconTint="var(--orange)" title={t('How you train')}>
@@ -309,10 +310,9 @@ function Schedule({ S, update, nav, mode }) {
       <SeasonDeco spot="plan-card" />
     </Section>
 
-    {!S.routines.length && <div className="empty plan-empty">
-      <div className="ico"><Icon name="clipboard" /></div>{t('No routines yet.')}<br />{t('Make one, or grab the starter plan to get going.')}
-      <div style={{ marginTop: 12 }}><Button icon="clipboard" onClick={starterPlanSheet}>{t('Load starter plan')}</Button></div>
-    </div>}
+    {!S.routines.length && <EmptyState className="plan-empty" icon="clipboard" title={t('No routines yet.')} text={t('Make one, or grab the starter plan to get going.')}>
+      <Button variant="tinted" icon="clipboard" onClick={starterPlanSheet}>{t('Load starter plan')}</Button>
+    </EmptyState>}
 
     {/* A queue payload that arrived unusable: a fix-up, shown whichever way you train. Giving it
         up also gives up S.scheduleMode='rotation', or the loop would sit there with no queue. */}
@@ -325,7 +325,7 @@ function Schedule({ S, update, nav, mode }) {
 
     {mode === 'week' ? <>
       <h4 className="sec">{t('This week')}</h4>
-      <div className="list plan-week">{weekOrder(ws).map(d => dayRow(d))}</div>
+      <div className="list plan-week" data-tour="plan-week">{weekOrder(ws).map(d => dayRow(d))}</div>
       <p className="sect-f">{t('Want two routines on one day? Tap the day and pick both.')}</p>
     </> : <div className="rotation">
       <div className="row between plan-sec-h">
@@ -334,7 +334,7 @@ function Schedule({ S, update, nav, mode }) {
             adopt it first ("Use this rotation" below), never a tap on one of its rows. */}
         {!external && <div className="row plan-sec-acts" style={{ gap: 6 }}>
           {seq.length > 0 && <button className="plan-textbtn" aria-pressed={editLoop} onClick={() => setEditLoop(e => !e)}>{editLoop ? t('Done') : t('Edit')}</button>}
-          <Button size="sm" variant="tinted" icon="plus" aria-label={t('Add routine to the rotation')}
+          <Button size="sm" variant="tinted" icon="plus" data-tour="plan-loop-add" aria-label={t('Add routine to the rotation')}
             disabled={!S.routines.length} onClick={addToSeq}>{t('Add')}</Button>
         </div>}
       </div>
@@ -451,7 +451,7 @@ function Routines({ S, update, nav }) {
       {routines.length > 0
         ? <button className="plan-textbtn" aria-pressed={edit} onClick={() => setEdit(e => !e)}>{edit ? t('Done') : t('Edit')}</button>
         : <span />}
-      <Button size="sm" variant="tinted" icon="plus" onClick={addRoutine}>{t('New routine')}</Button>
+      <Button size="sm" variant="tinted" icon="plus" data-tour="plan-new" onClick={addRoutine}>{t('New routine')}</Button>
     </div>
     {routines.length ? <>
       {edit
@@ -480,8 +480,9 @@ function Routines({ S, update, nav }) {
         })}</div>}
       <p className="sect-f">{edit ? t('Drag to reorder. Tap the minus to delete.') : t('Tap a routine to edit it. Reorder and delete are behind Edit.')}</p>
     </> : <>
-      <div className="empty"><div className="ico"><Icon name="clipboard" /></div>{t('No routines yet.')}<br />{t('Make one, or grab the starter plan to get going.')}</div>
-      <Button icon="clipboard" onClick={starterPlanSheet}>{t('Load starter plan')}</Button>
+      <EmptyState icon="clipboard" title={t('No routines yet.')} text={t('Make one, or grab the starter plan to get going.')}>
+        <Button variant="tinted" icon="clipboard" onClick={starterPlanSheet}>{t('Load starter plan')}</Button>
+      </EmptyState>
     </>}
   </>
 }
